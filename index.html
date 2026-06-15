@@ -4,28 +4,25 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
 <meta name="theme-color" content="#060606"/>
-<title>Carta · El Bar</title>
+<title>La Habana · Bar Cubano</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet"/>
 
 <style>
-/* ════════════════════════════════════════════
-   TOKENS & RESET
-════════════════════════════════════════════ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 :root{
-  --bg:       #060606;
-  --bg2:      #0e0e0e;
-  --bg3:      #161616;
-  --border:   rgba(255,255,255,0.07);
-  --text:     #f0ece4;
-  --muted:    rgba(240,236,228,0.42);
-  --gold:     #c9a96e;
-  --gold2:    #e8d5a3;
-  --r:        18px;
-  --r-sm:     10px;
+  --bg:    #060606;
+  --bg2:   #0e0e0e;
+  --bg3:   #161616;
+  --bdr:   rgba(255,255,255,0.07);
+  --text:  #f0ece4;
+  --muted: rgba(240,236,228,0.42);
+  --gold:  #c9a96e;
+  --gold2: #e8d5a3;
+  --r:     18px;
+  --rsm:   10px;
 }
 
 html{scroll-behavior:smooth}
@@ -45,1081 +42,375 @@ a{color:inherit;text-decoration:none}
 button{cursor:pointer;border:none;background:none;font-family:inherit}
 img,video{display:block}
 
-/* ════════════════════════════════════════════
-   HERO
-════════════════════════════════════════════ */
+/* ── HERO ────────────────────────────────── */
 .hero{
   position:relative;
   min-height:100svh;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
   text-align:center;
   padding:40px 24px 80px;
   overflow:hidden;
 }
 
 .hero-bg{
-  position:absolute;
-  inset:0;
+  position:absolute;inset:0;
   background:
-    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(201,169,110,0.15) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 50% at 20% 100%, rgba(201,169,110,0.07) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 50% at 90% 80%, rgba(180,80,40,0.06) 0%, transparent 60%);
+    radial-gradient(ellipse 80% 60% at 50% -5%,rgba(201,169,110,0.14) 0%,transparent 65%),
+    radial-gradient(ellipse 50% 40% at 15% 100%,rgba(201,169,110,0.07) 0%,transparent 60%),
+    radial-gradient(ellipse 45% 40% at 90% 80%,rgba(160,60,30,0.07) 0%,transparent 60%);
 }
 
-/* Animated grain */
-.hero-grain{
-  position:absolute;
-  inset:-50%;
-  width:200%;height:200%;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-  background-size:200px 200px;
-  opacity:0.028;
-  animation:grainShift 8s steps(10) infinite;
-  pointer-events:none;
+.grain{
+  position:absolute;inset:-50%;width:200%;height:200%;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px 200px;opacity:.025;
+  animation:grain 8s steps(10) infinite;pointer-events:none;
+}
+@keyframes grain{
+  0%{transform:translate(0,0)} 20%{transform:translate(-5%,-10%)}
+  40%{transform:translate(-15%,5%)} 60%{transform:translate(7%,-25%)}
+  80%{transform:translate(-10%,15%)} 100%{transform:translate(0,0)}
 }
 
-@keyframes grainShift{
-  0%{transform:translate(0,0)}
-  10%{transform:translate(-5%,-10%)}
-  20%{transform:translate(-15%,5%)}
-  30%{transform:translate(7%,-25%)}
-  40%{transform:translate(-5%,25%)}
-  50%{transform:translate(-15%,10%)}
-  60%{transform:translate(15%,0)}
-  70%{transform:translate(0,15%)}
-  80%{transform:translate(3%,35%)}
-  90%{transform:translate(-10%,10%)}
-  100%{transform:translate(0,0)}
-}
-
-.hero-eyebrow{
-  font-size:11px;
-  font-weight:500;
-  letter-spacing:0.3em;
-  text-transform:uppercase;
-  color:var(--gold);
-  margin-bottom:24px;
+/* ── SVG LOGO in hero ── */
+.hero-logo{
+  width:min(220px,55vw);
+  margin-bottom:28px;
   opacity:0;
-  animation:fadeUp .8s .2s ease forwards;
+  animation:fadeUp .9s .2s ease forwards;
+  filter:drop-shadow(0 0 30px rgba(201,169,110,.2));
 }
 
-.hero-title{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(56px,16vw,108px);
-  font-weight:300;
-  line-height:1;
-  letter-spacing:-0.02em;
-  opacity:0;
-  animation:fadeUp .8s .4s ease forwards;
-}
-
-.hero-title em{
-  font-style:italic;
-  background:linear-gradient(135deg,var(--gold) 0%,var(--gold2) 50%,var(--gold) 100%);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
-}
-
-.hero-line{
-  width:48px;height:1px;
-  background:linear-gradient(90deg,transparent,var(--gold),transparent);
-  margin:32px auto;
-  opacity:0;
-  animation:fadeUp .8s .6s ease forwards;
-}
-
-.hero-sub{
-  font-size:12px;
-  letter-spacing:0.12em;
-  color:var(--muted);
-  opacity:0;
-  animation:fadeUp .8s .8s ease forwards;
+.hero-tagline{
+  font-size:11px;font-weight:500;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  opacity:0;animation:fadeUp .8s .8s ease forwards;
 }
 
 .hero-scroll{
-  position:absolute;
-  bottom:36px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:10px;
-  opacity:0;
-  animation:fadeUp .8s 1.4s ease forwards;
+  position:absolute;bottom:36px;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  opacity:0;animation:fadeUp .8s 1.4s ease forwards;
 }
+.hero-scroll span{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--muted)}
+.scroll-track{width:1px;height:44px;background:linear-gradient(to bottom,var(--gold),transparent);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.3;transform:scaleY(.5);transform-origin:top}50%{opacity:1;transform:scaleY(1);transform-origin:top}}
 
-.hero-scroll span{
-  font-size:9px;
-  letter-spacing:0.25em;
-  text-transform:uppercase;
-  color:var(--muted);
+/* ── STORIES ─────────────────────────────── */
+.stories-wrap{overflow:hidden}
+.stories-label{padding:28px 20px 12px;font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.stories-row{
+  display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;
+  padding:6px 20px 16px;-webkit-overflow-scrolling:touch;
 }
+.stories-row::-webkit-scrollbar{display:none}
 
-.scroll-track{
-  width:1px;height:44px;
-  background:linear-gradient(to bottom,var(--gold),transparent);
-  animation:trackPulse 2s ease-in-out infinite;
+.story{
+  position:relative;flex-shrink:0;
+  width:126px;height:192px;border-radius:16px;overflow:hidden;
+  cursor:pointer;transition:transform .3s ease;
 }
+.story:active{transform:scale(.97)}
 
-@keyframes trackPulse{
-  0%,100%{opacity:.3;transform:scaleY(.5);transform-origin:top}
-  50%{opacity:1;transform:scaleY(1);transform-origin:top}
+.story::before{
+  content:'';position:absolute;inset:-3px;border-radius:18px;
+  background:var(--sg,conic-gradient(from 0deg,var(--gold),var(--gold2),var(--gold)));
+  z-index:-1;opacity:.75;animation:spin 4s linear infinite;
 }
+@keyframes spin{to{filter:hue-rotate(25deg)}}
 
-/* ════════════════════════════════════════════
-   FEATURED STORIES
-════════════════════════════════════════════ */
-.stories-section{
-  padding:0 0 8px;
-  overflow:hidden;
-}
+.story img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.story:hover img{transform:scale(1.06)}
+.story-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 45%,transparent 80%)}
+.story-info{position:absolute;bottom:12px;left:10px;right:10px}
+.story-name{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:400;line-height:1.2;margin-bottom:2px}
+.story-price{font-size:12px;font-weight:600;color:var(--gold)}
+.story-fire{position:absolute;top:9px;right:9px;font-size:13px}
 
-.stories-label{
-  padding:28px 20px 14px;
-  font-size:11px;
-  font-weight:500;
-  letter-spacing:0.2em;
-  text-transform:uppercase;
-  color:var(--muted);
-}
-
-.stories-scroll{
-  display:flex;
-  gap:10px;
-  overflow-x:auto;
-  scrollbar-width:none;
-  padding:6px 20px 16px;
-  -webkit-overflow-scrolling:touch;
-}
-
-.stories-scroll::-webkit-scrollbar{display:none}
-
-.story-card{
-  position:relative;
-  flex-shrink:0;
-  width:130px;
-  height:196px;
-  border-radius:16px;
-  overflow:hidden;
-  cursor:pointer;
-  transition:transform .3s ease;
-}
-
-.story-card:active{transform:scale(.97)}
-
-.story-card::before{
-  content:'';
-  position:absolute;
-  inset:-3px;
-  border-radius:18px;
-  background:var(--story-glow, conic-gradient(from 0deg, var(--gold), var(--gold2), var(--gold)));
-  z-index:-1;
-  opacity:.7;
-  animation:rotateGlow 3s linear infinite;
-}
-
-@keyframes rotateGlow{
-  to{filter:hue-rotate(30deg)}
-}
-
-.story-img{
-  width:100%;height:100%;
-  object-fit:cover;
-  transition:transform .5s ease;
-}
-
-.story-card:hover .story-img{transform:scale(1.06)}
-
-.story-overlay{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to top, rgba(0,0,0,.85) 40%, transparent 80%);
-}
-
-.story-info{
-  position:absolute;
-  bottom:12px;left:10px;right:10px;
-}
-
-.story-name{
-  font-family:'Cormorant Garamond',serif;
-  font-size:15px;
-  font-weight:400;
-  line-height:1.2;
-  margin-bottom:3px;
-}
-
-.story-price{
-  font-size:12px;
-  font-weight:600;
-  color:var(--gold);
-}
-
-.story-badge-fire{
-  position:absolute;
-  top:10px;right:8px;
-  font-size:14px;
-}
-
-/* ════════════════════════════════════════════
-   SEARCH
-════════════════════════════════════════════ */
-.search-wrap{
-  padding:8px 16px 4px;
-  position:relative;
-}
-
-.search-icon{
-  position:absolute;
-  left:28px;top:50%;
-  transform:translateY(-50%);
-  pointer-events:none;
-  color:var(--muted);
-  line-height:1;
-}
-
+/* ── SEARCH ──────────────────────────────── */
+.search-wrap{padding:8px 16px 4px;position:relative}
+.s-icon{position:absolute;left:28px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--muted)}
 .search-input{
-  width:100%;
-  background:var(--bg2);
-  border:1px solid var(--border);
-  border-radius:100px;
-  padding:11px 16px 11px 44px;
-  color:var(--text);
-  font-family:'Inter',sans-serif;
-  font-size:13px;
-  outline:none;
+  width:100%;background:var(--bg2);border:1px solid var(--bdr);
+  border-radius:100px;padding:11px 16px 11px 44px;
+  color:var(--text);font-family:'Inter',sans-serif;font-size:13px;outline:none;
   transition:border-color .25s;
 }
-
 .search-input::placeholder{color:var(--muted)}
 .search-input:focus{border-color:rgba(201,169,110,.35)}
 
-/* ════════════════════════════════════════════
-   CATEGORY NAV
-════════════════════════════════════════════ */
-.cat-nav{
-  position:sticky;
-  top:0;z-index:50;
-  background:linear-gradient(to bottom,var(--bg) 85%,transparent);
-  padding:16px 0 10px;
-}
-
-.cat-scroll{
-  display:flex;
-  gap:8px;
-  overflow-x:auto;
-  scrollbar-width:none;
-  padding:0 16px 2px;
-}
-
-.cat-scroll::-webkit-scrollbar{display:none}
-
+/* ── CATEGORY NAV ────────────────────────── */
+.cat-nav{position:sticky;top:0;z-index:50;background:linear-gradient(to bottom,var(--bg) 85%,transparent);padding:14px 0 10px}
+.cat-row{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:0 16px 2px}
+.cat-row::-webkit-scrollbar{display:none}
 .cat-btn{
-  flex-shrink:0;
-  display:flex;
-  align-items:center;
-  gap:6px;
-  border:1px solid var(--border);
-  background:transparent;
-  color:var(--muted);
-  font-size:12px;
-  font-weight:500;
-  letter-spacing:.06em;
-  padding:8px 16px;
-  border-radius:100px;
-  transition:all .25s ease;
-  white-space:nowrap;
+  flex-shrink:0;display:flex;align-items:center;gap:6px;
+  border:1px solid var(--bdr);background:transparent;color:var(--muted);
+  font-size:12px;font-weight:500;letter-spacing:.05em;
+  padding:8px 16px;border-radius:100px;
+  transition:all .25s ease;white-space:nowrap;
 }
-
-.cat-btn svg{
-  width:15px;height:15px;
-  stroke:currentColor;
-  fill:none;
-  stroke-width:1.6;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-  flex-shrink:0;
-}
-
-.cat-btn:hover{
-  border-color:rgba(201,169,110,.35);
-  color:var(--gold2);
-}
-
-.cat-btn.active{
-  background:var(--gold);
-  border-color:var(--gold);
-  color:#060606;
-}
-
+.cat-btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.cat-btn:hover{border-color:rgba(201,169,110,.35);color:var(--gold2)}
+.cat-btn.active{background:var(--gold);border-color:var(--gold);color:#060606}
 .cat-btn.active svg{stroke:#060606}
 
-/* ════════════════════════════════════════════
-   MENU WRAPPER
-════════════════════════════════════════════ */
-.menu{
-  max-width:640px;
-  margin:0 auto;
-  padding:0 14px 20px;
-}
+/* ── MENU ────────────────────────────────── */
+.menu{max-width:640px;margin:0 auto;padding:0 14px 20px}
 
-/* ════════════════════════════════════════════
-   SECTION HEADER
-════════════════════════════════════════════ */
-.sec-header{
-  display:flex;
-  align-items:center;
-  gap:14px;
+/* ── SECTION HEADER ──────────────────────── */
+.sh{
+  display:flex;align-items:center;gap:14px;
   margin:40px 0 20px;
-  opacity:0;
-  transform:translateY(20px);
-  transition:opacity .5s ease,transform .5s ease;
+  opacity:0;transform:translateY(20px);
+  transition:opacity .5s,transform .5s;
 }
-
-.sec-header.visible{opacity:1;transform:none}
-
-.sec-icon{
-  width:38px;height:38px;
-  border-radius:10px;
-  border:1px solid var(--border);
-  background:var(--bg2);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-shrink:0;
-  color:var(--gold);
+.sh.visible{opacity:1;transform:none}
+.sh-icon{
+  width:38px;height:38px;border-radius:10px;
+  border:1px solid var(--bdr);background:var(--bg2);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;color:var(--gold);
 }
+.sh-icon svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.sh h2{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;letter-spacing:-.01em;white-space:nowrap}
+.sh-line{flex:1;height:1px;background:var(--bdr)}
 
-.sec-icon svg{
-  width:18px;height:18px;
-  fill:none;
-  stroke:currentColor;
-  stroke-width:1.6;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-}
-
-.sec-header h2{
-  font-family:'Cormorant Garamond',serif;
-  font-size:30px;
-  font-weight:300;
-  letter-spacing:-.01em;
-  white-space:nowrap;
-}
-
-.sec-line{flex:1;height:1px;background:var(--border)}
-
-/* ════════════════════════════════════════════
-   CARD (FULL)
-════════════════════════════════════════════ */
+/* ── CARD (FULL) ─────────────────────────── */
 .card{
-  --glow: rgba(201,169,110,.2);
-  background:var(--bg2);
-  border:1px solid var(--border);
-  border-radius:var(--r);
-  overflow:hidden;
-  margin-bottom:14px;
+  --glow:rgba(201,169,110,.2);
+  background:var(--bg2);border:1px solid var(--bdr);
+  border-radius:var(--r);overflow:hidden;margin-bottom:14px;
   cursor:pointer;
-  transition:border-color .3s ease,box-shadow .3s ease,transform .3s ease;
-  opacity:0;
-  transform:translateY(24px);
+  transition:border-color .3s,box-shadow .3s,transform .3s;
+  opacity:0;transform:translateY(24px);
 }
-
 .card.visible{opacity:1;transform:none}
+.card:hover{border-color:rgba(201,169,110,.2);box-shadow:0 20px 60px var(--glow);transform:translateY(-3px)}
 
-.card:hover{
-  border-color:rgba(201,169,110,.2);
-  box-shadow:0 20px 60px var(--glow);
-  transform:translateY(-3px);
-}
+.card-media{position:relative;width:100%;aspect-ratio:16/9;background:var(--bg3);overflow:hidden}
+.card-media img,.card-media video{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.card:hover .card-media img{transform:scale(1.04)}
+.card-media::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.28) 0%,transparent 45%);pointer-events:none}
 
-/* ── Media ── */
-.card-media{
-  position:relative;
-  width:100%;
-  aspect-ratio:16/9;
-  background:var(--bg3);
-  overflow:hidden;
-}
+/* Image fallback */
+.img-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--bg3);color:var(--muted)}
+.img-ph svg{width:40px;height:40px;fill:none;stroke:currentColor;stroke-width:1.2;opacity:.4}
 
-.card-media img,.card-media video{
-  width:100%;height:100%;
-  object-fit:cover;
-  transition:transform .5s ease;
-}
+.badge{position:absolute;top:12px;left:12px;z-index:3;font-size:10px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;padding:4px 10px;border-radius:100px}
+.b-firma{background:var(--gold);color:#060606}
+.b-pop{background:#e74c3c;color:#fff}
+.b-nuevo{background:#2ecc71;color:#060606}
+.b-staff{background:#9b59b6;color:#fff}
+.b-cuba{background:linear-gradient(90deg,#002a8f,#cf0a2c,#fff);color:#060606}
 
-.card:hover .card-media img,
-.card:hover .card-media video{transform:scale(1.04)}
+.b-orders{position:absolute;top:12px;right:12px;z-index:3;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.1);font-size:10px;font-weight:500;color:var(--text);padding:4px 9px;border-radius:100px;display:flex;align-items:center;gap:4px}
 
-/* Gradient overlay on media for text contrast */
-.card-media::after{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to top,rgba(0,0,0,.3) 0%,transparent 40%);
-  pointer-events:none;
-}
-
-/* Video play btn */
-.play-overlay{
-  position:absolute;
-  inset:0;z-index:2;
-  display:flex;align-items:center;justify-content:center;
-  background:rgba(0,0,0,.3);
-  transition:opacity .25s;
-}
-
-.play-overlay svg{
-  width:56px;height:56px;
-  fill:rgba(255,255,255,.9);
-  filter:drop-shadow(0 4px 16px rgba(0,0,0,.5));
-}
-
-.play-overlay.gone{opacity:0;pointer-events:none}
-
-/* Badges */
-.badge{
-  position:absolute;
-  top:12px;left:12px;
-  z-index:3;
-  font-size:10px;
-  font-weight:600;
-  letter-spacing:.09em;
-  text-transform:uppercase;
-  padding:4px 10px;
-  border-radius:100px;
-}
-
-.badge-firma{background:var(--gold);color:#060606}
-.badge-popular{background:#e74c3c;color:#fff}
-.badge-nuevo{background:#2ecc71;color:#060606}
-.badge-staff{background:#9b59b6;color:#fff}
-
-/* Orders badge (top right) */
-.badge-orders{
-  position:absolute;
-  top:12px;right:12px;
-  z-index:3;
-  background:rgba(0,0,0,.65);
-  backdrop-filter:blur(8px);
-  border:1px solid rgba(255,255,255,.12);
-  font-size:10px;
-  font-weight:500;
-  color:var(--text);
-  padding:4px 8px;
-  border-radius:100px;
-  display:flex;
-  align-items:center;
-  gap:4px;
-}
-
-/* ── Card Body ── */
 .card-body{padding:18px 18px 20px}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px}
+.card-name{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;line-height:1.2}
+.card-r{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0}
+.card-price{font-size:18px;font-weight:600;color:var(--gold)}
 
-.card-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-  gap:8px;
-  margin-bottom:8px;
+.heart{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.05);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;color:var(--muted);transition:all .2s;flex-shrink:0}
+.heart.liked{color:#e74c3c;background:rgba(231,76,60,.12);border-color:rgba(231,76,60,.3)}
+.heart svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.heart.liked svg{fill:#e74c3c;stroke:#e74c3c}
+
+.card-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px}
+
+/* Flavor dots */
+.flav-row{display:flex;gap:14px;margin-bottom:14px}
+.flav-item{display:flex;flex-direction:column;gap:5px}
+.flav-lbl{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.flav-dots{display:flex;gap:3px}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--bdr)}
+.d-gold{background:var(--gold)}.d-red{background:#e74c3c}.d-blue{background:#3498db}
+
+.card-foot{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.card-tags{display:flex;flex-wrap:wrap;gap:5px;flex:1}
+.tag{font-size:10px;font-weight:500;letter-spacing:.04em;color:var(--muted);border:1px solid var(--bdr);border-radius:100px;padding:3px 9px}
+.t-spirit{color:var(--gold2);border-color:rgba(201,169,110,.3)}
+.t-cuba{color:#cf0a2c;border-color:rgba(207,10,44,.3)}
+
+.share-btn{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.05);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;color:var(--muted);flex-shrink:0;transition:all .2s}
+.share-btn:hover{background:rgba(201,169,110,.1);border-color:rgba(201,169,110,.3);color:var(--gold)}
+.share-btn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* ── COMPACT CARD ────────────────────────── */
+.csm{
+  display:flex;align-items:center;gap:12px;
+  background:var(--bg2);border:1px solid var(--bdr);
+  border-radius:var(--rsm);padding:14px;margin-bottom:10px;
+  cursor:pointer;transition:border-color .25s,transform .2s;
+  opacity:0;transform:translateY(20px);
 }
+.csm.visible{opacity:1;transform:none}
+.csm:hover{border-color:rgba(201,169,110,.2);transform:translateY(-2px)}
+.csm-thumb{width:70px;height:70px;border-radius:10px;overflow:hidden;flex-shrink:0;background:var(--bg3)}
+.csm-thumb img{width:100%;height:100%;object-fit:cover}
+.csm-icon{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--muted)}
+.csm-icon svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.csm-info{flex:1;min-width:0}
+.csm-name{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:400;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.csm-desc{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.csm-r{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0}
+.csm-price{font-size:16px;font-weight:600;color:var(--gold)}
 
-.card-name{
-  font-family:'Cormorant Garamond',serif;
-  font-size:24px;
-  font-weight:400;
-  line-height:1.2;
-}
-
-.card-right{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-end;
-  gap:6px;
-  flex-shrink:0;
-}
-
-.card-price{
-  font-size:18px;
-  font-weight:600;
-  color:var(--gold);
-}
-
-/* Heart */
-.heart-btn{
-  width:30px;height:30px;
-  border-radius:50%;
-  background:rgba(255,255,255,.06);
-  border:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;
-  color:var(--muted);
-  transition:all .2s ease;
-  flex-shrink:0;
-}
-
-.heart-btn.liked{
-  color:#e74c3c;
-  background:rgba(231,76,60,.12);
-  border-color:rgba(231,76,60,.3);
-}
-
-.heart-btn svg{
-  width:14px;height:14px;
-  fill:none;
-  stroke:currentColor;
-  stroke-width:2;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-}
-
-.heart-btn.liked svg{fill:#e74c3c;stroke:#e74c3c}
-
-.card-desc{
-  font-size:13px;
-  color:var(--muted);
-  line-height:1.6;
-  margin-bottom:14px;
-}
-
-/* ── Flavor Meters ── */
-.flavor-row{
-  display:flex;
-  gap:14px;
-  margin-bottom:14px;
-}
-
-.flavor-item{
-  display:flex;
-  flex-direction:column;
-  gap:5px;
-}
-
-.flavor-label{
-  font-size:9px;
-  font-weight:600;
-  letter-spacing:.1em;
-  text-transform:uppercase;
-  color:var(--muted);
-}
-
-.flavor-dots{
-  display:flex;
-  gap:3px;
-}
-
-.dot{
-  width:6px;height:6px;
-  border-radius:50%;
-  background:var(--border);
-  transition:background .3s;
-}
-
-.dot.on-gold{background:var(--gold)}
-.dot.on-red{background:#e74c3c}
-.dot.on-blue{background:#3498db}
-
-/* ── Tags & Share Row ── */
-.card-footer{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:8px;
-}
-
-.card-tags{
-  display:flex;
-  flex-wrap:wrap;
-  gap:5px;
-  flex:1;
-}
-
-.tag{
-  font-size:10px;
-  font-weight:500;
-  letter-spacing:.05em;
-  color:var(--muted);
-  border:1px solid var(--border);
-  border-radius:100px;
-  padding:3px 9px;
-}
-
-.tag-spirit{color:var(--gold2);border-color:rgba(201,169,110,.3)}
-
-.share-btn{
-  width:32px;height:32px;
-  border-radius:50%;
-  background:rgba(255,255,255,.05);
-  border:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;
-  color:var(--muted);
-  flex-shrink:0;
-  transition:all .2s ease;
-}
-
-.share-btn:hover{
-  background:rgba(201,169,110,.12);
-  border-color:rgba(201,169,110,.3);
-  color:var(--gold);
-}
-
-.share-btn svg{
-  width:14px;height:14px;
-  fill:none;
-  stroke:currentColor;
-  stroke-width:2;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-}
-
-/* ════════════════════════════════════════════
-   COMPACT CARD
-════════════════════════════════════════════ */
-.card-sm{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  background:var(--bg2);
-  border:1px solid var(--border);
-  border-radius:var(--r-sm);
-  padding:14px;
-  margin-bottom:10px;
-  cursor:pointer;
-  transition:border-color .25s,transform .2s;
-  opacity:0;
-  transform:translateY(20px);
-}
-
-.card-sm.visible{opacity:1;transform:none}
-.card-sm:hover{
-  border-color:rgba(201,169,110,.2);
-  transform:translateY(-2px);
-}
-
-.sm-thumb{
-  width:70px;height:70px;
-  border-radius:10px;
-  overflow:hidden;
-  flex-shrink:0;
-  background:var(--bg3);
-}
-
-.sm-thumb img{
-  width:100%;height:100%;
-  object-fit:cover;
-}
-
-.sm-thumb-icon{
-  width:100%;height:100%;
-  display:flex;align-items:center;justify-content:center;
-  color:var(--muted);
-}
-
-.sm-thumb-icon svg{
-  width:28px;height:28px;
-  fill:none;
-  stroke:currentColor;
-  stroke-width:1.5;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-}
-
-.sm-info{flex:1;min-width:0}
-
-.sm-name{
-  font-family:'Cormorant Garamond',serif;
-  font-size:19px;
-  font-weight:400;
-  margin-bottom:3px;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-.sm-desc{
-  font-size:12px;
-  color:var(--muted);
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-.sm-right{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-end;
-  gap:6px;
-  flex-shrink:0;
-}
-
-.sm-price{
-  font-size:16px;
-  font-weight:600;
-  color:var(--gold);
-}
-
-/* ════════════════════════════════════════════
-   MODAL
-════════════════════════════════════════════ */
+/* ── MODAL ───────────────────────────────── */
 .modal-bg{
   position:fixed;inset:0;z-index:100;
   display:flex;align-items:flex-end;justify-content:center;
-  background:rgba(0,0,0,.7);
-  backdrop-filter:blur(8px);
-  opacity:0;pointer-events:none;
-  transition:opacity .3s ease;
+  background:rgba(0,0,0,.72);backdrop-filter:blur(8px);
+  opacity:0;pointer-events:none;transition:opacity .3s;
 }
-
 .modal-bg.open{opacity:1;pointer-events:all}
 
 .modal{
   width:100%;max-width:640px;
-  background:var(--bg2);
-  border-radius:24px 24px 0 0;
-  border:1px solid var(--border);
-  border-bottom:none;
-  max-height:92svh;
-  display:flex;flex-direction:column;
+  background:var(--bg2);border-radius:24px 24px 0 0;
+  border:1px solid var(--bdr);border-bottom:none;
+  max-height:92svh;display:flex;flex-direction:column;
   transform:translateY(100%);
   transition:transform .38s cubic-bezier(.32,.72,0,1);
   overflow:hidden;
 }
-
 .modal-bg.open .modal{transform:none}
 
-.modal-handle{
-  width:36px;height:4px;
-  background:var(--bg3);
-  border-radius:2px;
-  margin:14px auto 0;
-  flex-shrink:0;
-}
+.m-handle{width:36px;height:4px;background:var(--bg3);border-radius:2px;margin:14px auto 0;flex-shrink:0}
+.m-x{position:absolute;top:18px;right:18px;z-index:5;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.12);color:var(--text);font-size:16px;display:flex;align-items:center;justify-content:center}
+.m-x:hover{background:rgba(0,0,0,.85)}
 
-/* Modal close */
-.modal-x{
-  position:absolute;
-  top:18px;right:18px;z-index:5;
-  width:36px;height:36px;
-  border-radius:50%;
-  background:rgba(0,0,0,.6);
-  backdrop-filter:blur(8px);
-  border:1px solid rgba(255,255,255,.12);
-  color:var(--text);
-  font-size:16px;
-  display:flex;align-items:center;justify-content:center;
-  transition:background .2s;
-}
+.m-media{position:relative;width:100%;aspect-ratio:4/3;flex-shrink:0;background:var(--bg3);overflow:hidden}
+.m-media img,.m-media video,.m-media iframe{width:100%;height:100%;object-fit:cover;border:none}
+.m-media-grad{position:absolute;bottom:0;left:0;right:0;height:50%;background:linear-gradient(to top,var(--bg2),transparent);pointer-events:none}
 
-.modal-x:hover{background:rgba(0,0,0,.8)}
+.m-body{padding:22px 22px 40px;overflow-y:auto;flex:1}
+.m-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:6px}
+.m-name{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;line-height:1.1}
+.m-price{font-size:24px;font-weight:600;color:var(--gold);flex-shrink:0}
+.m-meta{display:flex;gap:10px;align-items:center;margin-bottom:16px;flex-wrap:wrap}
+.m-level{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border:1px solid var(--bdr);border-radius:100px;padding:3px 10px}
+.m-orders{font-size:11px;font-weight:500;color:var(--gold)}
+.m-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:22px}
 
-/* Modal media */
-.modal-media{
-  position:relative;
-  width:100%;
-  aspect-ratio:4/3;
-  flex-shrink:0;
-  background:var(--bg3);
-  overflow:hidden;
-}
+.m-flavor{display:flex;gap:20px;padding:16px;background:var(--bg3);border-radius:12px;margin-bottom:22px}
 
-.modal-media img,.modal-media video,.modal-media iframe{
-  width:100%;height:100%;
-  object-fit:cover;
-}
+.mtitle{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
 
-.modal-media-gradient{
-  position:absolute;
-  bottom:0;left:0;right:0;
-  height:50%;
-  background:linear-gradient(to top,var(--bg2),transparent);
-  pointer-events:none;
-}
+.ing-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:22px}
+.ing{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+.ing::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0}
 
-/* Modal body */
-.modal-body{
-  padding:22px 22px 40px;
-  overflow-y:auto;
-  flex:1;
-}
+.steps{display:flex;flex-direction:column;gap:12px;margin-bottom:22px}
+.step{display:flex;gap:12px}
+.step-n{width:24px;height:24px;border-radius:50%;background:rgba(201,169,110,.12);border:1px solid rgba(201,169,110,.25);color:var(--gold);font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.step-t{font-size:13px;color:var(--muted);line-height:1.6}
 
-.modal-top{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:8px;
-  margin-bottom:6px;
-}
+.pairing-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.pair-chip{font-size:12px;background:var(--bg3);border:1px solid var(--bdr);border-radius:8px;padding:6px 12px}
 
-.modal-name{
-  font-family:'Cormorant Garamond',serif;
-  font-size:34px;
-  font-weight:300;
-  line-height:1.1;
-}
+.m-video-wrap{border-radius:12px;overflow:hidden;aspect-ratio:16/9;background:var(--bg3);margin-bottom:22px}
+.m-video-wrap iframe{width:100%;height:100%;border:none}
 
-.modal-price{
-  font-size:24px;
-  font-weight:600;
-  color:var(--gold);
-  flex-shrink:0;
-}
-
-.modal-meta{
-  display:flex;
-  gap:10px;
-  align-items:center;
-  margin-bottom:16px;
-  flex-wrap:wrap;
-}
-
-.modal-level{
-  font-size:11px;
-  font-weight:500;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  color:var(--muted);
-  border:1px solid var(--border);
-  border-radius:100px;
-  padding:3px 10px;
-}
-
-.modal-orders{
-  font-size:11px;
-  font-weight:500;
-  color:var(--gold);
-}
-
-.modal-desc{
-  font-size:14px;
-  color:var(--muted);
-  line-height:1.7;
-  margin-bottom:22px;
-}
-
-/* Flavor row in modal */
-.modal-flavor{
-  display:flex;
-  gap:20px;
-  padding:16px;
-  background:var(--bg3);
-  border-radius:12px;
-  margin-bottom:22px;
-}
-
-/* Section title */
-.mtitle{
-  font-size:10px;
-  font-weight:600;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  color:var(--gold);
-  margin-bottom:12px;
-}
-
-/* Ingredients */
-.ing-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-  margin-bottom:22px;
-}
-
-.ing-item{
-  display:flex;align-items:center;gap:8px;
-  font-size:13px;color:var(--muted);
-}
-
-.ing-item::before{
-  content:'';
-  width:4px;height:4px;
-  border-radius:50%;
-  background:var(--gold);
-  flex-shrink:0;
-}
-
-/* Steps */
-.steps{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-  margin-bottom:22px;
-}
-
-.step{
-  display:flex;
-  gap:12px;
-}
-
-.step-num{
-  width:24px;height:24px;
-  border-radius:50%;
-  background:rgba(201,169,110,.12);
-  border:1px solid rgba(201,169,110,.25);
-  color:var(--gold);
-  font-size:11px;
-  font-weight:600;
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;
-  margin-top:1px;
-}
-
-.step-text{
-  font-size:13px;
-  color:var(--muted);
-  line-height:1.6;
-}
-
-/* Pairing */
-.pairing-row{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-bottom:24px;
-}
-
-.pairing-chip{
-  font-size:12px;
-  background:var(--bg3);
-  border:1px solid var(--border);
-  border-radius:8px;
-  padding:6px 12px;
-  color:var(--text);
-}
-
-/* Video modal section */
-.modal-video-wrap{
-  border-radius:12px;
-  overflow:hidden;
-  aspect-ratio:16/9;
-  background:var(--bg3);
-  margin-bottom:22px;
-}
-
-.modal-video-wrap iframe{
-  width:100%;height:100%;
-  border:none;
-}
-
-/* ════════════════════════════════════════════
-   FLOATING BUTTONS
-════════════════════════════════════════════ */
-.float-area{
-  position:fixed;
-  bottom:calc(env(safe-area-inset-bottom,0px) + 20px);
-  right:18px;
+/* ── FLOAT ───────────────────────────────── */
+.float{
+  position:fixed;bottom:calc(env(safe-area-inset-bottom,0px)+20px);right:18px;
   z-index:60;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  align-items:flex-end;
-}
-
-.float-btn{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  background:var(--gold);
-  color:#060606;
-  font-size:13px;
-  font-weight:600;
-  padding:12px 18px;
-  border-radius:100px;
-  box-shadow:0 8px 30px rgba(201,169,110,.35);
-  transition:transform .2s ease,box-shadow .2s ease;
+  display:flex;align-items:center;gap:8px;
+  background:var(--gold);color:#060606;
+  font-size:13px;font-weight:600;
+  padding:13px 20px;border-radius:100px;
+  box-shadow:0 8px 30px rgba(201,169,110,.4);
+  animation:fpulse 3s ease-in-out infinite;
   white-space:nowrap;
-  animation:floatPulse 3s ease-in-out infinite;
 }
+.float svg{width:16px;height:16px;fill:none;stroke:#060606;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@keyframes fpulse{0%,100%{box-shadow:0 8px 30px rgba(201,169,110,.4)}50%{box-shadow:0 10px 44px rgba(201,169,110,.6)}}
 
-.float-btn:hover{
-  transform:scale(1.04);
-  box-shadow:0 12px 40px rgba(201,169,110,.5);
-}
-
-.float-btn svg{
-  width:16px;height:16px;
-  fill:none;
-  stroke:#060606;
-  stroke-width:2;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-}
-
-@keyframes floatPulse{
-  0%,100%{box-shadow:0 8px 30px rgba(201,169,110,.35)}
-  50%{box-shadow:0 8px 40px rgba(201,169,110,.55)}
-}
-
-/* ════════════════════════════════════════════
-   FOOTER
-════════════════════════════════════════════ */
-.footer{
-  text-align:center;
-  padding:48px 24px;
-  border-top:1px solid var(--border);
-  margin-top:20px;
-}
-
-.footer-logo{
-  font-family:'Cormorant Garamond',serif;
-  font-size:32px;
-  font-weight:300;
-  letter-spacing:.06em;
-  background:linear-gradient(135deg,var(--gold),var(--gold2),var(--gold));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
-  margin-bottom:16px;
-}
-
-.footer-info{
-  font-size:12px;
-  color:var(--muted);
-  line-height:2.2;
-}
-
-.footer-info a{
-  color:var(--gold);
-  transition:opacity .2s;
-}
-
+/* ── FOOTER ──────────────────────────────── */
+.footer{text-align:center;padding:48px 24px;border-top:1px solid var(--bdr);margin-top:20px}
+.footer-logo{width:100px;margin:0 auto 16px}
+.footer-info{font-size:12px;color:var(--muted);line-height:2.2}
+.footer-info a{color:var(--gold);transition:opacity .2s}
 .footer-info a:hover{opacity:.7}
 
-/* ════════════════════════════════════════════
-   UTILITIES & ANIMATIONS
-════════════════════════════════════════════ */
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(20px)}
-  to{opacity:1;transform:none}
-}
-
-.no-results{
-  text-align:center;
-  padding:40px 20px;
-  color:var(--muted);
-  font-size:14px;
-  display:none;
-}
-
-.empty{display:none!important}
+/* ── ANIMS ───────────────────────────────── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.no-results{text-align:center;padding:40px 20px;color:var(--muted);font-size:14px;display:none}
 </style>
 </head>
-
 <body>
 
-<!-- ══════════════════════════════ HERO ══════════════════ -->
+<!-- ══════════════════ HERO ══════════════════════ -->
 <section class="hero">
   <div class="hero-bg"></div>
-  <div class="hero-grain"></div>
+  <div class="grain"></div>
 
-  <p class="hero-eyebrow">Carta de bebidas</p>
+  <!-- ──── LOGO SVG CUBANO ──── -->
+  <div class="hero-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260" fill="none">
+      <!-- outer dashed ring -->
+      <circle cx="130" cy="130" r="124" stroke="#c9a96e" stroke-width="1" stroke-dasharray="3 3" opacity=".45"/>
+      <!-- solid ring -->
+      <circle cx="130" cy="130" r="117" stroke="#c9a96e" stroke-width="1.5"/>
+      <!-- inner thin ring -->
+      <circle cx="130" cy="130" r="113" stroke="#c9a96e" stroke-width=".5" opacity=".3"/>
 
-  <h1 class="hero-title">El <em>Bar</em></h1>
+      <defs>
+        <path id="tA" d="M 28,130 A 102,102 0 0,1 232,130"/>
+        <path id="bA" d="M 50,130 A 80,80 0 0,0 210,130"/>
+      </defs>
 
-  <div class="hero-line"></div>
+      <!-- top arc: CLUB SOCIAL · LA HABANA -->
+      <text font-family="'Cormorant Garamond',Georgia,serif" font-size="12" fill="#c9a96e" letter-spacing="5">
+        <textPath href="#tA" startOffset="7%">CLUB SOCIAL · LA HABANA</textPath>
+      </text>
 
-  <p class="hero-sub">Cócteles · Shots · Vinos · Mocktails</p>
+      <!-- bottom arc: RON · MÚSICA · BAILAR -->
+      <text font-family="serif" font-size="9" fill="#c9a96e" letter-spacing="4" opacity=".7">
+        <textPath href="#bA" startOffset="14%">RON · MÚSICA · BAILAR</textPath>
+      </text>
+
+      <!-- decorative dots at 9 & 3 -->
+      <circle cx="20" cy="130" r="2.5" fill="#c9a96e" opacity=".5"/>
+      <circle cx="240" cy="130" r="2.5" fill="#c9a96e" opacity=".5"/>
+
+      <!-- year -->
+      <text x="130" y="76" text-anchor="middle" font-family="serif" font-size="9" fill="#c9a96e" letter-spacing="4" opacity=".6">· 1958 ·</text>
+
+      <!-- ── PALM TREE ── -->
+      <!-- trunk -->
+      <path d="M127 189 Q125.5 170 123.5 152 L136.5 152 Q134.5 170 133 189 Z" fill="#c9a96e" opacity=".9"/>
+      <!-- leaves -->
+      <path d="M130 152 C143 143 157 134 170 120" stroke="#c9a96e" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M130 152 C117 143 103 134 90 120" stroke="#c9a96e" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M130 152 C147 139 160 123 166 106" stroke="#c9a96e" stroke-width="2" stroke-linecap="round"/>
+      <path d="M130 152 C113 139 100 123 94 106" stroke="#c9a96e" stroke-width="2" stroke-linecap="round"/>
+      <path d="M130 152 C137 137 141 120 143 102" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M130 152 C123 137 119 120 117 102" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M130 152 L130 98" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- coconuts -->
+      <circle cx="128" cy="153" r="4" fill="#c9a96e" opacity=".9"/>
+      <circle cx="136" cy="156" r="3" fill="#c9a96e" opacity=".8"/>
+      <circle cx="122" cy="156" r="3" fill="#c9a96e" opacity=".7"/>
+
+      <!-- divider -->
+      <line x1="88" y1="197" x2="172" y2="197" stroke="#c9a96e" stroke-width=".5" opacity=".4"/>
+
+      <!-- bar name -->
+      <text x="130" y="215" text-anchor="middle"
+        font-family="'Cormorant Garamond',Georgia,serif"
+        font-size="25" fill="#c9a96e" font-style="italic" font-weight="300" letter-spacing="1">La Habana</text>
+
+      <!-- subtitle -->
+      <text x="130" y="229" text-anchor="middle"
+        font-family="serif" font-size="7.5" fill="#c9a96e" letter-spacing="5" opacity=".6">BAR · COCKTAILS</text>
+    </svg>
+  </div>
+
+  <p class="hero-tagline">Auténtica coctelería cubana · Desde La Habana con amor</p>
 
   <div class="hero-scroll">
     <div class="scroll-track"></div>
@@ -1127,868 +418,781 @@ img,video{display:block}
   </div>
 </section>
 
-<!-- ══════════════════════════════ STORIES ═══════════════ -->
-<section class="stories-section">
+<!-- ══════════════════ STORIES ════════════════════ -->
+<section class="stories-wrap">
   <p class="stories-label">⚡ Destacados</p>
-  <div class="stories-scroll" id="storiesRow"></div>
+  <div class="stories-row" id="storiesRow"></div>
 </section>
 
-<!-- ══════════════════════════════ SEARCH ════════════════ -->
+<!-- ══════════════════ SEARCH ═════════════════════ -->
 <div class="search-wrap">
-  <span class="search-icon">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
-    </svg>
+  <span class="s-icon">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
   </span>
   <input class="search-input" type="search" placeholder="Buscar trago..." id="searchInput" autocomplete="off"/>
 </div>
 
-<!-- ══════════════════════════════ CATEGORY NAV ══════════ -->
+<!-- ══════════════════ CATEGORY NAV ═══════════════ -->
 <nav class="cat-nav">
-  <div class="cat-scroll">
+  <div class="cat-row">
     <button class="cat-btn active" data-cat="all">
       <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
       Todo
     </button>
+    <button class="cat-btn" data-cat="cubanos">
+      <!-- Star / Cuba icon -->
+      <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      Cubanos
+    </button>
     <button class="cat-btn" data-cat="cocktails">
-      <!-- Martini glass SVG -->
       <svg viewBox="0 0 24 24"><path d="M4 4h16L12 15z"/><line x1="12" y1="15" x2="12" y2="21"/><line x1="8" y1="21" x2="16" y2="21"/></svg>
-      Cócteles
+      Clásicos
     </button>
     <button class="cat-btn" data-cat="shots">
-      <!-- Shot glass SVG -->
       <svg viewBox="0 0 24 24"><path d="M8 4h8l-1 14H9z"/><line x1="6" y1="21" x2="18" y2="21"/></svg>
       Shots
     </button>
     <button class="cat-btn" data-cat="wines">
-      <!-- Wine glass SVG -->
       <svg viewBox="0 0 24 24"><path d="M8 4h8s2 5 2 8a6 6 0 0 1-12 0c0-3 2-8 2-8z"/><line x1="12" y1="18" x2="12" y2="21"/><line x1="9" y1="21" x2="15" y2="21"/></svg>
-      Vinos & Cervezas
+      Vinos
     </button>
     <button class="cat-btn" data-cat="mocktails">
-      <!-- Leaf SVG -->
       <svg viewBox="0 0 24 24"><path d="M12 22s-8-6-8-12a8 8 0 0 1 16 0c0 6-8 12-8 12z"/><line x1="12" y1="22" x2="12" y2="10"/></svg>
       Mocktails
     </button>
   </div>
 </nav>
 
-<!-- ══════════════════════════════ MENU ══════════════════ -->
+<!-- ══════════════════ MENU MAIN ══════════════════ -->
 <main class="menu" id="menuMain">
 
-  <!-- ▌CÓCTELES ▌ -->
-  <section data-section="cocktails">
-    <div class="sec-header reveal">
-      <div class="sec-icon">
-        <svg viewBox="0 0 24 24"><path d="M4 4h16L12 15z"/><line x1="12" y1="15" x2="12" y2="21"/><line x1="8" y1="21" x2="16" y2="21"/></svg>
+  <!-- ▌ CUBANOS ▌ -->
+  <section data-section="cubanos">
+    <div class="sh reveal">
+      <div class="sh-icon">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
       </div>
-      <h2>Cócteles</h2>
-      <div class="sec-line"></div>
+      <h2>Cubanos</h2>
+      <div class="sh-line"></div>
     </div>
 
-    <div class="card reveal" data-id="negroni" data-cat="cocktails" style="--glow:rgba(201,90,40,.3)" onclick="openDrink('negroni')">
+    <!-- MOJITO -->
+    <div class="card reveal" data-id="mojito" data-cat="cubanos" style="--glow:rgba(30,160,90,.28)" onclick="openDrink('mojito')">
       <div class="card-media">
-        <img src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=800&q=85" alt="Negroni" loading="lazy"/>
-        <span class="badge badge-firma">⭐ Firma</span>
-        <span class="badge-orders">🔥 47 hoy</span>
+        <img
+          src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=800&q=85"
+          alt="Mojito"
+          loading="lazy"
+          onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'img-ph',innerHTML:'<svg viewBox=\'0 0 24 24\'><path d=\'M12 22s-8-6-8-12a8 8 0 0 1 16 0c0 6-8 12-8 12z\'/><line x1=\'12\' y1=\'22\' x2=\'12\' y2=\'10\'/></svg>'}))"
+        />
+        <span class="badge b-cuba">🇨🇺 Original</span>
+        <span class="b-orders">🌿 124 hoy</span>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <h3 class="card-name">Mojito</h3>
+          <div class="card-r">
+            <span class="card-price">€9</span>
+            <button class="heart" onclick="toggleHeart(event,'mojito')"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          </div>
+        </div>
+        <p class="card-desc">El rey indiscutible de Cuba. Ron Havana Club, lima, menta fresca, azúcar morena y soda. Nació en La Habana en el siglo XIX y nunca ha parado de conquistar.</p>
+        <div class="flav-row">
+          <div class="flav-item"><span class="flav-lbl">Dulce</span><div class="flav-dots" data-v="3" data-c="gold"></div></div>
+          <div class="flav-item"><span class="flav-lbl">Fresco</span><div class="flav-dots" data-v="5" data-c="gold"></div></div>
+          <div class="flav-item"><span class="flav-lbl">Alcohol</span><div class="flav-dots" data-v="2" data-c="blue"></div></div>
+        </div>
+        <div class="card-foot">
+          <div class="card-tags"><span class="tag t-cuba">Ron</span><span class="tag">Menta</span><span class="tag">Clásico</span></div>
+          <button class="share-btn" onclick="shareDrink(event,'Mojito','€9')"><svg viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAIQUIRI -->
+    <div class="card reveal" data-id="daiquiri" data-cat="cubanos" style="--glow:rgba(220,80,80,.25)" onclick="openDrink('daiquiri')">
+      <div class="card-media">
+        <img
+          src="https://images.unsplash.com/photo-1609951651556-5334e2706168?w=800&q=85"
+          alt="Daiquiri"
+          loading="lazy"
+          onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'img-ph',innerHTML:'<svg viewBox=\'0 0 24 24\'><path d=\'M4 4h16L12 15z\'/><line x1=\'12\' y1=\'15\' x2=\'12\' y2=\'21\'/><line x1=\'8\' y1=\'21\' x2=\'16\' y2=\'21\'/></svg>'}))"
+        />
+        <span class="badge b-staff">👨‍🍳 Staff pick</span>
+        <span class="b-orders">🍋 73 hoy</span>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <h3 class="card-name">Daiquiri</h3>
+          <div class="card-r">
+            <span class="card-price">€9</span>
+            <button class="heart" onclick="toggleHeart(event,'daiquiri')"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          </div>
+        </div>
+        <p class="card-desc">Ron, lima y azúcar. La Trinidad sagrada de la coctelería cubana. Minimalismo perfecto. Ernest Hemingway lo pedía doble y sin azúcar en El Floridita, La Habana.</p>
+        <div class="flav-row">
+          <div class="flav-item"><span class="flav-lbl">Dulce</span><div class="flav-dots" data-v="3" data-c="gold"></div></div>
+          <div class="flav-item"><span class="flav-lbl">Ácido</span><div class="flav-dots" data-v="4" data-c="red"></div></div>
+          <div class="flav-item"><span class="flav-lbl">Alcohol</span><div class="flav-dots" data-v="3" data-c="blue"></div></div>
+        </div>
+        <div class="card-foot">
+          <div class="card-tags"><span class="tag t-cuba">Ron blanco</span><span class="tag">Lima</span><span class="tag">Clásico</span></div>
+          <button class="share-btn" onclick="shareDrink(event,'Daiquiri','€9')"><svg viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CUBA LIBRE -->
+    <div class="card reveal" data-id="cuba-libre" data-cat="cubanos" style="--glow:rgba(180,30,30,.22)" onclick="openDrink('cuba-libre')">
+      <div class="card-media">
+        <img
+          src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=800&q=85"
+          alt="Cuba Libre"
+          loading="lazy"
+          onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'img-ph',innerHTML:'<svg viewBox=\'0 0 24 24\'><path d=\'M8 4h8s2 5 2 8a6 6 0 0 1-12 0c0-3 2-8 2-8z\'/></svg>'}))"
+        />
+        <span class="badge b-pop">🔥 Popular</span>
+        <span class="b-orders">🥤 98 hoy</span>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <h3 class="card-name">Cuba Libre</h3>
+          <div class="card-r">
+            <span class="card-price">€8</span>
+            <button class="heart" onclick="toggleHeart(event,'cuba-libre')"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          </div>
+        </div>
+        <p class="card-desc">Ron añejo, Coca-Cola y zumo de lima. Nació en 1900 para celebrar la independencia de Cuba. Dos siglos después, sigue liberando espíritus.</p>
+        <div class="flav-row">
+          <div class="flav-item"><span class="flav-lbl">Dulce</span><div class="flav-dots" data-v="4" data-c="gold"></div></div>
+          <div class="flav-item"><span class="flav-lbl">Burbujas</span><div class="flav-dots" data-v="4" data-c="gold"></div></div>
+          <div class="flav-item"><span class="flav-lbl">Alcohol</span><div class="flav-dots" data-v="3" data-c="blue"></div></div>
+        </div>
+        <div class="card-foot">
+          <div class="card-tags"><span class="tag t-cuba">Ron añejo</span><span class="tag">Cola</span><span class="tag">Lima</span></div>
+          <button class="share-btn" onclick="shareDrink(event,'Cuba Libre','€8')"><svg viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ▌ CLÁSICOS ▌ -->
+  <section data-section="cocktails">
+    <div class="sh reveal">
+      <div class="sh-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16L12 15z"/><line x1="12" y1="15" x2="12" y2="21"/><line x1="8" y1="21" x2="16" y2="21"/></svg></div>
+      <h2>Clásicos</h2>
+      <div class="sh-line"></div>
+    </div>
+
+    <!-- NEGRONI -->
+    <div class="card reveal" data-id="negroni" data-cat="cocktails" style="--glow:rgba(200,80,30,.3)" onclick="openDrink('negroni')">
+      <div class="card-media">
+        <img src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=800&q=85" alt="Negroni" loading="lazy"
+          onerror="this.style.display='none'"/>
+        <span class="badge b-firma">⭐ Firma</span>
+        <span class="b-orders">🔥 47 hoy</span>
       </div>
       <div class="card-body">
         <div class="card-top">
           <h3 class="card-name">Negroni</h3>
-          <div class="card-right">
-            <span class="card-price">$8.500</span>
-            <button class="heart-btn" onclick="toggleHeart(event,'negroni')">
-              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            </button>
+          <div class="card-r">
+            <span class="card-price">€10</span>
+            <button class="heart" onclick="toggleHeart(event,'negroni')"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
           </div>
         </div>
-        <p class="card-desc">Gin, Campari y vermut rojo en partes iguales. Clásico desde 1919. Amargo, elegante, sin rodeos.</p>
-        <div class="flavor-row">
-          <div class="flavor-item">
-            <span class="flavor-label">Dulce</span>
-            <div class="flavor-dots" data-val="2" data-color="gold"></div>
-          </div>
-          <div class="flavor-item">
-            <span class="flavor-label">Amargo</span>
-            <div class="flavor-dots" data-val="5" data-color="red"></div>
-          </div>
-          <div class="flavor-item">
-            <span class="flavor-label">Alcohol</span>
-            <div class="flavor-dots" data-val="4" data-color="blue"></div>
-          </div>
+        <p class="card-desc">Gin, Campari y vermut rojo a partes iguales. El cóctel que no engaña desde 1919. Servido en roca con twist de naranja flambeado.</p>
+        <div class="flav-row">
+          <div class="flav-item"><span class="flav-lbl">Dulce</span><div class="flav-dots" data-v="2" data-c="gold"></div></div>
+          <div class="flav-item"><span class="flav-lbl">Amargo</span><div class="flav-dots" data-v="5" data-c="red"></div></div>
+          <div class="flav-item"><span class="flav-lbl">Alcohol</span><div class="flav-dots" data-v="4" data-c="blue"></div></div>
         </div>
-        <div class="card-footer">
-          <div class="card-tags">
-            <span class="tag tag-spirit">Gin</span>
-            <span class="tag">Amargo</span>
-            <span class="tag">Clásico</span>
-          </div>
-          <button class="share-btn" onclick="shareDrink(event,'Negroni','$8.500')">
-            <svg viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
-          </button>
+        <div class="card-foot">
+          <div class="card-tags"><span class="tag t-spirit">Gin</span><span class="tag">Amargo</span><span class="tag">Clásico</span></div>
+          <button class="share-btn" onclick="shareDrink(event,'Negroni','€10')"><svg viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></button>
         </div>
       </div>
     </div>
 
-    <div class="card reveal" data-id="espresso-martini" data-cat="cocktails" style="--glow:rgba(80,40,10,.4)" onclick="openDrink('espresso-martini')">
+    <!-- ESPRESSO MARTINI -->
+    <div class="card reveal" data-id="espresso-martini" data-cat="cocktails" style="--glow:rgba(60,30,10,.45)" onclick="openDrink('espresso-martini')">
       <div class="card-media">
-        <img src="https://images.unsplash.com/photo-1578664182664-f7a2e4fdcf38?w=800&q=85" alt="Espresso Martini" loading="lazy"/>
-        <span class="badge badge-popular">🔥 Popular</span>
-        <span class="badge-orders">☕ 89 hoy</span>
+        <!-- Using a confirmed-good Unsplash photo for espresso martini / dark cocktail -->
+        <img
+          src="https://images.unsplash.com/photo-1563227812-0eb4c236cda5?w=800&q=85"
+          alt="Espresso Martini"
+          loading="lazy"
+          onerror="this.src='https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=800&q=85'"
+        />
+        <span class="badge b-pop">🔥 Popular</span>
+        <span class="b-orders">☕ 89 hoy</span>
       </div>
       <div class="card-body">
         <div class="card-top">
           <h3 class="card-name">Espresso Martini</h3>
-          <div class="card-right">
-            <span class="card-price">$9.000</span>
-            <button class="heart-btn" onclick="toggleHeart(event,'espresso-martini')">
-              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            </button>
+          <div class="card-r">
+            <span class="card-price">€11</span>
+            <button class="heart" onclick="toggleHeart(event,'espresso-martini')"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
           </div>
         </div>
-        <p class="card-desc">Vodka, Kahlúa y espresso doble. Agitado fuerte para lograr la espuma perfecta. Fiesta y cafeína al mismo tiempo.</p>
-        <div class="flavor-row">
-          <div class="flavor-item">
-            <span class="flavor-label">Dulce</span>
-            <div class="flavor-dots" data-val="4" data-color="gold"></div>
-          </div>
-          <div class="flavor-item">
-            <span class="flavor-label">Amargo</span>
-            <div class="flavor-dots" data-val="3" data-color="red"></div>
-          </div>
-          <div class="flavor-item">
-            <span class="flavor-label">Alcohol</span>
-            <div class="flavor-dots" data-val="3" data-color="blue"></div>
-          </div>
+        <p class="card-desc">Vodka, Kahlúa y espresso doble. Agitado fuerte para la espuma perfecta. Para los que quieren fiesta y cafeína sin elegir.</p>
+        <div class="flav-row">
+          <div class="flav-item"><span class="flav-lbl">Dulce</span><div class="flav-dots" data-v="4" data-c="gold"></div></div>
+          <div class="flav-item"><span class="flav-lbl">Amargo</span><div class="flav-dots" data-v="3" data-c="red"></div></div>
+          <div class="flav-item"><span class="flav-lbl">Alcohol</span><div class="flav-dots" data-v="3" data-c="blue"></div></div>
         </div>
-        <div class="card-footer">
-          <div class="card-tags">
-            <span class="tag tag-spirit">Vodka</span>
-            <span class="tag">Café</span>
-            <span class="tag">Espumoso</span>
-          </div>
-          <button class="share-btn" onclick="shareDrink(event,'Espresso Martini','$9.000')">
-            <svg viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
-          </button>
+        <div class="card-foot">
+          <div class="card-tags"><span class="tag t-spirit">Vodka</span><span class="tag">Café</span><span class="tag">Espumoso</span></div>
+          <button class="share-btn" onclick="shareDrink(event,'Espresso Martini','€11')"><svg viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></button>
         </div>
       </div>
     </div>
 
-    <div class="card reveal" data-id="old-fashioned" data-cat="cocktails" style="--glow:rgba(180,120,30,.3)" onclick="openDrink('old-fashioned')">
+    <!-- OLD FASHIONED -->
+    <div class="card reveal" data-id="old-fashioned" data-cat="cocktails" style="--glow:rgba(160,100,20,.3)" onclick="openDrink('old-fashioned')">
       <div class="card-media">
-        <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=800&q=85" alt="Old Fashioned" loading="lazy"/>
-        <span class="badge badge-staff">👨‍🍳 Staff pick</span>
-        <span class="badge-orders">🥃 62 hoy</span>
+        <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=800&q=85" alt="Old Fashioned" loading="lazy" onerror="this.style.display='none'"/>
+        <span class="badge b-staff">👨‍🍳 Staff pick</span>
+        <span class="b-orders">🥃 62 hoy</span>
       </div>
       <div class="card-body">
         <div class="card-top">
           <h3 class="card-name">Old Fashioned</h3>
-          <div class="card-right">
-            <span class="card-price">$10.000</span>
-            <button class="heart-btn" onclick="toggleHeart(event,'old-fashioned')">
-              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            </button>
+          <div class="card-r">
+            <span class="card-price">€12</span>
+            <button class="heart" onclick="toggleHeart(event,'old-fashioned')"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
           </div>
         </div>
-        <p class="card-desc">Bourbon, azúcar, Angostura y twist de naranja. El cóctel que inventó el concepto de coctelería. Nada sobra.</p>
-        <div class="flavor-row">
-          <div class="flavor-item">
-            <span class="flavor-label">Dulce</span>
-            <div class="flavor-dots" data-val="2" data-color="gold"></div>
-          </div>
-          <div class="flavor-item">
-            <span class="flavor-label">Amargo</span>
-            <div class="flavor-dots" data-val="3" data-color="red"></div>
-          </div>
-          <div class="flavor-item">
-            <span class="flavor-label">Alcohol</span>
-            <div class="flavor-dots" data-val="5" data-color="blue"></div>
-          </div>
+        <p class="card-desc">Bourbon, azúcar, Angostura y twist de naranja. El primer cóctel de la historia. Nada sobra, nada falta. Preparado en mesa con cubo de hielo artesanal.</p>
+        <div class="flav-row">
+          <div class="flav-item"><span class="flav-lbl">Dulce</span><div class="flav-dots" data-v="2" data-c="gold"></div></div>
+          <div class="flav-item"><span class="flav-lbl">Amargo</span><div class="flav-dots" data-v="3" data-c="red"></div></div>
+          <div class="flav-item"><span class="flav-lbl">Alcohol</span><div class="flav-dots" data-v="5" data-c="blue"></div></div>
         </div>
-        <div class="card-footer">
-          <div class="card-tags">
-            <span class="tag tag-spirit">Bourbon</span>
-            <span class="tag">Ahumado</span>
-            <span class="tag">Fuerte</span>
-          </div>
-          <button class="share-btn" onclick="shareDrink(event,'Old Fashioned','$10.000')">
-            <svg viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
-          </button>
+        <div class="card-foot">
+          <div class="card-tags"><span class="tag t-spirit">Bourbon</span><span class="tag">Ahumado</span><span class="tag">Fuerte</span></div>
+          <button class="share-btn" onclick="shareDrink(event,'Old Fashioned','€12')"><svg viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></button>
         </div>
       </div>
     </div>
 
-    <div class="card reveal" data-id="aperol-spritz" data-cat="cocktails" style="--glow:rgba(255,100,30,.25)" onclick="openDrink('aperol-spritz')">
+    <!-- APEROL SPRITZ -->
+    <div class="card reveal" data-id="aperol-spritz" data-cat="cocktails" style="--glow:rgba(240,90,20,.22)" onclick="openDrink('aperol-spritz')">
       <div class="card-media">
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=85" alt="Aperol Spritz" loading="lazy"/>
-        <span class="badge badge-nuevo">✨ Nuevo</span>
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=85" alt="Aperol Spritz" loading="lazy" onerror="this.style.display='none'"/>
+        <span class="badge b-nuevo">✨ Verano</span>
       </div>
       <div class="card-body">
         <div class="card-top">
           <h3 class="card-name">Aperol Spritz</h3>
-          <div class="card-right">
-            <span class="card-price">$7.500</span>
-            <button class="heart-btn" onclick="toggleHeart(event,'aperol-spritz')">
-              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            </button>
+          <div class="card-r">
+            <span class="card-price">€9</span>
+            <button class="heart" onclick="toggleHeart(event,'aperol-spritz')"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
           </div>
         </div>
-        <p class="card-desc">Aperol, prosecco y soda. El aperitivo de Italia que conquistó el mundo. El atardecer en un vaso.</p>
-        <div class="flavor-row">
-          <div class="flavor-item">
-            <span class="flavor-label">Dulce</span>
-            <div class="flavor-dots" data-val="3" data-color="gold"></div>
-          </div>
-          <div class="flavor-item">
-            <span class="flavor-label">Amargo</span>
-            <div class="flavor-dots" data-val="2" data-color="red"></div>
-          </div>
-          <div class="flavor-item">
-            <span class="flavor-label">Alcohol</span>
-            <div class="flavor-dots" data-val="2" data-color="blue"></div>
-          </div>
+        <p class="card-desc">Aperol, prosecco y soda. El aperitivo del norte de Italia que conquistó el mundo. Ligero, burbujeante y visualmente perfecto.</p>
+        <div class="flav-row">
+          <div class="flav-item"><span class="flav-lbl">Dulce</span><div class="flav-dots" data-v="3" data-c="gold"></div></div>
+          <div class="flav-item"><span class="flav-lbl">Amargo</span><div class="flav-dots" data-v="2" data-c="red"></div></div>
+          <div class="flav-item"><span class="flav-lbl">Alcohol</span><div class="flav-dots" data-v="2" data-c="blue"></div></div>
         </div>
-        <div class="card-footer">
-          <div class="card-tags">
-            <span class="tag tag-spirit">Prosecco</span>
-            <span class="tag">Ligero</span>
-            <span class="tag">Italia</span>
-          </div>
-          <button class="share-btn" onclick="shareDrink(event,'Aperol Spritz','$7.500')">
-            <svg viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
-          </button>
+        <div class="card-foot">
+          <div class="card-tags"><span class="tag t-spirit">Prosecco</span><span class="tag">Ligero</span><span class="tag">Italia</span></div>
+          <button class="share-btn" onclick="shareDrink(event,'Aperol Spritz','€9')"><svg viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ▌SHOTS ▌ -->
+  <!-- ▌ SHOTS ▌ -->
   <section data-section="shots">
-    <div class="sec-header reveal">
-      <div class="sec-icon">
-        <svg viewBox="0 0 24 24"><path d="M8 4h8l-1 14H9z"/><line x1="6" y1="21" x2="18" y2="21"/></svg>
-      </div>
+    <div class="sh reveal">
+      <div class="sh-icon"><svg viewBox="0 0 24 24"><path d="M8 4h8l-1 14H9z"/><line x1="6" y1="21" x2="18" y2="21"/></svg></div>
       <h2>Shots</h2>
-      <div class="sec-line"></div>
+      <div class="sh-line"></div>
     </div>
 
-    <div class="card-sm reveal" data-id="tequila" data-cat="shots" onclick="openDrink('tequila')">
-      <div class="sm-thumb">
-        <img src="https://images.unsplash.com/photo-1574890985843-4f8b1ae7d2c0?w=200&q=80" alt="Tequila" loading="lazy"/>
+    <div class="csm reveal" data-id="tequila" data-cat="shots" onclick="openDrink('tequila')">
+      <div class="csm-thumb">
+        <img
+          src="https://images.unsplash.com/photo-1527661591475-527312dd65f5?w=200&q=80"
+          alt="Tequila"
+          loading="lazy"
+          onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'csm-icon',innerHTML:'<svg viewBox=\'0 0 24 24\'><path d=\'M8 4h8l-1 14H9z\'/><line x1=\'6\' y1=\'21\' x2=\'18\' y2=\'21\'/></svg>'}))"
+        />
       </div>
-      <div class="sm-info">
-        <p class="sm-name">Tequila Reposado</p>
-        <p class="sm-desc">Sal · limón · agave</p>
+      <div class="csm-info">
+        <p class="csm-name">Tequila Reposado</p>
+        <p class="csm-desc">100% agave · sal de gusano · limón</p>
       </div>
-      <div class="sm-right">
-        <span class="sm-price">$4.500</span>
-        <button class="heart-btn" onclick="toggleHeart(event,'tequila')">
-          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
-        </button>
+      <div class="csm-r">
+        <span class="csm-price">€6</span>
+        <button class="heart" onclick="toggleHeart(event,'tequila')"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
       </div>
     </div>
 
-    <div class="card-sm reveal" data-id="baby-guinness" data-cat="shots" onclick="openDrink('baby-guinness')">
-      <div class="sm-thumb">
-        <div class="sm-thumb-icon">
+    <div class="csm reveal" data-id="baby-guinness" data-cat="shots" onclick="openDrink('baby-guinness')">
+      <div class="csm-thumb">
+        <div class="csm-icon">
           <svg viewBox="0 0 24 24"><path d="M8 4h8l-1 14H9z"/><line x1="6" y1="21" x2="18" y2="21"/></svg>
         </div>
       </div>
-      <div class="sm-info">
-        <p class="sm-name">Baby Guinness</p>
-        <p class="sm-desc">Kahlúa · Bailey's</p>
+      <div class="csm-info">
+        <p class="csm-name">Baby Guinness</p>
+        <p class="csm-desc">Kahlúa · Bailey's flotante</p>
       </div>
-      <div class="sm-right">
-        <span class="sm-price">$5.000</span>
-        <button class="heart-btn" onclick="toggleHeart(event,'baby-guinness')">
-          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
-        </button>
-      </div>
+      <div class="csm-r"><span class="csm-price">€6</span></div>
     </div>
 
-    <div class="card-sm reveal" data-cat="shots">
-      <div class="sm-thumb">
-        <div class="sm-thumb-icon">
-          <svg viewBox="0 0 24 24"><path d="M8 4h8l-1 14H9z"/><line x1="6" y1="21" x2="18" y2="21"/></svg>
-        </div>
-      </div>
-      <div class="sm-info">
-        <p class="sm-name">B-52</p>
-        <p class="sm-desc">Kahlúa · Bailey's · Grand Marnier</p>
-      </div>
-      <div class="sm-right">
-        <span class="sm-price">$5.500</span>
-      </div>
+    <div class="csm reveal" data-cat="shots">
+      <div class="csm-thumb"><div class="csm-icon"><svg viewBox="0 0 24 24"><path d="M8 4h8l-1 14H9z"/><line x1="6" y1="21" x2="18" y2="21"/></svg></div></div>
+      <div class="csm-info"><p class="csm-name">B-52</p><p class="csm-desc">Kahlúa · Bailey's · Grand Marnier</p></div>
+      <div class="csm-r"><span class="csm-price">€7</span></div>
     </div>
 
-    <div class="card-sm reveal" data-cat="shots">
-      <div class="sm-thumb">
-        <div class="sm-thumb-icon">
-          <svg viewBox="0 0 24 24"><path d="M8 4h8l-1 14H9z"/><line x1="6" y1="21" x2="18" y2="21"/></svg>
-        </div>
-      </div>
-      <div class="sm-info">
-        <p class="sm-name">Limoncello</p>
-        <p class="sm-desc">Artesanal · muy frío</p>
-      </div>
-      <div class="sm-right">
-        <span class="sm-price">$4.000</span>
-      </div>
+    <div class="csm reveal" data-cat="shots">
+      <div class="csm-thumb"><div class="csm-icon"><svg viewBox="0 0 24 24"><path d="M8 4h8l-1 14H9z"/><line x1="6" y1="21" x2="18" y2="21"/></svg></div></div>
+      <div class="csm-info"><p class="csm-name">Limoncello</p><p class="csm-desc">Artesanal · muy frío</p></div>
+      <div class="csm-r"><span class="csm-price">€5</span></div>
     </div>
   </section>
 
-  <!-- ▌VINOS & CERVEZAS ▌ -->
+  <!-- ▌ VINOS & CERVEZAS ▌ -->
   <section data-section="wines">
-    <div class="sec-header reveal">
-      <div class="sec-icon">
-        <svg viewBox="0 0 24 24"><path d="M8 4h8s2 5 2 8a6 6 0 0 1-12 0c0-3 2-8 2-8z"/><line x1="12" y1="18" x2="12" y2="21"/><line x1="9" y1="21" x2="15" y2="21"/></svg>
-      </div>
+    <div class="sh reveal">
+      <div class="sh-icon"><svg viewBox="0 0 24 24"><path d="M8 4h8s2 5 2 8a6 6 0 0 1-12 0c0-3 2-8 2-8z"/><line x1="12" y1="18" x2="12" y2="21"/><line x1="9" y1="21" x2="15" y2="21"/></svg></div>
       <h2>Vinos &amp; Cervezas</h2>
-      <div class="sec-line"></div>
+      <div class="sh-line"></div>
     </div>
 
-    <div class="card-sm reveal" data-cat="wines">
-      <div class="sm-thumb">
-        <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=200&q=80" alt="Malbec" loading="lazy"/>
-      </div>
-      <div class="sm-info">
-        <p class="sm-name">Malbec Copa</p>
-        <p class="sm-desc">Mendoza · cuerpo medio · taninos suaves</p>
-      </div>
-      <div class="sm-right"><span class="sm-price">$6.000</span></div>
+    <div class="csm reveal" data-cat="wines">
+      <div class="csm-thumb"><img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=200&q=80" alt="Malbec" loading="lazy" onerror="this.style.display='none'"/></div>
+      <div class="csm-info"><p class="csm-name">Malbec Copa</p><p class="csm-desc">Mendoza · cuerpo medio · taninos suaves</p></div>
+      <div class="csm-r"><span class="csm-price">€6</span></div>
     </div>
 
-    <div class="card-sm reveal" data-cat="wines">
-      <div class="sm-thumb">
-        <div class="sm-thumb-icon">
-          <svg viewBox="0 0 24 24"><path d="M8 4h8s2 5 2 8a6 6 0 0 1-12 0c0-3 2-8 2-8z"/><line x1="12" y1="18" x2="12" y2="21"/><line x1="9" y1="21" x2="15" y2="21"/></svg>
-        </div>
-      </div>
-      <div class="sm-info">
-        <p class="sm-name">Prosecco</p>
-        <p class="sm-desc">Italia · semiseco · burbujas finas</p>
-      </div>
-      <div class="sm-right"><span class="sm-price">$7.000</span></div>
+    <div class="csm reveal" data-cat="wines">
+      <div class="csm-thumb"><div class="csm-icon"><svg viewBox="0 0 24 24"><path d="M8 4h8s2 5 2 8a6 6 0 0 1-12 0c0-3 2-8 2-8z"/><line x1="12" y1="18" x2="12" y2="21"/><line x1="9" y1="21" x2="15" y2="21"/></svg></div></div>
+      <div class="csm-info"><p class="csm-name">Prosecco Copa</p><p class="csm-desc">Italia · semiseco · burbujas finas</p></div>
+      <div class="csm-r"><span class="csm-price">€8</span></div>
     </div>
 
-    <div class="card-sm reveal" data-cat="wines">
-      <div class="sm-thumb">
-        <img src="https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=200&q=80" alt="IPA" loading="lazy"/>
-      </div>
-      <div class="sm-info">
-        <p class="sm-name">Craft IPA</p>
-        <p class="sm-desc">Local artesanal · lupulada · 330ml</p>
-      </div>
-      <div class="sm-right"><span class="sm-price">$5.500</span></div>
+    <div class="csm reveal" data-cat="wines">
+      <div class="csm-thumb"><img src="https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=200&q=80" alt="IPA" loading="lazy" onerror="this.style.display='none'"/></div>
+      <div class="csm-info"><p class="csm-name">Craft IPA</p><p class="csm-desc">Local artesanal · lupulada · 330ml</p></div>
+      <div class="csm-r"><span class="csm-price">€5</span></div>
     </div>
 
-    <div class="card-sm reveal" data-cat="wines">
-      <div class="sm-thumb">
-        <div class="sm-thumb-icon">
-          <!-- Beer mug SVG -->
-          <svg viewBox="0 0 24 24"><path d="M5 3h11l1 14H5z"/><path d="M16 7h3a2 2 0 0 1 0 4h-3"/><line x1="4" y1="20" x2="18" y2="20"/></svg>
-        </div>
-      </div>
-      <div class="sm-info">
-        <p class="sm-name">Stout Artesanal</p>
-        <p class="sm-desc">Notas de café y cacao · 330ml</p>
-      </div>
-      <div class="sm-right"><span class="sm-price">$5.500</span></div>
+    <div class="csm reveal" data-cat="wines">
+      <div class="csm-thumb"><div class="csm-icon"><svg viewBox="0 0 24 24"><path d="M5 3h11l1 14H5z"/><path d="M16 7h3a2 2 0 0 1 0 4h-3"/><line x1="4" y1="20" x2="18" y2="20"/></svg></div></div>
+      <div class="csm-info"><p class="csm-name">Stout Artesanal</p><p class="csm-desc">Café y cacao · 330ml</p></div>
+      <div class="csm-r"><span class="csm-price">€5</span></div>
     </div>
   </section>
 
-  <!-- ▌MOCKTAILS ▌ -->
+  <!-- ▌ MOCKTAILS ▌ -->
   <section data-section="mocktails">
-    <div class="sec-header reveal">
-      <div class="sec-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 22s-8-6-8-12a8 8 0 0 1 16 0c0 6-8 12-8 12z"/><line x1="12" y1="22" x2="12" y2="10"/></svg>
-      </div>
+    <div class="sh reveal">
+      <div class="sh-icon"><svg viewBox="0 0 24 24"><path d="M12 22s-8-6-8-12a8 8 0 0 1 16 0c0 6-8 12-8 12z"/><line x1="12" y1="22" x2="12" y2="10"/></svg></div>
       <h2>Mocktails</h2>
-      <div class="sec-line"></div>
+      <div class="sh-line"></div>
     </div>
 
-    <div class="card reveal" data-id="hugo-zero" data-cat="mocktails" style="--glow:rgba(30,180,120,.2)" onclick="openDrink('hugo-zero')">
+    <div class="card reveal" data-id="hugo-zero" data-cat="mocktails" style="--glow:rgba(20,160,100,.18)" onclick="openDrink('hugo-zero')">
       <div class="card-media">
-        <img src="https://images.unsplash.com/photo-1532634922-8fe0b757fb13?w=800&q=85" alt="Hugo Zero" loading="lazy"/>
-        <span class="badge badge-nuevo">Sin alcohol</span>
-        <span class="badge-orders">🌿 35 hoy</span>
+        <img src="https://images.unsplash.com/photo-1532634922-8fe0b757fb13?w=800&q=85" alt="Hugo Zero" loading="lazy" onerror="this.style.display='none'"/>
+        <span class="badge b-nuevo">Sin alcohol</span>
+        <span class="b-orders">🌿 35 hoy</span>
       </div>
       <div class="card-body">
         <div class="card-top">
           <h3 class="card-name">Hugo Zero</h3>
-          <div class="card-right">
-            <span class="card-price">$6.000</span>
-            <button class="heart-btn" onclick="toggleHeart(event,'hugo-zero')">
-              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            </button>
+          <div class="card-r">
+            <span class="card-price">€7</span>
+            <button class="heart" onclick="toggleHeart(event,'hugo-zero')"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
           </div>
         </div>
-        <p class="card-desc">Flor de saúco, menta fresca, pepino y agua con gas. Toda la elegancia sin alcohol.</p>
-        <div class="flavor-row">
-          <div class="flavor-item">
-            <span class="flavor-label">Dulce</span>
-            <div class="flavor-dots" data-val="3" data-color="gold"></div>
-          </div>
-          <div class="flavor-item">
-            <span class="flavor-label">Refrescante</span>
-            <div class="flavor-dots" data-val="5" data-color="gold"></div>
-          </div>
-          <div class="flavor-item">
-            <span class="flavor-label">Alcohol</span>
-            <div class="flavor-dots" data-val="0" data-color="blue"></div>
-          </div>
+        <p class="card-desc">Flor de saúco, menta fresca, pepino y agua con gas. Toda la elegancia, cero alcohol. Para disfrutar toda la noche.</p>
+        <div class="flav-row">
+          <div class="flav-item"><span class="flav-lbl">Dulce</span><div class="flav-dots" data-v="3" data-c="gold"></div></div>
+          <div class="flav-item"><span class="flav-lbl">Fresco</span><div class="flav-dots" data-v="5" data-c="gold"></div></div>
+          <div class="flav-item"><span class="flav-lbl">Alcohol</span><div class="flav-dots" data-v="0" data-c="blue"></div></div>
         </div>
-        <div class="card-footer">
-          <div class="card-tags">
-            <span class="tag">Floral</span>
-            <span class="tag">Sin alcohol</span>
-            <span class="tag">Vegano</span>
-          </div>
-          <button class="share-btn" onclick="shareDrink(event,'Hugo Zero','$6.000')">
-            <svg viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
-          </button>
+        <div class="card-foot">
+          <div class="card-tags"><span class="tag">Floral</span><span class="tag">Sin alcohol</span><span class="tag">Vegano</span></div>
+          <button class="share-btn" onclick="shareDrink(event,'Hugo Zero','€7')"><svg viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></button>
         </div>
       </div>
     </div>
 
-    <div class="card-sm reveal" data-cat="mocktails">
-      <div class="sm-thumb">
-        <div class="sm-thumb-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 22s-8-6-8-12a8 8 0 0 1 16 0c0 6-8 12-8 12z"/><line x1="12" y1="22" x2="12" y2="10"/></svg>
-        </div>
-      </div>
-      <div class="sm-info">
-        <p class="sm-name">Citrus Cooler</p>
-        <p class="sm-desc">Naranja · pomelo · jengibre · soda</p>
-      </div>
-      <div class="sm-right"><span class="sm-price">$5.500</span></div>
+    <div class="csm reveal" data-cat="mocktails">
+      <div class="csm-thumb"><div class="csm-icon"><svg viewBox="0 0 24 24"><path d="M12 22s-8-6-8-12a8 8 0 0 1 16 0c0 6-8 12-8 12z"/><line x1="12" y1="22" x2="12" y2="10"/></svg></div></div>
+      <div class="csm-info"><p class="csm-name">Citrus Cooler</p><p class="csm-desc">Naranja · pomelo · jengibre · soda</p></div>
+      <div class="csm-r"><span class="csm-price">€6</span></div>
     </div>
 
-    <div class="card-sm reveal" data-cat="mocktails">
-      <div class="sm-thumb">
-        <div class="sm-thumb-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 22s-8-6-8-12a8 8 0 0 1 16 0c0 6-8 12-8 12z"/><line x1="12" y1="22" x2="12" y2="10"/></svg>
-        </div>
-      </div>
-      <div class="sm-info">
-        <p class="sm-name">Mojito Virgen</p>
-        <p class="sm-desc">Lima · menta · azúcar · soda</p>
-      </div>
-      <div class="sm-right"><span class="sm-price">$5.000</span></div>
+    <div class="csm reveal" data-cat="mocktails">
+      <div class="csm-thumb"><div class="csm-icon"><svg viewBox="0 0 24 24"><path d="M12 22s-8-6-8-12a8 8 0 0 1 16 0c0 6-8 12-8 12z"/><line x1="12" y1="22" x2="12" y2="10"/></svg></div></div>
+      <div class="csm-info"><p class="csm-name">Mojito Virgen</p><p class="csm-desc">Lima · menta · azúcar · soda</p></div>
+      <div class="csm-r"><span class="csm-price">€6</span></div>
     </div>
   </section>
 
   <p class="no-results" id="noResults">No se encontraron resultados.</p>
 </main>
 
-<!-- ════════════════ FOOTER ════════════════ -->
+<!-- ══════════════════ FOOTER ═════════════════════ -->
 <footer class="footer">
-  <div class="footer-logo">El Bar</div>
+  <div class="footer-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260" fill="none">
+      <circle cx="130" cy="130" r="124" stroke="#c9a96e" stroke-width="1" stroke-dasharray="3 3" opacity=".4"/>
+      <circle cx="130" cy="130" r="117" stroke="#c9a96e" stroke-width="1.2"/>
+      <defs>
+        <path id="tA2" d="M 28,130 A 102,102 0 0,1 232,130"/>
+        <path id="bA2" d="M 50,130 A 80,80 0 0,0 210,130"/>
+      </defs>
+      <text font-family="serif" font-size="12" fill="#c9a96e" letter-spacing="5"><textPath href="#tA2" startOffset="7%">CLUB SOCIAL · LA HABANA</textPath></text>
+      <text font-family="serif" font-size="9" fill="#c9a96e" letter-spacing="4" opacity=".7"><textPath href="#bA2" startOffset="14%">RON · MÚSICA · BAILAR</textPath></text>
+      <path d="M127 189 Q125.5 170 123.5 152 L136.5 152 Q134.5 170 133 189 Z" fill="#c9a96e" opacity=".85"/>
+      <path d="M130 152 C143 143 157 134 170 120" stroke="#c9a96e" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M130 152 C117 143 103 134 90 120" stroke="#c9a96e" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M130 152 C147 139 160 123 166 106" stroke="#c9a96e" stroke-width="2" stroke-linecap="round"/>
+      <path d="M130 152 C113 139 100 123 94 106" stroke="#c9a96e" stroke-width="2" stroke-linecap="round"/>
+      <path d="M130 152 C137 137 141 120 143 102" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M130 152 C123 137 119 120 117 102" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="128" cy="153" r="4" fill="#c9a96e" opacity=".9"/>
+      <circle cx="136" cy="156" r="3" fill="#c9a96e" opacity=".8"/>
+      <circle cx="122" cy="156" r="3" fill="#c9a96e" opacity=".7"/>
+      <line x1="88" y1="197" x2="172" y2="197" stroke="#c9a96e" stroke-width=".5" opacity=".4"/>
+      <text x="130" y="215" text-anchor="middle" font-family="'Cormorant Garamond',Georgia,serif" font-size="24" fill="#c9a96e" font-style="italic" font-weight="300" letter-spacing="1">La Habana</text>
+      <text x="130" y="229" text-anchor="middle" font-family="serif" font-size="7" fill="#c9a96e" letter-spacing="5" opacity=".6">BAR · COCKTAILS</text>
+    </svg>
+  </div>
   <div class="footer-info">
-    Av. Ejemplo 1234, Ciudad<br>
-    Lunes a domingo · 18:00 — 03:00 hrs<br><br>
-    <a href="https://wa.me/56900000000">📲 Reservas vía WhatsApp</a>
+    Av. Ejemplo 1234 · Ciudad<br>
+    Lunes a domingo · 18:00 — 03:00 hs<br><br>
+    <a href="https://wa.me/34600000000">📲 Reservas WhatsApp</a>
     &nbsp;·&nbsp;
-    <a href="https://instagram.com">📷 @elbar</a>
+    <a href="https://instagram.com">📷 @lahabanabar</a>
   </div>
 </footer>
 
-<!-- ════════════════ FLOATING ════════════════ -->
-<div class="float-area">
-  <a class="float-btn" href="https://wa.me/56900000000" target="_blank">
-    <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-    Llamar al mozo
-  </a>
-</div>
+<!-- ══════════════════ FLOAT ══════════════════════ -->
+<a class="float" href="https://wa.me/34600000000" target="_blank">
+  <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  Llamar al mozo
+</a>
 
-<!-- ════════════════ MODAL ════════════════ -->
-<div class="modal-bg" id="modalBg" onclick="closeModal(event)">
+<!-- ══════════════════ MODAL ══════════════════════ -->
+<div class="modal-bg" id="modalBg" onclick="closeMod(event)">
   <div class="modal" id="modal">
-    <div class="modal-handle"></div>
-    <button class="modal-x" onclick="closeModalBtn()">✕</button>
-
-    <div class="modal-media" id="mMedia"></div>
-
-    <div class="modal-body">
-      <div class="modal-top">
-        <h2 class="modal-name" id="mName"></h2>
-        <span class="modal-price" id="mPrice"></span>
+    <div class="m-handle"></div>
+    <button class="m-x" onclick="closeModBtn()">✕</button>
+    <div class="m-media" id="mMedia"></div>
+    <div class="m-body">
+      <div class="m-top">
+        <h2 class="m-name" id="mName"></h2>
+        <span class="m-price" id="mPrice"></span>
       </div>
-
-      <div class="modal-meta">
-        <span class="modal-level" id="mLevel"></span>
-        <span class="modal-orders" id="mOrders"></span>
+      <div class="m-meta">
+        <span class="m-level" id="mLevel"></span>
+        <span class="m-orders" id="mOrders"></span>
       </div>
-
-      <p class="modal-desc" id="mDesc"></p>
-
-      <div class="modal-flavor" id="mFlavor"></div>
-
-      <div id="mVideoWrap" style="display:none">
+      <p class="m-desc" id="mDesc"></p>
+      <div class="m-flavor" id="mFlavor"></div>
+      <div id="mVidWrap" style="display:none">
         <p class="mtitle">Como se prepara</p>
-        <div class="modal-video-wrap" id="mVideo"></div>
+        <div class="m-video-wrap" id="mVid"></div>
       </div>
-
       <p class="mtitle">Ingredientes</p>
       <div class="ing-grid" id="mIng"></div>
-
       <p class="mtitle">Preparación</p>
       <div class="steps" id="mSteps"></div>
-
       <p class="mtitle">Marida con</p>
-      <div class="pairing-row" id="mPairing"></div>
+      <div class="pairing-row" id="mPair"></div>
     </div>
   </div>
 </div>
 
-<!-- ════════════════════════════════════════
+<!-- ══════════════════════════════════════════════
    SCRIPTS
-════════════════════════════════════════ -->
+══════════════════════════════════════════════ -->
 <script>
-
-/* ══════════════ DRINK DATABASE ══════════════════════════ */
-/*
-  CÓMO EDITAR:
-  - image: URL de tu imagen (Unsplash, Google Drive, hosting propio, etc.)
-  - video: URL embed de YouTube: 'https://www.youtube.com/embed/TU_ID_VIDEO'
-           o null si no tienes video
-  - steps: pasos de preparación
-  - pairing: emojis con texto para cada sugerencia
-  - flavor: valores 0-5 para dulce/amargo/alcohol
-  - orders: número de pedidos (lo puedes ajustar a gusto)
-  - glow: color del aura del modal (CSS rgba)
-*/
+/* ════════════════ DRINK DATABASE ════════════════
+   Para agregar video de preparación:
+   video: 'https://www.youtube.com/embed/TU_ID'
+   Para agregar imagen propia:
+   image: 'https://tu-hosting.com/imagen.jpg'
+══════════════════════════════════════════════ */
 const db = {
-  'negroni': {
-    name:'Negroni', price:'$8.500',
+  mojito:{
+    name:'Mojito', price:'€9',
+    level:'🇨🇺 Original cubano', orders:'🌿 124 pedidos hoy',
+    desc:'El rey de Cuba. Creado en La Habana en el siglo XIX, perfeccionado en El Bodeguita del Medio. Ron Havana Club, lima, menta fresca, azúcar morena y soda. El cóctel más pedido del mundo no lo es por casualidad.',
+    image:'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=900&q=90',
+    video:null,
+    flavor:[{label:'Dulce',val:3,color:'gold'},{label:'Fresco',val:5,color:'gold'},{label:'Alcohol',val:2,color:'blue'}],
+    ingredients:['50ml Ron Havana Club 3 años','Zumo de 1 lima','8-10 hojas de menta fresca','2 cditas azúcar morena','80ml Soda water','Hielo picado'],
+    steps:['En el vaso, presionar suavemente la menta con el azúcar y el zumo de lima (no triturar).','Añadir el ron y remover.','Llenar el vaso con hielo picado hasta el borde.','Agregar la soda fría lentamente por el borde.','Remover una sola vez con cuchara larga.','Decorar con rama de menta y rodaja de lima.'],
+    pairing:['🍤 Camarones a la plancha','🌮 Tacos de cerdo','🧀 Queso fresco','🍍 Piña fresca'],
+  },
+  daiquiri:{
+    name:'Daiquiri', price:'€9',
+    level:'Clásico cubano', orders:'🍋 73 pedidos hoy',
+    desc:'Ron, lima y azúcar. La Trinidad sagrada de La Habana. Ernest Hemingway lo pedía doble y sin azúcar en El Floridita. Nosotros lo preparamos equilibrado, como debe ser. Minimal, poderoso.',
+    image:'https://images.unsplash.com/photo-1609951651556-5334e2706168?w=900&q=90',
+    video:null,
+    flavor:[{label:'Dulce',val:3,color:'gold'},{label:'Ácido',val:4,color:'red'},{label:'Alcohol',val:3,color:'blue'}],
+    ingredients:['60ml Ron blanco Havana Club','25ml Zumo de lima fresco','15ml Sirope de azúcar','Hielo','Copa coupette fría'],
+    steps:['Enfriar la copa coupette en el congelador al menos 15 min.','Llenar la coctelera con hielo.','Agregar ron, zumo de lima y sirope.','Agitar vigorosamente 12-15 segundos hasta que la coctelera esté helada.','Colar doble en la copa fría.','Decorar con twist de lima.'],
+    pairing:['🦞 Langostinos','🥗 Ceviche','🍫 Chocolate blanco','🍑 Frutas tropicales'],
+  },
+  'cuba-libre':{
+    name:'Cuba Libre', price:'€8',
+    level:'Icónico', orders:'🥤 98 pedidos hoy',
+    desc:'Nació en 1900 para celebrar la independencia de Cuba. Ron añejo, Coca-Cola y zumo de lima fresco sobre hielo. Dos siglos después, sigue siendo el grito de libertad más delicioso que existe.',
+    image:'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=900&q=90',
+    video:null,
+    flavor:[{label:'Dulce',val:4,color:'gold'},{label:'Burbujas',val:4,color:'gold'},{label:'Alcohol',val:3,color:'blue'}],
+    ingredients:['50ml Ron añejo Havana Club 7 años','150ml Coca-Cola fría','Zumo de ½ lima','3-4 cubos de hielo','Rodaja de lima para decorar'],
+    steps:['Llenar un vaso highball con cubos de hielo.','Agregar el ron y el zumo de lima.','Verter la Coca-Cola lentamente por el borde para conservar el gas.','Remover suavemente una sola vez.','Decorar con rodaja de lima.'],
+    pairing:['🍕 Pizza napolitana','🍔 Hamburguesa','🥓 Costillas BBQ','🥜 Cacahuetes tostados'],
+  },
+  negroni:{
+    name:'Negroni', price:'€10',
     level:'Clásico atemporal', orders:'🔥 47 pedidos hoy',
-    desc:'Un cóctel de 1919 que no ha cambiado porque no necesita cambiar. Equilibrio perfecto: amargo, botánico y dulce en cada sorbo. Servido en roca con twist de naranja flambeado en mesa.',
+    desc:'1919. Florencia. El conde Camillo Negroni pidió su americano con gin en vez de soda. Nació el cóctel más elegante del mundo. Amargo, botánico y sin rodeos. Servido con twist de naranja flambeado en mesa.',
     image:'https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=900&q=90',
-    video: null, /* 'https://www.youtube.com/embed/TU_VIDEO_ID?autoplay=1' */
-    flavor:[
-      {label:'Dulce', val:2, color:'gold'},
-      {label:'Amargo', val:5, color:'red'},
-      {label:'Alcohol', val:4, color:'blue'},
-    ],
+    video:null,
+    flavor:[{label:'Dulce',val:2,color:'gold'},{label:'Amargo',val:5,color:'red'},{label:'Alcohol',val:4,color:'blue'}],
     ingredients:['30ml Gin London Dry','30ml Campari','30ml Vermut Carpano Rosso','1 cubo de hielo grande','Cáscara de naranja (flambeada)'],
-    steps:['Llenar un vaso rocks con un solo cubo de hielo grande.','Verter Campari, vermut y gin directamente sobre el hielo.','Remover 20 veces con cuchara de bar en sentido horario.','Flamear la cáscara de naranja sobre el vaso para extraer los aceites.','Decorar con la cáscara y servir.'],
+    steps:['Colocar un cubo de hielo grande en vaso rocks.','Verter el Campari, el vermut y el gin directamente.','Remover 20 veces en sentido horario con cuchara de bar.','Flamear la cáscara de naranja sobre el vaso para expresar los aceites aromáticos.','Decorar con la cáscara y servir inmediatamente.'],
     pairing:['🧀 Quesos curados','🫒 Aceitunas negras','🥩 Jamón ibérico','🍕 Pizza margherita'],
   },
-  'espresso-martini': {
-    name:'Espresso Martini', price:'$9.000',
+  'espresso-martini':{
+    name:'Espresso Martini', price:'€11',
     level:'Para todos', orders:'☕ 89 pedidos hoy',
-    desc:'Dick Bradsell lo creó en los 80 cuando una clienta pidió algo que la "despertara y le diera ganas de fiesta". Agitar fuerte es el secreto de la espuma densa y persistente.',
-    image:'https://images.unsplash.com/photo-1578664182664-f7a2e4fdcf38?w=900&q=90',
-    video: null,
-    flavor:[
-      {label:'Dulce', val:4, color:'gold'},
-      {label:'Amargo', val:3, color:'red'},
-      {label:'Alcohol', val:3, color:'blue'},
-    ],
-    ingredients:['50ml Vodka premium','30ml Kahlúa','25ml Espresso doble (tibio-frío)','10ml Sirope de azúcar','3 granos de café arábica'],
-    steps:['Preparar el espresso y dejarlo enfriar a temperatura ambiente.','Enfriar la copa martini en el freezer al menos 10 min.','Llenar coctelera con hielo hasta la mitad.','Agregar vodka, Kahlúa, espresso y sirope.','Agitar con mucha energía durante 15-20 segundos.','Colar doble en la copa fría. La espuma sube naturalmente.','Decorar con 3 granos de café sobre la espuma.'],
+    desc:'Dick Bradsell, Londres, 1983. Una modelo pidió algo que la despertara y la pusiera a tono. El resultado cambió la coctelería para siempre. Agitado con fuerza para lograr la espuma densa y persistente.',
+    image:'https://images.unsplash.com/photo-1563227812-0eb4c236cda5?w=900&q=90',
+    video:null,
+    flavor:[{label:'Dulce',val:4,color:'gold'},{label:'Amargo',val:3,color:'red'},{label:'Alcohol',val:3,color:'blue'}],
+    ingredients:['50ml Vodka premium','30ml Kahlúa','25ml Espresso doble (tibio)','10ml Sirope de azúcar','3 granos de café arábica'],
+    steps:['Preparar el espresso y dejar enfriar a temperatura ambiente.','Enfriar la copa martini en el congelador al menos 10 min.','Llenar coctelera con hielo.','Agregar vodka, Kahlúa, espresso y sirope.','Agitar con mucha energía 15-20 segundos.','Colar doble en copa fría. La espuma sube sola.','Decorar con 3 granos de café sobre la espuma.'],
     pairing:['🍫 Chocolate negro 70%','🧁 Tiramisú','🍮 Panna cotta','🍰 Cheesecake'],
   },
-  'old-fashioned': {
-    name:'Old Fashioned', price:'$10.000',
+  'old-fashioned':{
+    name:'Old Fashioned', price:'€12',
     level:'Para expertos', orders:'🥃 62 pedidos hoy',
-    desc:'El cóctel más antiguo del mundo, documentado en 1806. Whisky, azúcar y bitters. Nada más. Nada menos. Preparado en mesa con cubo de hielo artesanal y twist de cítrico.',
+    desc:'Documentado en 1806 como "el cóctel" — porque era el único que existía. Bourbon, azúcar morena, Angostura y cítrico. Preparado en mesa con cubo de hielo artesanal. Nada sobra.',
     image:'https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=900&q=90',
-    video: null,
-    flavor:[
-      {label:'Dulce', val:2, color:'gold'},
-      {label:'Amargo', val:3, color:'red'},
-      {label:'Alcohol', val:5, color:'blue'},
-    ],
-    ingredients:['60ml Bourbon o Rye whisky','1 cdita azúcar morena','2-3 gotas Angostura Bitters','Twist de naranja','Twist de limón','1 cubo de hielo artesanal'],
-    steps:['En el vaso rocks, disolver el azúcar con los bitters y una gota de agua.','Agregar el whisky y remover para integrar.','Colocar el cubo de hielo artesanal.','Remover 30 segundos más para enfriar y diluir.','Expresar ambas cáscaras cítricas sobre el vaso.','Decorar y servir inmediatamente.'],
+    video:null,
+    flavor:[{label:'Dulce',val:2,color:'gold'},{label:'Amargo',val:3,color:'red'},{label:'Alcohol',val:5,color:'blue'}],
+    ingredients:['60ml Bourbon o Rye whisky','1 cdita azúcar morena','2 gotas Angostura Bitters','Twist de naranja y limón','Cubo de hielo artesanal'],
+    steps:['En el vaso rocks, disolver el azúcar con los bitters y una gota de agua.','Agregar el whisky y remover para integrar.','Colocar el cubo de hielo artesanal.','Remover 30 segundos para enfriar y diluir correctamente.','Expresar ambas cáscaras cítricas sobre el vaso.','Decorar y servir.'],
     pairing:['🥩 Carne a las brasas','🧀 Queso azul','🍫 Chocolate con leche','🥜 Nueces tostadas'],
   },
-  'aperol-spritz': {
-    name:'Aperol Spritz', price:'$7.500',
+  'aperol-spritz':{
+    name:'Aperol Spritz', price:'€9',
     level:'Para todos', orders:'🍊 28 pedidos hoy',
-    desc:'El aperitivo del norte de Italia que se volvió global. Ligero, burbujeante y visualmente espectacular. Perfecto para empezar la noche o acompañar una tarde de verano.',
+    desc:'El aperitivo del norte de Italia que conquistó el mundo. Aperol, prosecco y un toque de soda. Visualmente perfecto, ligeramente amargo y muy refrescante. El clásico de verano.',
     image:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=90',
-    video: null,
-    flavor:[
-      {label:'Dulce', val:3, color:'gold'},
-      {label:'Amargo', val:2, color:'red'},
-      {label:'Alcohol', val:2, color:'blue'},
-    ],
-    ingredients:['90ml Prosecco DOC','60ml Aperol','30ml Agua con gas','Rodaja de naranja','Hielo en cubos','Copa de vino grande'],
-    steps:['Llenar la copa grande con cubos de hielo.','Agregar el Prosecco primero (preserva las burbujas).','Verter el Aperol lentamente.','Terminar con el agua con gas.','Revolver suavemente una sola vez.','Decorar con rodaja de naranja y ramita de menta.'],
-    pairing:['🥨 Pretzels','🫒 Bruschetta','🧀 Brie fresco','🍤 Camarones'],
+    video:null,
+    flavor:[{label:'Dulce',val:3,color:'gold'},{label:'Amargo',val:2,color:'red'},{label:'Alcohol',val:2,color:'blue'}],
+    ingredients:['90ml Prosecco DOC','60ml Aperol','30ml Soda water','Rodaja de naranja','Cubos de hielo'],
+    steps:['Llenar copa de vino grande con cubos de hielo.','Agregar el Prosecco primero para preservar las burbujas.','Verter el Aperol lentamente.','Terminar con el agua con gas.','Revolver suavemente una sola vez.','Decorar con rodaja de naranja.'],
+    pairing:['🥨 Pretzels','🫒 Bruschetta','🧀 Brie fresco','🍤 Gambas'],
   },
-  'hugo-zero': {
-    name:'Hugo Zero', price:'$6.000',
-    level:'Sin alcohol', orders:'🌿 35 pedidos hoy',
-    desc:'La versión sin alcohol del Hugo original austriaco. Flores de saúco, menta y pepino crean una bebida tan sofisticada que nadie notará la diferencia. Para disfrutar toda la noche.',
-    image:'https://images.unsplash.com/photo-1532634922-8fe0b757fb13?w=900&q=90',
-    video: null,
-    flavor:[
-      {label:'Dulce', val:3, color:'gold'},
-      {label:'Refrescante', val:5, color:'gold'},
-      {label:'Alcohol', val:0, color:'blue'},
-    ],
-    ingredients:['150ml Agua con gas premium','30ml Sirope de flor de saúco','Menta fresca (8-10 hojas)','3-4 rodajas de pepino','2 rodajas de limón','Hielo en cubos'],
-    steps:['Llenar copa de vino grande con hielo.','Agregar el sirope de saúco.','Verter el agua con gas lentamente desde el borde.','Agregar menta, pepino y limón.','Revolver suavemente una sola vez.','Servir con sorbete de vidrio.'],
-    pairing:['🥗 Ensaladas frescas','🍣 Sushi','🫧 Queso crema','🍓 Fresas'],
-  },
-  'tequila': {
-    name:'Tequila Reposado', price:'$4.500',
+  tequila:{
+    name:'Tequila Reposado', price:'€6',
     level:'Clásico', orders:'🌵 41 pedidos hoy',
-    desc:'Tequila 100% agave azul, reposado 6 meses en barrica de roble. Servido con limón y sal de gusano. La forma correcta de beber tequila.',
-    image:'https://images.unsplash.com/photo-1574890985843-4f8b1ae7d2c0?w=900&q=90',
-    video: null,
-    flavor:[
-      {label:'Suave', val:3, color:'gold'},
-      {label:'Picante', val:2, color:'red'},
-      {label:'Alcohol', val:4, color:'blue'},
-    ],
-    ingredients:['45ml Tequila reposado 100% agave','Sal de gusano premium','1 limón fresco'],
-    steps:['Colocar la sal en el dorso de la mano.','Lamer la sal.','Tomar el shot de golpe.','Morder el limón.'],
-    pairing:['🌮 Tacos al pastor','🥑 Guacamole','🌶 Salsa picante','🫛 Edamame'],
+    desc:'100% agave azul, reposado 6 meses en barrica de roble americano. Notas de vainilla y caramelo. Servido con sal de gusano premium y limón fresco.',
+    image:'https://images.unsplash.com/photo-1527661591475-527312dd65f5?w=900&q=90',
+    video:null,
+    flavor:[{label:'Suave',val:3,color:'gold'},{label:'Picante',val:2,color:'red'},{label:'Alcohol',val:4,color:'blue'}],
+    ingredients:['45ml Tequila reposado 100% agave','Sal de gusano artesanal','½ limón fresco'],
+    steps:['Colocar la sal de gusano en el dorso de la mano.','Lamer la sal.','Beber el tequila de un golpe.','Morder inmediatamente el limón.'],
+    pairing:['🌮 Tacos al pastor','🥑 Guacamole','🌶 Salsa roja','🫛 Edamame'],
   },
-  'baby-guinness': {
-    name:'Baby Guinness', price:'$5.000',
+  'baby-guinness':{
+    name:'Baby Guinness', price:'€6',
     level:'Intermedio', orders:'🍺 19 pedidos hoy',
-    desc:'El shot más fotografiado del mundo. Kahlúa en el fondo con Bailey\'s flotando encima, crea la ilusión perfecta de una pinta de Guinness en miniatura.',
-    image:null,
-    video: null,
-    flavor:[
-      {label:'Dulce', val:5, color:'gold'},
-      {label:'Cremoso', val:4, color:'gold'},
-      {label:'Alcohol', val:3, color:'blue'},
-    ],
+    desc:'El shot más fotografiado del mundo. Kahlúa en la base, Bailey\'s flotando encima: la ilusión perfecta de una pinta de Guinness en miniatura. Visual, cremoso y delicioso.',
+    image:null,video:null,
+    flavor:[{label:'Dulce',val:5,color:'gold'},{label:'Cremoso',val:4,color:'gold'},{label:'Alcohol',val:3,color:'blue'}],
     ingredients:['25ml Kahlúa (base)','15ml Bailey\'s Irish Cream (flotante)'],
-    steps:['Verter el Kahlúa en el shot glass.','Con una cuchara invertida, verter el Bailey\'s muy despacio para que flote encima.','El resultado debe verse como una mini Guinness.','Beber de un solo golpe.'],
-    pairing:['🍫 Chocolate','🍦 Helado de vainilla','☕ Café','🍰 Cheesecake'],
+    steps:['Verter el Kahlúa en el shot glass.','Con cuchara invertida, verter el Bailey\'s muy lentamente para que flote.','El resultado debe verse como una mini Guinness.','Beber de un solo golpe.'],
+    pairing:['🍫 Chocolate','🍦 Helado de vainilla','☕ Café solo','🍰 Cheesecake'],
+  },
+  'hugo-zero':{
+    name:'Hugo Zero', price:'€7',
+    level:'Sin alcohol', orders:'🌿 35 pedidos hoy',
+    desc:'La versión sin alcohol del Hugo austriaco. Flores de saúco, menta, pepino y agua con gas. Tan sofisticado que nadie notará la diferencia. Para disfrutar toda la noche sin límites.',
+    image:'https://images.unsplash.com/photo-1532634922-8fe0b757fb13?w=900&q=90',
+    video:null,
+    flavor:[{label:'Dulce',val:3,color:'gold'},{label:'Fresco',val:5,color:'gold'},{label:'Alcohol',val:0,color:'blue'}],
+    ingredients:['150ml Agua con gas premium','30ml Sirope de flor de saúco','8 hojas de menta fresca','3-4 rodajas de pepino','2 rodajas de limón','Hielo en cubos'],
+    steps:['Llenar copa de vino grande con cubos de hielo.','Agregar el sirope de saúco.','Verter el agua con gas desde el borde lentamente.','Añadir menta, pepino y limón.','Revolver suavemente una sola vez.','Servir con sorbete de vidrio.'],
+    pairing:['🥗 Ensalada fresca','🍣 Sushi','🫧 Hummus','🍓 Fresas'],
   },
 };
 
-/* ══════════════ FEATURED STORIES ════════════════════════ */
-const featured = [
-  { id:'negroni',        glow:'rgba(201,90,40,.6)',   img:'https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=300&q=85', fire:true },
-  { id:'espresso-martini', glow:'rgba(80,40,10,.8)', img:'https://images.unsplash.com/photo-1578664182664-f7a2e4fdcf38?w=300&q=85', fire:true },
-  { id:'old-fashioned',  glow:'rgba(180,120,30,.7)', img:'https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=300&q=85', fire:false },
-  { id:'aperol-spritz',  glow:'rgba(255,100,30,.6)', img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&q=85', fire:false },
-  { id:'hugo-zero',      glow:'rgba(30,180,120,.5)', img:'https://images.unsplash.com/photo-1532634922-8fe0b757fb13?w=300&q=85', fire:false },
-  { id:'tequila',        glow:'rgba(200,180,20,.5)', img:'https://images.unsplash.com/photo-1574890985843-4f8b1ae7d2c0?w=300&q=85', fire:true },
+/* ════════════════ STORIES ════════════════ */
+const featured=[
+  {id:'mojito',       sg:'conic-gradient(from 0deg,rgba(30,160,90,.8),rgba(201,169,110,.9),rgba(30,160,90,.8))', fire:true},
+  {id:'daiquiri',     sg:'conic-gradient(from 0deg,rgba(220,80,80,.8),rgba(201,169,110,.9),rgba(220,80,80,.8))', fire:true},
+  {id:'cuba-libre',   sg:'conic-gradient(from 0deg,rgba(180,20,20,.8),rgba(201,169,110,.9),rgba(180,20,20,.8))', fire:false},
+  {id:'negroni',      sg:'conic-gradient(from 0deg,rgba(200,80,30,.8),rgba(201,169,110,.9),rgba(200,80,30,.8))', fire:false},
+  {id:'espresso-martini',sg:'conic-gradient(from 0deg,rgba(60,30,10,.9),rgba(201,169,110,.9),rgba(60,30,10,.9))', fire:true},
+  {id:'old-fashioned',sg:'conic-gradient(from 0deg,rgba(160,100,20,.8),rgba(201,169,110,.9),rgba(160,100,20,.8))', fire:false},
 ];
 
-const storiesRow = document.getElementById('storiesRow');
-featured.forEach(f => {
-  const d = db[f.id];
-  if(!d) return;
-  const el = document.createElement('div');
-  el.className = 'story-card';
-  el.style.setProperty('--story-glow', `conic-gradient(from 0deg, ${f.glow}, rgba(201,169,110,.8), ${f.glow})`);
-  el.onclick = () => openDrink(f.id);
-  el.innerHTML = `
-    <img class="story-img" src="${f.img}" alt="${d.name}" loading="lazy"/>
-    <div class="story-overlay"></div>
+const row=document.getElementById('storiesRow');
+featured.forEach(f=>{
+  const d=db[f.id]; if(!d) return;
+  const el=document.createElement('div');
+  el.className='story';el.style.setProperty('--sg',f.sg);
+  el.onclick=()=>openDrink(f.id);
+  el.innerHTML=`
+    <img src="${d.image||''}" alt="${d.name}" loading="lazy"
+      onerror="this.style.background='#161616';this.style.display='block'"/>
+    <div class="story-ov"></div>
     <div class="story-info">
       <p class="story-name">${d.name}</p>
       <p class="story-price">${d.price}</p>
     </div>
-    ${f.fire ? '<span class="story-badge-fire">🔥</span>' : ''}
+    ${f.fire?'<span class="story-fire">🔥</span>':''}
   `;
-  storiesRow.appendChild(el);
+  row.appendChild(el);
 });
 
-/* ══════════════ FLAVOR DOTS ══════════════════════════════ */
-function buildDots(container, val, color) {
+/* ════════════════ BUILD DOTS ════════════════ */
+function buildDots(el,val,color){
   for(let i=1;i<=5;i++){
-    const d = document.createElement('div');
-    d.className = 'dot' + (i <= val ? (color==='red' ? ' on-red' : color==='blue' ? ' on-blue' : ' on-gold') : '');
-    container.appendChild(d);
+    const d=document.createElement('div');
+    d.className='dot'+(i<=val?(color==='red'?' d-red':color==='blue'?' d-blue':' d-gold'):'');
+    el.appendChild(d);
   }
 }
-
-document.querySelectorAll('.flavor-dots').forEach(el => {
-  buildDots(el, parseInt(el.dataset.val)||0, el.dataset.color||'gold');
+document.querySelectorAll('.flav-dots').forEach(el=>{
+  buildDots(el,parseInt(el.dataset.v)||0,el.dataset.c||'gold');
 });
 
-/* ══════════════ MODAL ════════════════════════════════════ */
-function openDrink(id) {
-  const d = db[id];
-  if(!d) return;
-
-  // Media
-  const mMedia = document.getElementById('mMedia');
-  mMedia.innerHTML = '';
+/* ════════════════ MODAL ════════════════ */
+function openDrink(id){
+  const d=db[id]; if(!d) return;
+  const mm=document.getElementById('mMedia');
+  mm.innerHTML='';
   if(d.video){
-    mMedia.innerHTML = `<iframe src="${d.video}" allowfullscreen></iframe>`;
+    mm.innerHTML=`<iframe src="${d.video}" allowfullscreen></iframe>`;
+    mm.style.display='';
   } else if(d.image){
-    mMedia.innerHTML = `<img src="${d.image}" alt="${d.name}" style="width:100%;height:100%;object-fit:cover;"/>`;
+    const img=new Image();
+    img.src=d.image;img.alt=d.name;
+    img.style.cssText='width:100%;height:100%;object-fit:cover';
+    img.onerror=()=>mm.style.display='none';
+    mm.innerHTML='';mm.appendChild(img);
+    const g=document.createElement('div');g.className='m-media-grad';mm.appendChild(g);
+    mm.style.display='';
   } else {
-    mMedia.style.display='none';
-  }
-  if(d.image || d.video){
-    mMedia.style.display='';
-    const grad = document.createElement('div');
-    grad.className='modal-media-gradient';
-    mMedia.appendChild(grad);
+    mm.style.display='none';
   }
 
-  document.getElementById('mName').textContent   = d.name;
-  document.getElementById('mPrice').textContent  = d.price;
-  document.getElementById('mLevel').textContent  = d.level||'';
-  document.getElementById('mOrders').textContent = d.orders||'';
-  document.getElementById('mDesc').textContent   = d.desc||'';
+  document.getElementById('mName').textContent  = d.name;
+  document.getElementById('mPrice').textContent = d.price;
+  document.getElementById('mLevel').textContent = d.level||'';
+  document.getElementById('mOrders').textContent= d.orders||'';
+  document.getElementById('mDesc').textContent  = d.desc||'';
 
-  // Flavor modal
-  const mFlavor = document.getElementById('mFlavor');
-  mFlavor.innerHTML = '';
-  (d.flavor||[]).forEach(f => {
-    const wrap = document.createElement('div');
-    wrap.className = 'flavor-item';
-    wrap.innerHTML = `<span class="flavor-label">${f.label}</span><div class="flavor-dots" id="mfd_${Math.random().toString(36).slice(2)}" data-val="${f.val}" data-color="${f.color}"></div>`;
-    mFlavor.appendChild(wrap);
-    buildDots(wrap.querySelector('.flavor-dots'), f.val, f.color);
+  const mf=document.getElementById('mFlavor'); mf.innerHTML='';
+  (d.flavor||[]).forEach(f=>{
+    const w=document.createElement('div');w.className='flav-item';
+    w.innerHTML=`<span class="flav-lbl">${f.label}</span><div class="flav-dots"></div>`;
+    mf.appendChild(w);
+    buildDots(w.querySelector('.flav-dots'),f.val,f.color);
   });
 
-  // Video section
-  const vWrap = document.getElementById('mVideoWrap');
-  const vEl   = document.getElementById('mVideo');
-  if(d.prepVideo){
-    vWrap.style.display='block';
-    vEl.innerHTML = `<iframe src="${d.prepVideo}" allowfullscreen></iframe>`;
-  } else {
-    vWrap.style.display='none';
-    vEl.innerHTML='';
-  }
+  const vw=document.getElementById('mVidWrap'),vl=document.getElementById('mVid');
+  if(d.prepVideo){vw.style.display='block';vl.innerHTML=`<iframe src="${d.prepVideo}" allowfullscreen></iframe>`;}
+  else{vw.style.display='none';vl.innerHTML='';}
 
-  // Ingredients
-  document.getElementById('mIng').innerHTML =
-    (d.ingredients||[]).map(i=>`<div class="ing-item">${i}</div>`).join('');
-
-  // Steps
-  document.getElementById('mSteps').innerHTML =
-    (d.steps||[]).map((s,i)=>`<div class="step"><span class="step-num">${i+1}</span><span class="step-text">${s}</span></div>`).join('');
-
-  // Pairing
-  document.getElementById('mPairing').innerHTML =
-    (d.pairing||[]).map(p=>`<span class="pairing-chip">${p}</span>`).join('');
+  document.getElementById('mIng').innerHTML=(d.ingredients||[]).map(i=>`<div class="ing">${i}</div>`).join('');
+  document.getElementById('mSteps').innerHTML=(d.steps||[]).map((s,i)=>`<div class="step"><span class="step-n">${i+1}</span><span class="step-t">${s}</span></div>`).join('');
+  document.getElementById('mPair').innerHTML=(d.pairing||[]).map(p=>`<span class="pair-chip">${p}</span>`).join('');
 
   document.getElementById('modalBg').classList.add('open');
   document.body.style.overflow='hidden';
 }
 
-function closeModal(e){
-  if(e.target===document.getElementById('modalBg')) closeModalBtn();
-}
-
-function closeModalBtn(){
+function closeMod(e){if(e.target===document.getElementById('modalBg'))closeModBtn();}
+function closeModBtn(){
   document.getElementById('modalBg').classList.remove('open');
   document.body.style.overflow='';
-  const vid = document.querySelector('#mMedia iframe');
-  if(vid){ const s=vid.src; vid.src=''; vid.src=s; } // stop video
+  const fr=document.querySelector('#mMedia iframe');
+  if(fr){const s=fr.src;fr.src='';fr.src=s;}
 }
 
-// Swipe down to close
 let _sy=0;
 document.getElementById('modal').addEventListener('touchstart',e=>{_sy=e.touches[0].clientY},{passive:true});
-document.getElementById('modal').addEventListener('touchend',e=>{
-  if(e.changedTouches[0].clientY - _sy > 80) closeModalBtn();
-});
+document.getElementById('modal').addEventListener('touchend',e=>{if(e.changedTouches[0].clientY-_sy>80)closeModBtn();});
 
-/* ══════════════ HEART / FAVORITES ════════════════════════ */
-const liked = new Set();
-
-function toggleHeart(e, id){
+/* ════════════════ HEARTS ════════════════ */
+const liked=new Set();
+function toggleHeart(e,id){
   e.stopPropagation();
-  const btn = e.currentTarget;
-  if(liked.has(id)){
-    liked.delete(id);
-    btn.classList.remove('liked');
-  } else {
-    liked.add(id);
-    btn.classList.add('liked');
-    btn.animate([
-      {transform:'scale(1)'},{transform:'scale(1.4)'},{transform:'scale(1)'}
-    ],{duration:300,easing:'ease'});
-  }
+  const b=e.currentTarget;
+  if(liked.has(id)){liked.delete(id);b.classList.remove('liked');}
+  else{liked.add(id);b.classList.add('liked');b.animate([{transform:'scale(1)'},{transform:'scale(1.45)'},{transform:'scale(1)'}],{duration:300,easing:'ease'});}
 }
 
-/* ══════════════ SHARE ════════════════════════════════════ */
-function shareDrink(e, name, price){
+/* ════════════════ SHARE ════════════════ */
+function shareDrink(e,name,price){
   e.stopPropagation();
-  const url = window.location.href;
-  if(navigator.share){
-    navigator.share({
-      title: `${name} · El Bar`,
-      text: `${name} por ${price} — mirá la carta completa`,
-      url
-    }).catch(()=>{});
-  } else {
+  const url=window.location.href;
+  if(navigator.share){navigator.share({title:`${name} · La Habana Bar`,text:`${name} ${price} — mirá la carta`,url}).catch(()=>{});}
+  else{
     navigator.clipboard?.writeText(`${name} · ${price}\n${url}`).then(()=>{
-      const btn = e.currentTarget;
-      const prev = btn.innerHTML;
-      btn.innerHTML='<svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:none;stroke:#2ecc71;stroke-width:2;stroke-linecap:round"><polyline points="20 6 9 17 4 12"/></svg>';
-      setTimeout(()=>btn.innerHTML=prev,1500);
+      const b=e.currentTarget,p=b.innerHTML;
+      b.innerHTML='<svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:none;stroke:#2ecc71;stroke-width:2;stroke-linecap:round"><polyline points="20 6 9 17 4 12"/></svg>';
+      setTimeout(()=>b.innerHTML=p,1500);
     });
   }
 }
 
-/* ══════════════ CATEGORY FILTER ══════════════════════════ */
-const catBtns  = document.querySelectorAll('.cat-btn');
-const sections = document.querySelectorAll('[data-section]');
-const cards    = document.querySelectorAll('[data-cat]');
+/* ════════════════ CATEGORY FILTER ════════════════ */
+const catBtns=document.querySelectorAll('.cat-btn');
+const secs=document.querySelectorAll('[data-section]');
+const allCards=document.querySelectorAll('[data-cat]');
 
-catBtns.forEach(b => b.addEventListener('click',()=>{
-  catBtns.forEach(x=>x.classList.remove('active'));
-  b.classList.add('active');
-  const cat = b.dataset.cat;
-  sections.forEach(s=>{
-    s.style.display = (cat==='all'||s.dataset.section===cat) ? '' : 'none';
-  });
-  // Reset search
+catBtns.forEach(b=>b.addEventListener('click',()=>{
+  catBtns.forEach(x=>x.classList.remove('active'));b.classList.add('active');
+  const cat=b.dataset.cat;
+  secs.forEach(s=>s.style.display=(cat==='all'||s.dataset.section===cat)?'':'none');
   document.getElementById('searchInput').value='';
-  cards.forEach(c=>c.style.display='');
+  allCards.forEach(c=>c.style.display='');
   document.getElementById('noResults').style.display='none';
 }));
 
-/* ══════════════ SEARCH ═══════════════════════════════════ */
+/* ════════════════ SEARCH ════════════════ */
 document.getElementById('searchInput').addEventListener('input',function(){
-  const q = this.value.trim().toLowerCase();
-  let found = 0;
-
-  // Show all sections when searching
-  sections.forEach(s=>s.style.display='');
-  catBtns.forEach(b=>b.classList.remove('active'));
-  catBtns[0].classList.add('active');
-
-  cards.forEach(c=>{
-    const name = c.querySelector('.card-name, .sm-name')?.textContent?.toLowerCase()||'';
-    const desc = c.querySelector('.card-desc, .sm-desc')?.textContent?.toLowerCase()||'';
-    const match = !q || name.includes(q) || desc.includes(q);
-    c.style.display = match ? '' : 'none';
-    if(match) found++;
+  const q=this.value.trim().toLowerCase();
+  let n=0;
+  secs.forEach(s=>s.style.display='');
+  catBtns.forEach(b=>b.classList.remove('active'));catBtns[0].classList.add('active');
+  allCards.forEach(c=>{
+    const nm=(c.querySelector('.card-name,.csm-name')?.textContent||'').toLowerCase();
+    const ds=(c.querySelector('.card-desc,.csm-desc')?.textContent||'').toLowerCase();
+    const ok=!q||nm.includes(q)||ds.includes(q);
+    c.style.display=ok?'':'none';if(ok)n++;
   });
-
-  document.getElementById('noResults').style.display = (!q||found>0) ? 'none' : 'block';
+  document.getElementById('noResults').style.display=(!q||n>0)?'none':'block';
 });
 
-/* ══════════════ SCROLL REVEAL ════════════════════════════ */
-const io = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add('visible');
-      io.unobserve(e.target);
-    }
-  });
-},{threshold:.06});
+/* ════════════════ SCROLL REVEAL ════════════════ */
+const io=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});},{threshold:.06});
+document.querySelectorAll('.card,.csm,.sh').forEach(el=>io.observe(el));
 
-document.querySelectorAll('.card,.card-sm,.sec-header').forEach(el=>io.observe(el));
-
-/* ══════════════ STAGGER ANIMATION DELAY ══════════════════ */
 document.querySelectorAll('[data-section]').forEach(sec=>{
-  sec.querySelectorAll('.card,.card-sm').forEach((c,i)=>{
-    c.style.transitionDelay = `${i*60}ms`;
-  });
+  sec.querySelectorAll('.card,.csm').forEach((c,i)=>{c.style.transitionDelay=`${i*55}ms`;});
 });
-
 </script>
 </body>
 </html>
