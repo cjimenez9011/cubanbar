@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
 <meta name="theme-color" content="#060606"/>
-<title>La Habana · Bar Cubano</title>
+<title>El Bar · Coctelería Cubana</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet"/>
@@ -31,8 +31,7 @@ body{
   background:var(--bg);
   color:var(--text);
   font-family:'Inter',sans-serif;
-  font-size:15px;
-  line-height:1.6;
+  font-size:15px;line-height:1.6;
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
   padding-bottom:calc(env(safe-area-inset-bottom,0px) + 100px);
@@ -42,52 +41,54 @@ a{color:inherit;text-decoration:none}
 button{cursor:pointer;border:none;background:none;font-family:inherit}
 img,video{display:block}
 
-/* ── HERO ────────────────────────────────── */
+/* ── HERO ───────────────────────────────── */
 .hero{
-  position:relative;
-  min-height:100svh;
+  position:relative;min-height:100svh;
   display:flex;flex-direction:column;
   align-items:center;justify-content:center;
-  text-align:center;
-  padding:40px 24px 80px;
-  overflow:hidden;
+  text-align:center;padding:40px 24px 80px;overflow:hidden;
 }
-
 .hero-bg{
   position:absolute;inset:0;
   background:
-    radial-gradient(ellipse 80% 60% at 50% -5%,rgba(201,169,110,0.14) 0%,transparent 65%),
-    radial-gradient(ellipse 50% 40% at 15% 100%,rgba(201,169,110,0.07) 0%,transparent 60%),
-    radial-gradient(ellipse 45% 40% at 90% 80%,rgba(160,60,30,0.07) 0%,transparent 60%);
+    radial-gradient(ellipse 80% 60% at 50% -5%,rgba(201,169,110,.14) 0%,transparent 65%),
+    radial-gradient(ellipse 50% 40% at 15% 100%,rgba(201,169,110,.07) 0%,transparent 60%),
+    radial-gradient(ellipse 45% 40% at 90% 80%,rgba(160,60,30,.07) 0%,transparent 60%);
 }
-
 .grain{
   position:absolute;inset:-50%;width:200%;height:200%;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size:200px 200px;opacity:.025;
   animation:grain 8s steps(10) infinite;pointer-events:none;
 }
-@keyframes grain{
-  0%{transform:translate(0,0)} 20%{transform:translate(-5%,-10%)}
-  40%{transform:translate(-15%,5%)} 60%{transform:translate(7%,-25%)}
-  80%{transform:translate(-10%,15%)} 100%{transform:translate(0,0)}
-}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-5%,-10%)}40%{transform:translate(-15%,5%)}60%{transform:translate(7%,-25%)}80%{transform:translate(-10%,15%)}100%{transform:translate(0,0)}}
 
-/* ── SVG LOGO in hero ── */
-.hero-logo{
-  width:min(220px,55vw);
-  margin-bottom:28px;
-  opacity:0;
-  animation:fadeUp .9s .2s ease forwards;
-  filter:drop-shadow(0 0 30px rgba(201,169,110,.2));
+.hero-eyebrow{
+  font-size:11px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:22px;
+  opacity:0;animation:fadeUp .8s .2s ease forwards;
 }
-
-.hero-tagline{
-  font-size:11px;font-weight:500;letter-spacing:.28em;
-  text-transform:uppercase;color:var(--muted);
+.hero-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(56px,15vw,104px);font-weight:300;
+  line-height:1;letter-spacing:-.02em;
+  opacity:0;animation:fadeUp .8s .4s ease forwards;
+}
+.hero-title em{
+  font-style:italic;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold2) 50%,var(--gold) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-line{
+  width:48px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  margin:30px auto;
+  opacity:0;animation:fadeUp .8s .6s ease forwards;
+}
+.hero-sub{
+  font-size:12px;letter-spacing:.12em;color:var(--muted);
   opacity:0;animation:fadeUp .8s .8s ease forwards;
 }
-
 .hero-scroll{
   position:absolute;bottom:36px;
   display:flex;flex-direction:column;align-items:center;gap:10px;
@@ -97,50 +98,41 @@ img,video{display:block}
 .scroll-track{width:1px;height:44px;background:linear-gradient(to bottom,var(--gold),transparent);animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:.3;transform:scaleY(.5);transform-origin:top}50%{opacity:1;transform:scaleY(1);transform-origin:top}}
 
-/* ── STORIES ─────────────────────────────── */
+/* ── STORIES ────────────────────────────── */
 .stories-wrap{overflow:hidden}
 .stories-label{padding:28px 20px 12px;font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-.stories-row{
-  display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;
-  padding:6px 20px 16px;-webkit-overflow-scrolling:touch;
-}
+.stories-row{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;padding:6px 20px 16px;-webkit-overflow-scrolling:touch}
 .stories-row::-webkit-scrollbar{display:none}
-
 .story{
-  position:relative;flex-shrink:0;
-  width:126px;height:192px;border-radius:16px;overflow:hidden;
-  cursor:pointer;transition:transform .3s ease;
+  position:relative;flex-shrink:0;width:126px;height:192px;border-radius:16px;overflow:hidden;
+  cursor:pointer;transition:transform .3s;
 }
 .story:active{transform:scale(.97)}
-
-.story::before{
-  content:'';position:absolute;inset:-3px;border-radius:18px;
-  background:var(--sg,conic-gradient(from 0deg,var(--gold),var(--gold2),var(--gold)));
-  z-index:-1;opacity:.75;animation:spin 4s linear infinite;
-}
+.story::before{content:'';position:absolute;inset:-3px;border-radius:18px;background:var(--sg,var(--gold));z-index:-1;opacity:.75;animation:spin 4s linear infinite}
 @keyframes spin{to{filter:hue-rotate(25deg)}}
-
-.story img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.story img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
 .story:hover img{transform:scale(1.06)}
 .story-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 45%,transparent 80%)}
 .story-info{position:absolute;bottom:12px;left:10px;right:10px}
 .story-name{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:400;line-height:1.2;margin-bottom:2px}
 .story-price{font-size:12px;font-weight:600;color:var(--gold)}
 .story-fire{position:absolute;top:9px;right:9px;font-size:13px}
+/* fallback when image fails */
+.story-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--bg3)}
+.story-ph svg{width:36px;height:36px;fill:none;stroke:var(--muted);stroke-width:1.5;opacity:.4;stroke-linecap:round;stroke-linejoin:round}
 
-/* ── SEARCH ──────────────────────────────── */
+/* ── SEARCH ─────────────────────────────── */
 .search-wrap{padding:8px 16px 4px;position:relative}
 .s-icon{position:absolute;left:28px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--muted)}
 .search-input{
   width:100%;background:var(--bg2);border:1px solid var(--bdr);
   border-radius:100px;padding:11px 16px 11px 44px;
-  color:var(--text);font-family:'Inter',sans-serif;font-size:13px;outline:none;
-  transition:border-color .25s;
+  color:var(--text);font-family:'Inter',sans-serif;font-size:13px;outline:none;transition:border-color .25s;
 }
 .search-input::placeholder{color:var(--muted)}
 .search-input:focus{border-color:rgba(201,169,110,.35)}
 
-/* ── CATEGORY NAV ────────────────────────── */
+/* ── CATEGORY NAV ───────────────────────── */
 .cat-nav{position:sticky;top:0;z-index:50;background:linear-gradient(to bottom,var(--bg) 85%,transparent);padding:14px 0 10px}
 .cat-row{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:0 16px 2px}
 .cat-row::-webkit-scrollbar{display:none}
@@ -148,63 +140,46 @@ img,video{display:block}
   flex-shrink:0;display:flex;align-items:center;gap:6px;
   border:1px solid var(--bdr);background:transparent;color:var(--muted);
   font-size:12px;font-weight:500;letter-spacing:.05em;
-  padding:8px 16px;border-radius:100px;
-  transition:all .25s ease;white-space:nowrap;
+  padding:8px 16px;border-radius:100px;transition:all .25s;white-space:nowrap;
 }
 .cat-btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
 .cat-btn:hover{border-color:rgba(201,169,110,.35);color:var(--gold2)}
 .cat-btn.active{background:var(--gold);border-color:var(--gold);color:#060606}
 .cat-btn.active svg{stroke:#060606}
 
-/* ── MENU ────────────────────────────────── */
+/* ── MENU ───────────────────────────────── */
 .menu{max-width:640px;margin:0 auto;padding:0 14px 20px}
 
-/* ── SECTION HEADER ──────────────────────── */
-.sh{
-  display:flex;align-items:center;gap:14px;
-  margin:40px 0 20px;
-  opacity:0;transform:translateY(20px);
-  transition:opacity .5s,transform .5s;
-}
+/* ── SECTION HEADER ─────────────────────── */
+.sh{display:flex;align-items:center;gap:14px;margin:40px 0 20px;opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s}
 .sh.visible{opacity:1;transform:none}
-.sh-icon{
-  width:38px;height:38px;border-radius:10px;
-  border:1px solid var(--bdr);background:var(--bg2);
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;color:var(--gold);
-}
+.sh-icon{width:38px;height:38px;border-radius:10px;border:1px solid var(--bdr);background:var(--bg2);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--gold)}
 .sh-icon svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .sh h2{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;letter-spacing:-.01em;white-space:nowrap}
 .sh-line{flex:1;height:1px;background:var(--bdr)}
 
-/* ── CARD (FULL) ─────────────────────────── */
+/* ── CARD (FULL) ────────────────────────── */
 .card{
   --glow:rgba(201,169,110,.2);
-  background:var(--bg2);border:1px solid var(--bdr);
-  border-radius:var(--r);overflow:hidden;margin-bottom:14px;
-  cursor:pointer;
-  transition:border-color .3s,box-shadow .3s,transform .3s;
+  background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r);overflow:hidden;margin-bottom:14px;
+  cursor:pointer;transition:border-color .3s,box-shadow .3s,transform .3s;
   opacity:0;transform:translateY(24px);
 }
 .card.visible{opacity:1;transform:none}
 .card:hover{border-color:rgba(201,169,110,.2);box-shadow:0 20px 60px var(--glow);transform:translateY(-3px)}
-
 .card-media{position:relative;width:100%;aspect-ratio:16/9;background:var(--bg3);overflow:hidden}
-.card-media img,.card-media video{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.card-media img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
 .card:hover .card-media img{transform:scale(1.04)}
 .card-media::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.28) 0%,transparent 45%);pointer-events:none}
-
-/* Image fallback */
 .img-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--bg3);color:var(--muted)}
-.img-ph svg{width:40px;height:40px;fill:none;stroke:currentColor;stroke-width:1.2;opacity:.4}
+.img-ph svg{width:40px;height:40px;fill:none;stroke:currentColor;stroke-width:1.2;opacity:.35;stroke-linecap:round;stroke-linejoin:round}
 
 .badge{position:absolute;top:12px;left:12px;z-index:3;font-size:10px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;padding:4px 10px;border-radius:100px}
 .b-firma{background:var(--gold);color:#060606}
 .b-pop{background:#e74c3c;color:#fff}
 .b-nuevo{background:#2ecc71;color:#060606}
 .b-staff{background:#9b59b6;color:#fff}
-.b-cuba{background:linear-gradient(90deg,#002a8f,#cf0a2c,#fff);color:#060606}
-
+.b-cuba{background:linear-gradient(90deg,#002a8f,#cf0a2c);color:#fff}
 .b-orders{position:absolute;top:12px;right:12px;z-index:3;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.1);font-size:10px;font-weight:500;color:var(--text);padding:4px 9px;border-radius:100px;display:flex;align-items:center;gap:4px}
 
 .card-body{padding:18px 18px 20px}
@@ -212,15 +187,12 @@ img,video{display:block}
 .card-name{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;line-height:1.2}
 .card-r{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0}
 .card-price{font-size:18px;font-weight:600;color:var(--gold)}
-
 .heart{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.05);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;color:var(--muted);transition:all .2s;flex-shrink:0}
 .heart.liked{color:#e74c3c;background:rgba(231,76,60,.12);border-color:rgba(231,76,60,.3)}
 .heart svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .heart.liked svg{fill:#e74c3c;stroke:#e74c3c}
-
 .card-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px}
 
-/* Flavor dots */
 .flav-row{display:flex;gap:14px;margin-bottom:14px}
 .flav-item{display:flex;flex-direction:column;gap:5px}
 .flav-lbl{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
@@ -233,19 +205,12 @@ img,video{display:block}
 .tag{font-size:10px;font-weight:500;letter-spacing:.04em;color:var(--muted);border:1px solid var(--bdr);border-radius:100px;padding:3px 9px}
 .t-spirit{color:var(--gold2);border-color:rgba(201,169,110,.3)}
 .t-cuba{color:#cf0a2c;border-color:rgba(207,10,44,.3)}
-
 .share-btn{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.05);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;color:var(--muted);flex-shrink:0;transition:all .2s}
 .share-btn:hover{background:rgba(201,169,110,.1);border-color:rgba(201,169,110,.3);color:var(--gold)}
 .share-btn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
-/* ── COMPACT CARD ────────────────────────── */
-.csm{
-  display:flex;align-items:center;gap:12px;
-  background:var(--bg2);border:1px solid var(--bdr);
-  border-radius:var(--rsm);padding:14px;margin-bottom:10px;
-  cursor:pointer;transition:border-color .25s,transform .2s;
-  opacity:0;transform:translateY(20px);
-}
+/* ── COMPACT CARD ───────────────────────── */
+.csm{display:flex;align-items:center;gap:12px;background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--rsm);padding:14px;margin-bottom:10px;cursor:pointer;transition:border-color .25s,transform .2s;opacity:0;transform:translateY(20px)}
 .csm.visible{opacity:1;transform:none}
 .csm:hover{border-color:rgba(201,169,110,.2);transform:translateY(-2px)}
 .csm-thumb{width:70px;height:70px;border-radius:10px;overflow:hidden;flex-shrink:0;background:var(--bg3)}
@@ -258,173 +223,137 @@ img,video{display:block}
 .csm-r{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0}
 .csm-price{font-size:16px;font-weight:600;color:var(--gold)}
 
-/* ── MODAL ───────────────────────────────── */
+/* ══════════════════════════════════════════
+   MODAL — PANTALLA COMPLETA
+══════════════════════════════════════════ */
 .modal-bg{
   position:fixed;inset:0;z-index:100;
   display:flex;align-items:flex-end;justify-content:center;
-  background:rgba(0,0,0,.72);backdrop-filter:blur(8px);
+  background:rgba(0,0,0,.75);backdrop-filter:blur(8px);
   opacity:0;pointer-events:none;transition:opacity .3s;
 }
 .modal-bg.open{opacity:1;pointer-events:all}
 
+/* Full-screen sheet */
 .modal{
+  position:relative;
   width:100%;max-width:640px;
-  background:var(--bg2);border-radius:24px 24px 0 0;
-  border:1px solid var(--bdr);border-bottom:none;
-  max-height:92svh;display:flex;flex-direction:column;
+  height:100dvh;           /* ← pantalla completa */
+  background:var(--bg2);
+  border-radius:0;         /* ← sin redondeo, llena la pantalla */
+  border:none;
+  display:flex;flex-direction:column;
   transform:translateY(100%);
   transition:transform .38s cubic-bezier(.32,.72,0,1);
   overflow:hidden;
 }
 .modal-bg.open .modal{transform:none}
 
-.m-handle{width:36px;height:4px;background:var(--bg3);border-radius:2px;margin:14px auto 0;flex-shrink:0}
-.m-x{position:absolute;top:18px;right:18px;z-index:5;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.12);color:var(--text);font-size:16px;display:flex;align-items:center;justify-content:center}
-.m-x:hover{background:rgba(0,0,0,.85)}
+/* Barra superior del modal */
+.m-topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 18px 0;flex-shrink:0;
+}
+.m-topbar-drag{
+  width:36px;height:4px;background:var(--bg3);border-radius:2px;
+}
+/* Botón cerrar — parte del flujo, NO absolute */
+.m-x{
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,.07);
+  border:1px solid var(--bdr);
+  color:var(--text);font-size:15px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;transition:background .2s;
+}
+.m-x:hover{background:rgba(255,255,255,.13)}
 
-.m-media{position:relative;width:100%;aspect-ratio:4/3;flex-shrink:0;background:var(--bg3);overflow:hidden}
-.m-media img,.m-media video,.m-media iframe{width:100%;height:100%;object-fit:cover;border:none}
+/* Media */
+.m-media{width:100%;aspect-ratio:16/9;flex-shrink:0;background:var(--bg3);overflow:hidden;position:relative}
+.m-media img,.m-media iframe{width:100%;height:100%;object-fit:cover;border:none}
 .m-media-grad{position:absolute;bottom:0;left:0;right:0;height:50%;background:linear-gradient(to top,var(--bg2),transparent);pointer-events:none}
 
-.m-body{padding:22px 22px 40px;overflow-y:auto;flex:1}
+/* Cuerpo scrollable */
+.m-body{padding:20px 22px 40px;overflow-y:auto;flex:1;-webkit-overflow-scrolling:touch}
+
 .m-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:6px}
-.m-name{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;line-height:1.1}
-.m-price{font-size:24px;font-weight:600;color:var(--gold);flex-shrink:0}
+.m-name{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;line-height:1.1}
+.m-price{font-size:22px;font-weight:600;color:var(--gold);flex-shrink:0}
 .m-meta{display:flex;gap:10px;align-items:center;margin-bottom:16px;flex-wrap:wrap}
 .m-level{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border:1px solid var(--bdr);border-radius:100px;padding:3px 10px}
 .m-orders{font-size:11px;font-weight:500;color:var(--gold)}
 .m-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:22px}
-
 .m-flavor{display:flex;gap:20px;padding:16px;background:var(--bg3);border-radius:12px;margin-bottom:22px}
-
 .mtitle{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
-
 .ing-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:22px}
 .ing{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
 .ing::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0}
-
 .steps{display:flex;flex-direction:column;gap:12px;margin-bottom:22px}
 .step{display:flex;gap:12px}
 .step-n{width:24px;height:24px;border-radius:50%;background:rgba(201,169,110,.12);border:1px solid rgba(201,169,110,.25);color:var(--gold);font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
 .step-t{font-size:13px;color:var(--muted);line-height:1.6}
-
 .pairing-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
 .pair-chip{font-size:12px;background:var(--bg3);border:1px solid var(--bdr);border-radius:8px;padding:6px 12px}
-
 .m-video-wrap{border-radius:12px;overflow:hidden;aspect-ratio:16/9;background:var(--bg3);margin-bottom:22px}
 .m-video-wrap iframe{width:100%;height:100%;border:none}
 
-/* ── FLOAT ───────────────────────────────── */
+/* ── FLOAT ──────────────────────────────── */
 .float{
-  position:fixed;bottom:calc(env(safe-area-inset-bottom,0px)+20px);right:18px;
-  z-index:60;
+  position:fixed;bottom:calc(env(safe-area-inset-bottom,0px)+20px);right:18px;z-index:60;
   display:flex;align-items:center;gap:8px;
   background:var(--gold);color:#060606;
   font-size:13px;font-weight:600;
   padding:13px 20px;border-radius:100px;
   box-shadow:0 8px 30px rgba(201,169,110,.4);
-  animation:fpulse 3s ease-in-out infinite;
-  white-space:nowrap;
+  animation:fpulse 3s ease-in-out infinite;white-space:nowrap;
 }
 .float svg{width:16px;height:16px;fill:none;stroke:#060606;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 @keyframes fpulse{0%,100%{box-shadow:0 8px 30px rgba(201,169,110,.4)}50%{box-shadow:0 10px 44px rgba(201,169,110,.6)}}
 
-/* ── FOOTER ──────────────────────────────── */
+/* ── FOOTER ─────────────────────────────── */
 .footer{text-align:center;padding:48px 24px;border-top:1px solid var(--bdr);margin-top:20px}
-.footer-logo{width:100px;margin:0 auto 16px}
+.footer-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:36px;font-weight:300;letter-spacing:.05em;
+  margin-bottom:16px;line-height:1;
+}
+.footer-name em{
+  font-style:italic;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold2) 50%,var(--gold) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
 .footer-info{font-size:12px;color:var(--muted);line-height:2.2}
 .footer-info a{color:var(--gold);transition:opacity .2s}
 .footer-info a:hover{opacity:.7}
 
-/* ── ANIMS ───────────────────────────────── */
+/* ── ANIMS ──────────────────────────────── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 .no-results{text-align:center;padding:40px 20px;color:var(--muted);font-size:14px;display:none}
 </style>
 </head>
 <body>
 
-<!-- ══════════════════ HERO ══════════════════════ -->
+<!-- ══════════ HERO ══════════════════════════════ -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="grain"></div>
-
-  <!-- ──── LOGO SVG CUBANO ──── -->
-  <div class="hero-logo">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260" fill="none">
-      <!-- outer dashed ring -->
-      <circle cx="130" cy="130" r="124" stroke="#c9a96e" stroke-width="1" stroke-dasharray="3 3" opacity=".45"/>
-      <!-- solid ring -->
-      <circle cx="130" cy="130" r="117" stroke="#c9a96e" stroke-width="1.5"/>
-      <!-- inner thin ring -->
-      <circle cx="130" cy="130" r="113" stroke="#c9a96e" stroke-width=".5" opacity=".3"/>
-
-      <defs>
-        <path id="tA" d="M 28,130 A 102,102 0 0,1 232,130"/>
-        <path id="bA" d="M 50,130 A 80,80 0 0,0 210,130"/>
-      </defs>
-
-      <!-- top arc: CLUB SOCIAL · LA HABANA -->
-      <text font-family="'Cormorant Garamond',Georgia,serif" font-size="12" fill="#c9a96e" letter-spacing="5">
-        <textPath href="#tA" startOffset="7%">CLUB SOCIAL · LA HABANA</textPath>
-      </text>
-
-      <!-- bottom arc: RON · MÚSICA · BAILAR -->
-      <text font-family="serif" font-size="9" fill="#c9a96e" letter-spacing="4" opacity=".7">
-        <textPath href="#bA" startOffset="14%">RON · MÚSICA · BAILAR</textPath>
-      </text>
-
-      <!-- decorative dots at 9 & 3 -->
-      <circle cx="20" cy="130" r="2.5" fill="#c9a96e" opacity=".5"/>
-      <circle cx="240" cy="130" r="2.5" fill="#c9a96e" opacity=".5"/>
-
-      <!-- year -->
-      <text x="130" y="76" text-anchor="middle" font-family="serif" font-size="9" fill="#c9a96e" letter-spacing="4" opacity=".6">· 1958 ·</text>
-
-      <!-- ── PALM TREE ── -->
-      <!-- trunk -->
-      <path d="M127 189 Q125.5 170 123.5 152 L136.5 152 Q134.5 170 133 189 Z" fill="#c9a96e" opacity=".9"/>
-      <!-- leaves -->
-      <path d="M130 152 C143 143 157 134 170 120" stroke="#c9a96e" stroke-width="2.5" stroke-linecap="round"/>
-      <path d="M130 152 C117 143 103 134 90 120" stroke="#c9a96e" stroke-width="2.5" stroke-linecap="round"/>
-      <path d="M130 152 C147 139 160 123 166 106" stroke="#c9a96e" stroke-width="2" stroke-linecap="round"/>
-      <path d="M130 152 C113 139 100 123 94 106" stroke="#c9a96e" stroke-width="2" stroke-linecap="round"/>
-      <path d="M130 152 C137 137 141 120 143 102" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
-      <path d="M130 152 C123 137 119 120 117 102" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
-      <path d="M130 152 L130 98" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round"/>
-      <!-- coconuts -->
-      <circle cx="128" cy="153" r="4" fill="#c9a96e" opacity=".9"/>
-      <circle cx="136" cy="156" r="3" fill="#c9a96e" opacity=".8"/>
-      <circle cx="122" cy="156" r="3" fill="#c9a96e" opacity=".7"/>
-
-      <!-- divider -->
-      <line x1="88" y1="197" x2="172" y2="197" stroke="#c9a96e" stroke-width=".5" opacity=".4"/>
-
-      <!-- bar name -->
-      <text x="130" y="215" text-anchor="middle"
-        font-family="'Cormorant Garamond',Georgia,serif"
-        font-size="25" fill="#c9a96e" font-style="italic" font-weight="300" letter-spacing="1">La Habana</text>
-
-      <!-- subtitle -->
-      <text x="130" y="229" text-anchor="middle"
-        font-family="serif" font-size="7.5" fill="#c9a96e" letter-spacing="5" opacity=".6">BAR · COCKTAILS</text>
-    </svg>
-  </div>
-
-  <p class="hero-tagline">Auténtica coctelería cubana · Desde La Habana con amor</p>
-
+  <p class="hero-eyebrow">Coctelería cubana</p>
+  <h1 class="hero-title">El <em>Bar</em></h1>
+  <div class="hero-line"></div>
+  <p class="hero-sub">Ron · Mojitos · Música · Cócteles</p>
   <div class="hero-scroll">
     <div class="scroll-track"></div>
     <span>explorar</span>
   </div>
 </section>
 
-<!-- ══════════════════ STORIES ════════════════════ -->
+<!-- ══════════ STORIES ═══════════════════════════ -->
 <section class="stories-wrap">
   <p class="stories-label">⚡ Destacados</p>
   <div class="stories-row" id="storiesRow"></div>
 </section>
 
-<!-- ══════════════════ SEARCH ═════════════════════ -->
+<!-- ══════════ SEARCH ════════════════════════════ -->
 <div class="search-wrap">
   <span class="s-icon">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
@@ -432,7 +361,7 @@ img,video{display:block}
   <input class="search-input" type="search" placeholder="Buscar trago..." id="searchInput" autocomplete="off"/>
 </div>
 
-<!-- ══════════════════ CATEGORY NAV ═══════════════ -->
+<!-- ══════════ CATEGORY NAV ══════════════════════ -->
 <nav class="cat-nav">
   <div class="cat-row">
     <button class="cat-btn active" data-cat="all">
@@ -440,7 +369,6 @@ img,video{display:block}
       Todo
     </button>
     <button class="cat-btn" data-cat="cubanos">
-      <!-- Star / Cuba icon -->
       <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
       Cubanos
     </button>
@@ -463,40 +391,30 @@ img,video{display:block}
   </div>
 </nav>
 
-<!-- ══════════════════ MENU MAIN ══════════════════ -->
+<!-- ══════════ MENU ═══════════════════════════════ -->
 <main class="menu" id="menuMain">
 
-  <!-- ▌ CUBANOS ▌ -->
+  <!-- ▌CUBANOS▌ -->
   <section data-section="cubanos">
     <div class="sh reveal">
-      <div class="sh-icon">
-        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-      </div>
-      <h2>Cubanos</h2>
-      <div class="sh-line"></div>
+      <div class="sh-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+      <h2>Cubanos</h2><div class="sh-line"></div>
     </div>
 
-    <!-- MOJITO -->
     <div class="card reveal" data-id="mojito" data-cat="cubanos" style="--glow:rgba(30,160,90,.28)" onclick="openDrink('mojito')">
       <div class="card-media">
-        <img
-          src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=800&q=85"
-          alt="Mojito"
-          loading="lazy"
-          onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'img-ph',innerHTML:'<svg viewBox=\'0 0 24 24\'><path d=\'M12 22s-8-6-8-12a8 8 0 0 1 16 0c0 6-8 12-8 12z\'/><line x1=\'12\' y1=\'22\' x2=\'12\' y2=\'10\'/></svg>'}))"
-        />
+        <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=800&q=85" alt="Mojito" loading="lazy"
+          onerror="this.replaceWith(mkPh('M12 22s-8-6-8-12a8 8 0 0 1 16 0c0 6-8 12-8 12z','M12 22 L12 10'))"/>
         <span class="badge b-cuba">🇨🇺 Original</span>
         <span class="b-orders">🌿 124 hoy</span>
       </div>
       <div class="card-body">
-        <div class="card-top">
-          <h3 class="card-name">Mojito</h3>
-          <div class="card-r">
-            <span class="card-price">€9</span>
+        <div class="card-top"><h3 class="card-name">Mojito</h3>
+          <div class="card-r"><span class="card-price">€9</span>
             <button class="heart" onclick="toggleHeart(event,'mojito')"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
           </div>
         </div>
-        <p class="card-desc">El rey indiscutible de Cuba. Ron Havana Club, lima, menta fresca, azúcar morena y soda. Nació en La Habana en el siglo XIX y nunca ha parado de conquistar.</p>
+        <p class="card-desc">El rey indiscutible de Cuba. Ron Havana Club, lima, menta fresca y azúcar morena. Nació en La Habana en el siglo XIX y nunca ha parado de conquistar el mundo.</p>
         <div class="flav-row">
           <div class="flav-item"><span class="flav-lbl">Dulce</span><div class="flav-dots" data-v="3" data-c="gold"></div></div>
           <div class="flav-item"><span class="flav-lbl">Fresco</span><div class="flav-dots" data-v="5" data-c="gold"></div></div>
@@ -509,27 +427,20 @@ img,video{display:block}
       </div>
     </div>
 
-    <!-- DAIQUIRI -->
     <div class="card reveal" data-id="daiquiri" data-cat="cubanos" style="--glow:rgba(220,80,80,.25)" onclick="openDrink('daiquiri')">
       <div class="card-media">
-        <img
-          src="https://images.unsplash.com/photo-1609951651556-5334e2706168?w=800&q=85"
-          alt="Daiquiri"
-          loading="lazy"
-          onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'img-ph',innerHTML:'<svg viewBox=\'0 0 24 24\'><path d=\'M4 4h16L12 15z\'/><line x1=\'12\' y1=\'15\' x2=\'12\' y2=\'21\'/><line x1=\'8\' y1=\'21\' x2=\'16\' y2=\'21\'/></svg>'}))"
-        />
+        <img src="https://images.unsplash.com/photo-1609951651556-5334e2706168?w=800&q=85" alt="Daiquiri" loading="lazy"
+          onerror="this.replaceWith(mkPh('M4 4h16L12 15z','M12 15 L12 21','M8 21 L16 21'))"/>
         <span class="badge b-staff">👨‍🍳 Staff pick</span>
         <span class="b-orders">🍋 73 hoy</span>
       </div>
       <div class="card-body">
-        <div class="card-top">
-          <h3 class="card-name">Daiquiri</h3>
-          <div class="card-r">
-            <span class="card-price">€9</span>
+        <div class="card-top"><h3 class="card-name">Daiquiri</h3>
+          <div class="card-r"><span class="card-price">€9</span>
             <button class="heart" onclick="toggleHeart(event,'daiquiri')"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
           </div>
         </div>
-        <p class="card-desc">Ron, lima y azúcar. La Trinidad sagrada de la coctelería cubana. Minimalismo perfecto. Ernest Hemingway lo pedía doble y sin azúcar en El Floridita, La Habana.</p>
+        <p class="card-desc">Ron, lima y azúcar. La Trinidad sagrada de La Habana. Hemingway lo pedía doble y sin azúcar en El Floridita. Minimal, poderoso, perfecto.</p>
         <div class="flav-row">
           <div class="flav-item"><span class="flav-lbl">Dulce</span><div class="flav-dots" data-v="3" data-c="gold"></div></div>
           <div class="flav-item"><span class="flav-lbl">Ácido</span><div class="flav-dots" data-v="4" data-c="red"></div></div>
@@ -542,27 +453,20 @@ img,video{display:block}
       </div>
     </div>
 
-    <!-- CUBA LIBRE -->
     <div class="card reveal" data-id="cuba-libre" data-cat="cubanos" style="--glow:rgba(180,30,30,.22)" onclick="openDrink('cuba-libre')">
       <div class="card-media">
-        <img
-          src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=800&q=85"
-          alt="Cuba Libre"
-          loading="lazy"
-          onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'img-ph',innerHTML:'<svg viewBox=\'0 0 24 24\'><path d=\'M8 4h8s2 5 2 8a6 6 0 0 1-12 0c0-3 2-8 2-8z\'/></svg>'}))"
-        />
+        <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=800&q=85" alt="Cuba Libre" loading="lazy"
+          onerror="this.replaceWith(mkPh('M8 4h8s2 5 2 8a6 6 0 0 1-12 0c0-3 2-8 2-8z','M12 18 L12 21','M9 21 L15 21'))"/>
         <span class="badge b-pop">🔥 Popular</span>
         <span class="b-orders">🥤 98 hoy</span>
       </div>
       <div class="card-body">
-        <div class="card-top">
-          <h3 class="card-name">Cuba Libre</h3>
-          <div class="card-r">
-            <span class="card-price">€8</span>
+        <div class="card-top"><h3 class="card-name">Cuba Libre</h3>
+          <div class="card-r"><span class="card-price">€8</span>
             <button class="heart" onclick="toggleHeart(event,'cuba-libre')"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
           </div>
         </div>
-        <p class="card-desc">Ron añejo, Coca-Cola y zumo de lima. Nació en 1900 para celebrar la independencia de Cuba. Dos siglos después, sigue liberando espíritus.</p>
+        <p class="card-desc">Ron añejo, Coca-Cola y zumo de lima. Nació en 1900 para celebrar la independencia de Cuba. Dos siglos después, sigue siendo el grito de libertad más delicioso que existe.</p>
         <div class="flav-row">
           <div class="flav-item"><span class="flav-lbl">Dulce</span><div class="flav-dots" data-v="4" data-c="gold"></div></div>
           <div class="flav-item"><span class="flav-lbl">Burbujas</span><div class="flav-dots" data-v="4" data-c="gold"></div></div>
@@ -576,31 +480,25 @@ img,video{display:block}
     </div>
   </section>
 
-  <!-- ▌ CLÁSICOS ▌ -->
+  <!-- ▌CLÁSICOS▌ -->
   <section data-section="cocktails">
     <div class="sh reveal">
       <div class="sh-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16L12 15z"/><line x1="12" y1="15" x2="12" y2="21"/><line x1="8" y1="21" x2="16" y2="21"/></svg></div>
-      <h2>Clásicos</h2>
-      <div class="sh-line"></div>
+      <h2>Clásicos</h2><div class="sh-line"></div>
     </div>
 
-    <!-- NEGRONI -->
     <div class="card reveal" data-id="negroni" data-cat="cocktails" style="--glow:rgba(200,80,30,.3)" onclick="openDrink('negroni')">
       <div class="card-media">
-        <img src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=800&q=85" alt="Negroni" loading="lazy"
-          onerror="this.style.display='none'"/>
-        <span class="badge b-firma">⭐ Firma</span>
-        <span class="b-orders">🔥 47 hoy</span>
+        <img src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=800&q=85" alt="Negroni" loading="lazy" onerror="this.style.opacity='0'"/>
+        <span class="badge b-firma">⭐ Firma</span><span class="b-orders">🔥 47 hoy</span>
       </div>
       <div class="card-body">
-        <div class="card-top">
-          <h3 class="card-name">Negroni</h3>
-          <div class="card-r">
-            <span class="card-price">€10</span>
+        <div class="card-top"><h3 class="card-name">Negroni</h3>
+          <div class="card-r"><span class="card-price">€10</span>
             <button class="heart" onclick="toggleHeart(event,'negroni')"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
           </div>
         </div>
-        <p class="card-desc">Gin, Campari y vermut rojo a partes iguales. El cóctel que no engaña desde 1919. Servido en roca con twist de naranja flambeado.</p>
+        <p class="card-desc">Gin, Campari y vermut rojo a partes iguales. Clásico desde 1919. Amargo, botánico, sin rodeos. Servido con twist de naranja flambeado.</p>
         <div class="flav-row">
           <div class="flav-item"><span class="flav-lbl">Dulce</span><div class="flav-dots" data-v="2" data-c="gold"></div></div>
           <div class="flav-item"><span class="flav-lbl">Amargo</span><div class="flav-dots" data-v="5" data-c="red"></div></div>
@@ -613,28 +511,24 @@ img,video{display:block}
       </div>
     </div>
 
-    <!-- ESPRESSO MARTINI -->
     <div class="card reveal" data-id="espresso-martini" data-cat="cocktails" style="--glow:rgba(60,30,10,.45)" onclick="openDrink('espresso-martini')">
       <div class="card-media">
-        <!-- Using a confirmed-good Unsplash photo for espresso martini / dark cocktail -->
+        <!-- Intentamos 2 URLs; si ambas fallan, mostramos placeholder oscuro -->
         <img
-          src="https://images.unsplash.com/photo-1563227812-0eb4c236cda5?w=800&q=85"
+          src="https://images.unsplash.com/photo-1612483275372-7b8c7d3bda65?w=800&q=85"
           alt="Espresso Martini"
           loading="lazy"
-          onerror="this.src='https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=800&q=85'"
+          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=800&q=85&sat=-80&brightness=30'"
         />
-        <span class="badge b-pop">🔥 Popular</span>
-        <span class="b-orders">☕ 89 hoy</span>
+        <span class="badge b-pop">🔥 Popular</span><span class="b-orders">☕ 89 hoy</span>
       </div>
       <div class="card-body">
-        <div class="card-top">
-          <h3 class="card-name">Espresso Martini</h3>
-          <div class="card-r">
-            <span class="card-price">€11</span>
+        <div class="card-top"><h3 class="card-name">Espresso Martini</h3>
+          <div class="card-r"><span class="card-price">€11</span>
             <button class="heart" onclick="toggleHeart(event,'espresso-martini')"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
           </div>
         </div>
-        <p class="card-desc">Vodka, Kahlúa y espresso doble. Agitado fuerte para la espuma perfecta. Para los que quieren fiesta y cafeína sin elegir.</p>
+        <p class="card-desc">Vodka, Kahlúa y espresso doble. Agitado con fuerza para la espuma perfecta. Para los que quieren fiesta y cafeína sin tener que elegir.</p>
         <div class="flav-row">
           <div class="flav-item"><span class="flav-lbl">Dulce</span><div class="flav-dots" data-v="4" data-c="gold"></div></div>
           <div class="flav-item"><span class="flav-lbl">Amargo</span><div class="flav-dots" data-v="3" data-c="red"></div></div>
@@ -647,22 +541,18 @@ img,video{display:block}
       </div>
     </div>
 
-    <!-- OLD FASHIONED -->
     <div class="card reveal" data-id="old-fashioned" data-cat="cocktails" style="--glow:rgba(160,100,20,.3)" onclick="openDrink('old-fashioned')">
       <div class="card-media">
-        <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=800&q=85" alt="Old Fashioned" loading="lazy" onerror="this.style.display='none'"/>
-        <span class="badge b-staff">👨‍🍳 Staff pick</span>
-        <span class="b-orders">🥃 62 hoy</span>
+        <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=800&q=85" alt="Old Fashioned" loading="lazy" onerror="this.style.opacity='0'"/>
+        <span class="badge b-staff">👨‍🍳 Staff pick</span><span class="b-orders">🥃 62 hoy</span>
       </div>
       <div class="card-body">
-        <div class="card-top">
-          <h3 class="card-name">Old Fashioned</h3>
-          <div class="card-r">
-            <span class="card-price">€12</span>
+        <div class="card-top"><h3 class="card-name">Old Fashioned</h3>
+          <div class="card-r"><span class="card-price">€12</span>
             <button class="heart" onclick="toggleHeart(event,'old-fashioned')"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
           </div>
         </div>
-        <p class="card-desc">Bourbon, azúcar, Angostura y twist de naranja. El primer cóctel de la historia. Nada sobra, nada falta. Preparado en mesa con cubo de hielo artesanal.</p>
+        <p class="card-desc">Bourbon, azúcar, Angostura y cítrico. El primer cóctel de la historia, documentado en 1806. Nada sobra, nada falta. Preparado en mesa.</p>
         <div class="flav-row">
           <div class="flav-item"><span class="flav-lbl">Dulce</span><div class="flav-dots" data-v="2" data-c="gold"></div></div>
           <div class="flav-item"><span class="flav-lbl">Amargo</span><div class="flav-dots" data-v="3" data-c="red"></div></div>
@@ -675,21 +565,18 @@ img,video{display:block}
       </div>
     </div>
 
-    <!-- APEROL SPRITZ -->
     <div class="card reveal" data-id="aperol-spritz" data-cat="cocktails" style="--glow:rgba(240,90,20,.22)" onclick="openDrink('aperol-spritz')">
       <div class="card-media">
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=85" alt="Aperol Spritz" loading="lazy" onerror="this.style.display='none'"/>
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=85" alt="Aperol Spritz" loading="lazy" onerror="this.style.opacity='0'"/>
         <span class="badge b-nuevo">✨ Verano</span>
       </div>
       <div class="card-body">
-        <div class="card-top">
-          <h3 class="card-name">Aperol Spritz</h3>
-          <div class="card-r">
-            <span class="card-price">€9</span>
+        <div class="card-top"><h3 class="card-name">Aperol Spritz</h3>
+          <div class="card-r"><span class="card-price">€9</span>
             <button class="heart" onclick="toggleHeart(event,'aperol-spritz')"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
           </div>
         </div>
-        <p class="card-desc">Aperol, prosecco y soda. El aperitivo del norte de Italia que conquistó el mundo. Ligero, burbujeante y visualmente perfecto.</p>
+        <p class="card-desc">Aperol, prosecco y soda. El aperitivo de Italia que conquistó el mundo. Ligero, burbujeante y visualmente perfecto para cualquier hora.</p>
         <div class="flav-row">
           <div class="flav-item"><span class="flav-lbl">Dulce</span><div class="flav-dots" data-v="3" data-c="gold"></div></div>
           <div class="flav-item"><span class="flav-lbl">Amargo</span><div class="flav-dots" data-v="2" data-c="red"></div></div>
@@ -703,52 +590,32 @@ img,video{display:block}
     </div>
   </section>
 
-  <!-- ▌ SHOTS ▌ -->
+  <!-- ▌SHOTS▌ -->
   <section data-section="shots">
     <div class="sh reveal">
       <div class="sh-icon"><svg viewBox="0 0 24 24"><path d="M8 4h8l-1 14H9z"/><line x1="6" y1="21" x2="18" y2="21"/></svg></div>
-      <h2>Shots</h2>
-      <div class="sh-line"></div>
+      <h2>Shots</h2><div class="sh-line"></div>
     </div>
-
     <div class="csm reveal" data-id="tequila" data-cat="shots" onclick="openDrink('tequila')">
       <div class="csm-thumb">
-        <img
-          src="https://images.unsplash.com/photo-1527661591475-527312dd65f5?w=200&q=80"
-          alt="Tequila"
-          loading="lazy"
-          onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'csm-icon',innerHTML:'<svg viewBox=\'0 0 24 24\'><path d=\'M8 4h8l-1 14H9z\'/><line x1=\'6\' y1=\'21\' x2=\'18\' y2=\'21\'/></svg>'}))"
-        />
+        <img src="https://images.unsplash.com/photo-1527661591475-527312dd65f5?w=200&q=80" alt="Tequila" loading="lazy"
+          onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'csm-icon',innerHTML:'<svg viewBox=\'0 0 24 24\'><path d=\'M8 4h8l-1 14H9z\'/><line x1=\'6\' y1=\'21\' x2=\'18\' y2=\'21\'/></svg>'}))"/>
       </div>
-      <div class="csm-info">
-        <p class="csm-name">Tequila Reposado</p>
-        <p class="csm-desc">100% agave · sal de gusano · limón</p>
-      </div>
-      <div class="csm-r">
-        <span class="csm-price">€6</span>
+      <div class="csm-info"><p class="csm-name">Tequila Reposado</p><p class="csm-desc">100% agave · sal de gusano · limón</p></div>
+      <div class="csm-r"><span class="csm-price">€6</span>
         <button class="heart" onclick="toggleHeart(event,'tequila')"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
       </div>
     </div>
-
     <div class="csm reveal" data-id="baby-guinness" data-cat="shots" onclick="openDrink('baby-guinness')">
-      <div class="csm-thumb">
-        <div class="csm-icon">
-          <svg viewBox="0 0 24 24"><path d="M8 4h8l-1 14H9z"/><line x1="6" y1="21" x2="18" y2="21"/></svg>
-        </div>
-      </div>
-      <div class="csm-info">
-        <p class="csm-name">Baby Guinness</p>
-        <p class="csm-desc">Kahlúa · Bailey's flotante</p>
-      </div>
+      <div class="csm-thumb"><div class="csm-icon"><svg viewBox="0 0 24 24"><path d="M8 4h8l-1 14H9z"/><line x1="6" y1="21" x2="18" y2="21"/></svg></div></div>
+      <div class="csm-info"><p class="csm-name">Baby Guinness</p><p class="csm-desc">Kahlúa · Bailey's flotante</p></div>
       <div class="csm-r"><span class="csm-price">€6</span></div>
     </div>
-
     <div class="csm reveal" data-cat="shots">
       <div class="csm-thumb"><div class="csm-icon"><svg viewBox="0 0 24 24"><path d="M8 4h8l-1 14H9z"/><line x1="6" y1="21" x2="18" y2="21"/></svg></div></div>
       <div class="csm-info"><p class="csm-name">B-52</p><p class="csm-desc">Kahlúa · Bailey's · Grand Marnier</p></div>
       <div class="csm-r"><span class="csm-price">€7</span></div>
     </div>
-
     <div class="csm reveal" data-cat="shots">
       <div class="csm-thumb"><div class="csm-icon"><svg viewBox="0 0 24 24"><path d="M8 4h8l-1 14H9z"/><line x1="6" y1="21" x2="18" y2="21"/></svg></div></div>
       <div class="csm-info"><p class="csm-name">Limoncello</p><p class="csm-desc">Artesanal · muy frío</p></div>
@@ -756,62 +623,52 @@ img,video{display:block}
     </div>
   </section>
 
-  <!-- ▌ VINOS & CERVEZAS ▌ -->
+  <!-- ▌VINOS & CERVEZAS▌ -->
   <section data-section="wines">
     <div class="sh reveal">
       <div class="sh-icon"><svg viewBox="0 0 24 24"><path d="M8 4h8s2 5 2 8a6 6 0 0 1-12 0c0-3 2-8 2-8z"/><line x1="12" y1="18" x2="12" y2="21"/><line x1="9" y1="21" x2="15" y2="21"/></svg></div>
-      <h2>Vinos &amp; Cervezas</h2>
-      <div class="sh-line"></div>
+      <h2>Vinos &amp; Cervezas</h2><div class="sh-line"></div>
     </div>
-
     <div class="csm reveal" data-cat="wines">
       <div class="csm-thumb"><img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=200&q=80" alt="Malbec" loading="lazy" onerror="this.style.display='none'"/></div>
       <div class="csm-info"><p class="csm-name">Malbec Copa</p><p class="csm-desc">Mendoza · cuerpo medio · taninos suaves</p></div>
       <div class="csm-r"><span class="csm-price">€6</span></div>
     </div>
-
     <div class="csm reveal" data-cat="wines">
       <div class="csm-thumb"><div class="csm-icon"><svg viewBox="0 0 24 24"><path d="M8 4h8s2 5 2 8a6 6 0 0 1-12 0c0-3 2-8 2-8z"/><line x1="12" y1="18" x2="12" y2="21"/><line x1="9" y1="21" x2="15" y2="21"/></svg></div></div>
       <div class="csm-info"><p class="csm-name">Prosecco Copa</p><p class="csm-desc">Italia · semiseco · burbujas finas</p></div>
       <div class="csm-r"><span class="csm-price">€8</span></div>
     </div>
-
     <div class="csm reveal" data-cat="wines">
       <div class="csm-thumb"><img src="https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=200&q=80" alt="IPA" loading="lazy" onerror="this.style.display='none'"/></div>
       <div class="csm-info"><p class="csm-name">Craft IPA</p><p class="csm-desc">Local artesanal · lupulada · 330ml</p></div>
       <div class="csm-r"><span class="csm-price">€5</span></div>
     </div>
-
     <div class="csm reveal" data-cat="wines">
       <div class="csm-thumb"><div class="csm-icon"><svg viewBox="0 0 24 24"><path d="M5 3h11l1 14H5z"/><path d="M16 7h3a2 2 0 0 1 0 4h-3"/><line x1="4" y1="20" x2="18" y2="20"/></svg></div></div>
-      <div class="csm-info"><p class="csm-name">Stout Artesanal</p><p class="csm-desc">Café y cacao · 330ml</p></div>
+      <div class="csm-info"><p class="csm-name">Stout Artesanal</p><p class="csm-desc">Notas de café y cacao · 330ml</p></div>
       <div class="csm-r"><span class="csm-price">€5</span></div>
     </div>
   </section>
 
-  <!-- ▌ MOCKTAILS ▌ -->
+  <!-- ▌MOCKTAILS▌ -->
   <section data-section="mocktails">
     <div class="sh reveal">
       <div class="sh-icon"><svg viewBox="0 0 24 24"><path d="M12 22s-8-6-8-12a8 8 0 0 1 16 0c0 6-8 12-8 12z"/><line x1="12" y1="22" x2="12" y2="10"/></svg></div>
-      <h2>Mocktails</h2>
-      <div class="sh-line"></div>
+      <h2>Mocktails</h2><div class="sh-line"></div>
     </div>
-
     <div class="card reveal" data-id="hugo-zero" data-cat="mocktails" style="--glow:rgba(20,160,100,.18)" onclick="openDrink('hugo-zero')">
       <div class="card-media">
-        <img src="https://images.unsplash.com/photo-1532634922-8fe0b757fb13?w=800&q=85" alt="Hugo Zero" loading="lazy" onerror="this.style.display='none'"/>
-        <span class="badge b-nuevo">Sin alcohol</span>
-        <span class="b-orders">🌿 35 hoy</span>
+        <img src="https://images.unsplash.com/photo-1532634922-8fe0b757fb13?w=800&q=85" alt="Hugo Zero" loading="lazy" onerror="this.style.opacity='0'"/>
+        <span class="badge b-nuevo">Sin alcohol</span><span class="b-orders">🌿 35 hoy</span>
       </div>
       <div class="card-body">
-        <div class="card-top">
-          <h3 class="card-name">Hugo Zero</h3>
-          <div class="card-r">
-            <span class="card-price">€7</span>
+        <div class="card-top"><h3 class="card-name">Hugo Zero</h3>
+          <div class="card-r"><span class="card-price">€7</span>
             <button class="heart" onclick="toggleHeart(event,'hugo-zero')"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
           </div>
         </div>
-        <p class="card-desc">Flor de saúco, menta fresca, pepino y agua con gas. Toda la elegancia, cero alcohol. Para disfrutar toda la noche.</p>
+        <p class="card-desc">Flor de saúco, menta fresca, pepino y agua con gas. Toda la elegancia, cero alcohol. Para disfrutar toda la noche sin límites.</p>
         <div class="flav-row">
           <div class="flav-item"><span class="flav-lbl">Dulce</span><div class="flav-dots" data-v="3" data-c="gold"></div></div>
           <div class="flav-item"><span class="flav-lbl">Fresco</span><div class="flav-dots" data-v="5" data-c="gold"></div></div>
@@ -823,13 +680,11 @@ img,video{display:block}
         </div>
       </div>
     </div>
-
     <div class="csm reveal" data-cat="mocktails">
       <div class="csm-thumb"><div class="csm-icon"><svg viewBox="0 0 24 24"><path d="M12 22s-8-6-8-12a8 8 0 0 1 16 0c0 6-8 12-8 12z"/><line x1="12" y1="22" x2="12" y2="10"/></svg></div></div>
       <div class="csm-info"><p class="csm-name">Citrus Cooler</p><p class="csm-desc">Naranja · pomelo · jengibre · soda</p></div>
       <div class="csm-r"><span class="csm-price">€6</span></div>
     </div>
-
     <div class="csm reveal" data-cat="mocktails">
       <div class="csm-thumb"><div class="csm-icon"><svg viewBox="0 0 24 24"><path d="M12 22s-8-6-8-12a8 8 0 0 1 16 0c0 6-8 12-8 12z"/><line x1="12" y1="22" x2="12" y2="10"/></svg></div></div>
       <div class="csm-info"><p class="csm-name">Mojito Virgen</p><p class="csm-desc">Lima · menta · azúcar · soda</p></div>
@@ -840,55 +695,37 @@ img,video{display:block}
   <p class="no-results" id="noResults">No se encontraron resultados.</p>
 </main>
 
-<!-- ══════════════════ FOOTER ═════════════════════ -->
+<!-- ══════════ FOOTER ════════════════════════════ -->
 <footer class="footer">
-  <div class="footer-logo">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260" fill="none">
-      <circle cx="130" cy="130" r="124" stroke="#c9a96e" stroke-width="1" stroke-dasharray="3 3" opacity=".4"/>
-      <circle cx="130" cy="130" r="117" stroke="#c9a96e" stroke-width="1.2"/>
-      <defs>
-        <path id="tA2" d="M 28,130 A 102,102 0 0,1 232,130"/>
-        <path id="bA2" d="M 50,130 A 80,80 0 0,0 210,130"/>
-      </defs>
-      <text font-family="serif" font-size="12" fill="#c9a96e" letter-spacing="5"><textPath href="#tA2" startOffset="7%">CLUB SOCIAL · LA HABANA</textPath></text>
-      <text font-family="serif" font-size="9" fill="#c9a96e" letter-spacing="4" opacity=".7"><textPath href="#bA2" startOffset="14%">RON · MÚSICA · BAILAR</textPath></text>
-      <path d="M127 189 Q125.5 170 123.5 152 L136.5 152 Q134.5 170 133 189 Z" fill="#c9a96e" opacity=".85"/>
-      <path d="M130 152 C143 143 157 134 170 120" stroke="#c9a96e" stroke-width="2.5" stroke-linecap="round"/>
-      <path d="M130 152 C117 143 103 134 90 120" stroke="#c9a96e" stroke-width="2.5" stroke-linecap="round"/>
-      <path d="M130 152 C147 139 160 123 166 106" stroke="#c9a96e" stroke-width="2" stroke-linecap="round"/>
-      <path d="M130 152 C113 139 100 123 94 106" stroke="#c9a96e" stroke-width="2" stroke-linecap="round"/>
-      <path d="M130 152 C137 137 141 120 143 102" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
-      <path d="M130 152 C123 137 119 120 117 102" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/>
-      <circle cx="128" cy="153" r="4" fill="#c9a96e" opacity=".9"/>
-      <circle cx="136" cy="156" r="3" fill="#c9a96e" opacity=".8"/>
-      <circle cx="122" cy="156" r="3" fill="#c9a96e" opacity=".7"/>
-      <line x1="88" y1="197" x2="172" y2="197" stroke="#c9a96e" stroke-width=".5" opacity=".4"/>
-      <text x="130" y="215" text-anchor="middle" font-family="'Cormorant Garamond',Georgia,serif" font-size="24" fill="#c9a96e" font-style="italic" font-weight="300" letter-spacing="1">La Habana</text>
-      <text x="130" y="229" text-anchor="middle" font-family="serif" font-size="7" fill="#c9a96e" letter-spacing="5" opacity=".6">BAR · COCKTAILS</text>
-    </svg>
-  </div>
+  <div class="footer-name">El <em>Bar</em></div>
   <div class="footer-info">
     Av. Ejemplo 1234 · Ciudad<br>
     Lunes a domingo · 18:00 — 03:00 hs<br><br>
     <a href="https://wa.me/34600000000">📲 Reservas WhatsApp</a>
     &nbsp;·&nbsp;
-    <a href="https://instagram.com">📷 @lahabanabar</a>
+    <a href="https://instagram.com">📷 @elbar</a>
   </div>
 </footer>
 
-<!-- ══════════════════ FLOAT ══════════════════════ -->
+<!-- ══════════ FLOATING ══════════════════════════ -->
 <a class="float" href="https://wa.me/34600000000" target="_blank">
   <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
   Llamar al mozo
 </a>
 
-<!-- ══════════════════ MODAL ══════════════════════ -->
-<div class="modal-bg" id="modalBg" onclick="closeMod(event)">
+<!-- ══════════ MODAL ══════════════════════════════ -->
+<div class="modal-bg" id="modalBg">
   <div class="modal" id="modal">
-    <div class="m-handle"></div>
-    <button class="m-x" onclick="closeModBtn()">✕</button>
+
+    <!-- Barra superior: drag handle + botón cerrar en la misma fila -->
+    <div class="m-topbar">
+      <div class="m-topbar-drag"></div>
+      <button class="m-x" id="mCloseBtn">✕</button>
+    </div>
+
     <div class="m-media" id="mMedia"></div>
-    <div class="m-body">
+
+    <div class="m-body" id="mBody">
       <div class="m-top">
         <h2 class="m-name" id="mName"></h2>
         <span class="m-price" id="mPrice"></span>
@@ -913,147 +750,132 @@ img,video{display:block}
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-   SCRIPTS
-══════════════════════════════════════════════ -->
 <script>
-/* ════════════════ DRINK DATABASE ════════════════
-   Para agregar video de preparación:
-   video: 'https://www.youtube.com/embed/TU_ID'
-   Para agregar imagen propia:
-   image: 'https://tu-hosting.com/imagen.jpg'
-══════════════════════════════════════════════ */
+/* ════════════ DRINK DATA ════════════════════════════ */
 const db = {
   mojito:{
-    name:'Mojito', price:'€9',
-    level:'🇨🇺 Original cubano', orders:'🌿 124 pedidos hoy',
-    desc:'El rey de Cuba. Creado en La Habana en el siglo XIX, perfeccionado en El Bodeguita del Medio. Ron Havana Club, lima, menta fresca, azúcar morena y soda. El cóctel más pedido del mundo no lo es por casualidad.',
-    image:'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=900&q=90',
-    video:null,
+    name:'Mojito',price:'€9',level:'🇨🇺 Original cubano',orders:'🌿 124 pedidos hoy',
+    desc:'El rey de Cuba. Ron Havana Club, lima, menta fresca, azúcar morena y soda. Creado en La Habana en el siglo XIX, perfeccionado en El Bodeguita del Medio. El cóctel más pedido del mundo no lo es por casualidad.',
+    image:'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=900&q=90',video:null,
     flavor:[{label:'Dulce',val:3,color:'gold'},{label:'Fresco',val:5,color:'gold'},{label:'Alcohol',val:2,color:'blue'}],
-    ingredients:['50ml Ron Havana Club 3 años','Zumo de 1 lima','8-10 hojas de menta fresca','2 cditas azúcar morena','80ml Soda water','Hielo picado'],
-    steps:['En el vaso, presionar suavemente la menta con el azúcar y el zumo de lima (no triturar).','Añadir el ron y remover.','Llenar el vaso con hielo picado hasta el borde.','Agregar la soda fría lentamente por el borde.','Remover una sola vez con cuchara larga.','Decorar con rama de menta y rodaja de lima.'],
+    ingredients:['50ml Ron Havana Club 3 años','Zumo de 1 lima','8-10 hojas menta fresca','2 cditas azúcar morena','80ml Soda water','Hielo picado'],
+    steps:['Presionar suavemente la menta con el azúcar y el zumo de lima en el vaso (no triturar).','Añadir el ron y remover.','Llenar con hielo picado hasta el borde.','Agregar la soda fría lentamente por el borde.','Remover una sola vez con cuchara larga.','Decorar con rama de menta y rodaja de lima.'],
     pairing:['🍤 Camarones a la plancha','🌮 Tacos de cerdo','🧀 Queso fresco','🍍 Piña fresca'],
   },
   daiquiri:{
-    name:'Daiquiri', price:'€9',
-    level:'Clásico cubano', orders:'🍋 73 pedidos hoy',
-    desc:'Ron, lima y azúcar. La Trinidad sagrada de La Habana. Ernest Hemingway lo pedía doble y sin azúcar en El Floridita. Nosotros lo preparamos equilibrado, como debe ser. Minimal, poderoso.',
-    image:'https://images.unsplash.com/photo-1609951651556-5334e2706168?w=900&q=90',
-    video:null,
+    name:'Daiquiri',price:'€9',level:'Clásico cubano',orders:'🍋 73 pedidos hoy',
+    desc:'Ron, lima y azúcar. La Trinidad sagrada de La Habana. Hemingway lo pedía doble y sin azúcar en El Floridita. Nosotros lo preparamos equilibrado, como debe ser.',
+    image:'https://images.unsplash.com/photo-1609951651556-5334e2706168?w=900&q=90',video:null,
     flavor:[{label:'Dulce',val:3,color:'gold'},{label:'Ácido',val:4,color:'red'},{label:'Alcohol',val:3,color:'blue'}],
     ingredients:['60ml Ron blanco Havana Club','25ml Zumo de lima fresco','15ml Sirope de azúcar','Hielo','Copa coupette fría'],
-    steps:['Enfriar la copa coupette en el congelador al menos 15 min.','Llenar la coctelera con hielo.','Agregar ron, zumo de lima y sirope.','Agitar vigorosamente 12-15 segundos hasta que la coctelera esté helada.','Colar doble en la copa fría.','Decorar con twist de lima.'],
+    steps:['Enfriar la copa coupette en el congelador al menos 15 min.','Llenar la coctelera con hielo.','Agregar ron, zumo de lima y sirope.','Agitar vigorosamente 12-15 segundos.','Colar doble en la copa fría.','Decorar con twist de lima.'],
     pairing:['🦞 Langostinos','🥗 Ceviche','🍫 Chocolate blanco','🍑 Frutas tropicales'],
   },
   'cuba-libre':{
-    name:'Cuba Libre', price:'€8',
-    level:'Icónico', orders:'🥤 98 pedidos hoy',
-    desc:'Nació en 1900 para celebrar la independencia de Cuba. Ron añejo, Coca-Cola y zumo de lima fresco sobre hielo. Dos siglos después, sigue siendo el grito de libertad más delicioso que existe.',
-    image:'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=900&q=90',
-    video:null,
+    name:'Cuba Libre',price:'€8',level:'Icónico',orders:'🥤 98 pedidos hoy',
+    desc:'Nació en 1900 para celebrar la independencia de Cuba. Ron añejo, Coca-Cola y zumo de lima fresco. Dos siglos después, sigue siendo el grito de libertad más delicioso del mundo.',
+    image:'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=900&q=90',video:null,
     flavor:[{label:'Dulce',val:4,color:'gold'},{label:'Burbujas',val:4,color:'gold'},{label:'Alcohol',val:3,color:'blue'}],
-    ingredients:['50ml Ron añejo Havana Club 7 años','150ml Coca-Cola fría','Zumo de ½ lima','3-4 cubos de hielo','Rodaja de lima para decorar'],
-    steps:['Llenar un vaso highball con cubos de hielo.','Agregar el ron y el zumo de lima.','Verter la Coca-Cola lentamente por el borde para conservar el gas.','Remover suavemente una sola vez.','Decorar con rodaja de lima.'],
-    pairing:['🍕 Pizza napolitana','🍔 Hamburguesa','🥓 Costillas BBQ','🥜 Cacahuetes tostados'],
+    ingredients:['50ml Ron añejo Havana Club 7 años','150ml Coca-Cola fría','Zumo de ½ lima','3-4 cubos de hielo','Rodaja de lima'],
+    steps:['Llenar un vaso highball con cubos de hielo.','Agregar el ron y el zumo de lima.','Verter la Coca-Cola lentamente por el borde.','Remover suavemente una sola vez.','Decorar con rodaja de lima.'],
+    pairing:['🍕 Pizza napolitana','🍔 Hamburguesa','🥓 Costillas BBQ','🥜 Cacahuetes'],
   },
   negroni:{
-    name:'Negroni', price:'€10',
-    level:'Clásico atemporal', orders:'🔥 47 pedidos hoy',
-    desc:'1919. Florencia. El conde Camillo Negroni pidió su americano con gin en vez de soda. Nació el cóctel más elegante del mundo. Amargo, botánico y sin rodeos. Servido con twist de naranja flambeado en mesa.',
-    image:'https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=900&q=90',
-    video:null,
+    name:'Negroni',price:'€10',level:'Clásico atemporal',orders:'🔥 47 pedidos hoy',
+    desc:'1919, Florencia. El conde Camillo Negroni pidió su americano con gin en vez de soda. Nació el cóctel más elegante del mundo. Amargo, botánico, sin rodeos. Twist de naranja flambeado en mesa.',
+    image:'https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=900&q=90',video:null,
     flavor:[{label:'Dulce',val:2,color:'gold'},{label:'Amargo',val:5,color:'red'},{label:'Alcohol',val:4,color:'blue'}],
-    ingredients:['30ml Gin London Dry','30ml Campari','30ml Vermut Carpano Rosso','1 cubo de hielo grande','Cáscara de naranja (flambeada)'],
-    steps:['Colocar un cubo de hielo grande en vaso rocks.','Verter el Campari, el vermut y el gin directamente.','Remover 20 veces en sentido horario con cuchara de bar.','Flamear la cáscara de naranja sobre el vaso para expresar los aceites aromáticos.','Decorar con la cáscara y servir inmediatamente.'],
+    ingredients:['30ml Gin London Dry','30ml Campari','30ml Vermut Carpano Rosso','1 cubo de hielo grande','Cáscara de naranja flambeada'],
+    steps:['Colocar un cubo de hielo grande en vaso rocks.','Verter el Campari, vermut y gin.','Remover 20 veces en sentido horario con cuchara de bar.','Flamear la cáscara de naranja sobre el vaso.','Decorar con la cáscara y servir.'],
     pairing:['🧀 Quesos curados','🫒 Aceitunas negras','🥩 Jamón ibérico','🍕 Pizza margherita'],
   },
   'espresso-martini':{
-    name:'Espresso Martini', price:'€11',
-    level:'Para todos', orders:'☕ 89 pedidos hoy',
-    desc:'Dick Bradsell, Londres, 1983. Una modelo pidió algo que la despertara y la pusiera a tono. El resultado cambió la coctelería para siempre. Agitado con fuerza para lograr la espuma densa y persistente.',
-    image:'https://images.unsplash.com/photo-1563227812-0eb4c236cda5?w=900&q=90',
-    video:null,
+    name:'Espresso Martini',price:'€11',level:'Para todos',orders:'☕ 89 pedidos hoy',
+    desc:'Dick Bradsell, Londres, 1983. Una clienta pidió algo que la despertara y pusiera a tono. El resultado cambió la coctelería para siempre. Agitado con fuerza para la espuma densa y persistente.',
+    image:'https://images.unsplash.com/photo-1612483275372-7b8c7d3bda65?w=900&q=90',video:null,
     flavor:[{label:'Dulce',val:4,color:'gold'},{label:'Amargo',val:3,color:'red'},{label:'Alcohol',val:3,color:'blue'}],
     ingredients:['50ml Vodka premium','30ml Kahlúa','25ml Espresso doble (tibio)','10ml Sirope de azúcar','3 granos de café arábica'],
-    steps:['Preparar el espresso y dejar enfriar a temperatura ambiente.','Enfriar la copa martini en el congelador al menos 10 min.','Llenar coctelera con hielo.','Agregar vodka, Kahlúa, espresso y sirope.','Agitar con mucha energía 15-20 segundos.','Colar doble en copa fría. La espuma sube sola.','Decorar con 3 granos de café sobre la espuma.'],
+    steps:['Preparar el espresso y dejar enfriar a temperatura ambiente.','Enfriar la copa martini en el congelador 10 min.','Llenar coctelera con hielo.','Agregar vodka, Kahlúa, espresso y sirope.','Agitar con energía 15-20 segundos.','Colar doble en copa fría. La espuma sube sola.','Decorar con 3 granos de café.'],
     pairing:['🍫 Chocolate negro 70%','🧁 Tiramisú','🍮 Panna cotta','🍰 Cheesecake'],
   },
   'old-fashioned':{
-    name:'Old Fashioned', price:'€12',
-    level:'Para expertos', orders:'🥃 62 pedidos hoy',
-    desc:'Documentado en 1806 como "el cóctel" — porque era el único que existía. Bourbon, azúcar morena, Angostura y cítrico. Preparado en mesa con cubo de hielo artesanal. Nada sobra.',
-    image:'https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=900&q=90',
-    video:null,
+    name:'Old Fashioned',price:'€12',level:'Para expertos',orders:'🥃 62 pedidos hoy',
+    desc:'Documentado en 1806 como "el cóctel" — porque era el único. Bourbon, azúcar, Angostura. Preparado en mesa con cubo de hielo artesanal. Nada sobra, nada falta.',
+    image:'https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=900&q=90',video:null,
     flavor:[{label:'Dulce',val:2,color:'gold'},{label:'Amargo',val:3,color:'red'},{label:'Alcohol',val:5,color:'blue'}],
     ingredients:['60ml Bourbon o Rye whisky','1 cdita azúcar morena','2 gotas Angostura Bitters','Twist de naranja y limón','Cubo de hielo artesanal'],
-    steps:['En el vaso rocks, disolver el azúcar con los bitters y una gota de agua.','Agregar el whisky y remover para integrar.','Colocar el cubo de hielo artesanal.','Remover 30 segundos para enfriar y diluir correctamente.','Expresar ambas cáscaras cítricas sobre el vaso.','Decorar y servir.'],
-    pairing:['🥩 Carne a las brasas','🧀 Queso azul','🍫 Chocolate con leche','🥜 Nueces tostadas'],
+    steps:['Disolver el azúcar con los bitters y una gota de agua en el vaso.','Agregar el whisky y remover.','Colocar el cubo de hielo artesanal.','Remover 30 segundos para enfriar.','Expresar las cáscaras cítricas sobre el vaso.','Decorar y servir.'],
+    pairing:['🥩 Carne a las brasas','🧀 Queso azul','🍫 Chocolate con leche','🥜 Nueces'],
   },
   'aperol-spritz':{
-    name:'Aperol Spritz', price:'€9',
-    level:'Para todos', orders:'🍊 28 pedidos hoy',
-    desc:'El aperitivo del norte de Italia que conquistó el mundo. Aperol, prosecco y un toque de soda. Visualmente perfecto, ligeramente amargo y muy refrescante. El clásico de verano.',
-    image:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=90',
-    video:null,
+    name:'Aperol Spritz',price:'€9',level:'Para todos',orders:'🍊 28 pedidos hoy',
+    desc:'El aperitivo del norte de Italia que conquistó el mundo. Ligero, burbujeante y visualmente perfecto. Ideal para empezar la noche o acompañar una tarde de verano.',
+    image:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=90',video:null,
     flavor:[{label:'Dulce',val:3,color:'gold'},{label:'Amargo',val:2,color:'red'},{label:'Alcohol',val:2,color:'blue'}],
     ingredients:['90ml Prosecco DOC','60ml Aperol','30ml Soda water','Rodaja de naranja','Cubos de hielo'],
-    steps:['Llenar copa de vino grande con cubos de hielo.','Agregar el Prosecco primero para preservar las burbujas.','Verter el Aperol lentamente.','Terminar con el agua con gas.','Revolver suavemente una sola vez.','Decorar con rodaja de naranja.'],
+    steps:['Llenar copa grande con cubos de hielo.','Agregar el Prosecco primero.','Verter el Aperol lentamente.','Terminar con el agua con gas.','Revolver suavemente una vez.','Decorar con rodaja de naranja.'],
     pairing:['🥨 Pretzels','🫒 Bruschetta','🧀 Brie fresco','🍤 Gambas'],
   },
   tequila:{
-    name:'Tequila Reposado', price:'€6',
-    level:'Clásico', orders:'🌵 41 pedidos hoy',
-    desc:'100% agave azul, reposado 6 meses en barrica de roble americano. Notas de vainilla y caramelo. Servido con sal de gusano premium y limón fresco.',
-    image:'https://images.unsplash.com/photo-1527661591475-527312dd65f5?w=900&q=90',
-    video:null,
+    name:'Tequila Reposado',price:'€6',level:'Clásico',orders:'🌵 41 pedidos hoy',
+    desc:'100% agave azul, reposado 6 meses en barrica de roble americano. Notas de vainilla y caramelo. Con sal de gusano premium y limón fresco.',
+    image:'https://images.unsplash.com/photo-1527661591475-527312dd65f5?w=900&q=90',video:null,
     flavor:[{label:'Suave',val:3,color:'gold'},{label:'Picante',val:2,color:'red'},{label:'Alcohol',val:4,color:'blue'}],
     ingredients:['45ml Tequila reposado 100% agave','Sal de gusano artesanal','½ limón fresco'],
-    steps:['Colocar la sal de gusano en el dorso de la mano.','Lamer la sal.','Beber el tequila de un golpe.','Morder inmediatamente el limón.'],
+    steps:['Colocar la sal en el dorso de la mano.','Lamer la sal.','Beber el tequila de un golpe.','Morder el limón.'],
     pairing:['🌮 Tacos al pastor','🥑 Guacamole','🌶 Salsa roja','🫛 Edamame'],
   },
   'baby-guinness':{
-    name:'Baby Guinness', price:'€6',
-    level:'Intermedio', orders:'🍺 19 pedidos hoy',
-    desc:'El shot más fotografiado del mundo. Kahlúa en la base, Bailey\'s flotando encima: la ilusión perfecta de una pinta de Guinness en miniatura. Visual, cremoso y delicioso.',
+    name:'Baby Guinness',price:'€6',level:'Intermedio',orders:'🍺 19 pedidos hoy',
+    desc:'El shot más fotografiado del mundo. Kahlúa en la base, Bailey\'s flotando encima: la ilusión perfecta de una pinta de Guinness en miniatura.',
     image:null,video:null,
     flavor:[{label:'Dulce',val:5,color:'gold'},{label:'Cremoso',val:4,color:'gold'},{label:'Alcohol',val:3,color:'blue'}],
     ingredients:['25ml Kahlúa (base)','15ml Bailey\'s Irish Cream (flotante)'],
-    steps:['Verter el Kahlúa en el shot glass.','Con cuchara invertida, verter el Bailey\'s muy lentamente para que flote.','El resultado debe verse como una mini Guinness.','Beber de un solo golpe.'],
-    pairing:['🍫 Chocolate','🍦 Helado de vainilla','☕ Café solo','🍰 Cheesecake'],
+    steps:['Verter el Kahlúa en el shot glass.','Con cuchara invertida, verter el Bailey\'s muy despacio para que flote.','Debe verse como una mini Guinness.','Beber de un solo golpe.'],
+    pairing:['🍫 Chocolate','🍦 Helado vainilla','☕ Café','🍰 Cheesecake'],
   },
   'hugo-zero':{
-    name:'Hugo Zero', price:'€7',
-    level:'Sin alcohol', orders:'🌿 35 pedidos hoy',
-    desc:'La versión sin alcohol del Hugo austriaco. Flores de saúco, menta, pepino y agua con gas. Tan sofisticado que nadie notará la diferencia. Para disfrutar toda la noche sin límites.',
-    image:'https://images.unsplash.com/photo-1532634922-8fe0b757fb13?w=900&q=90',
-    video:null,
+    name:'Hugo Zero',price:'€7',level:'Sin alcohol',orders:'🌿 35 pedidos hoy',
+    desc:'Flores de saúco, menta, pepino y agua con gas. Tan sofisticado que nadie notará la diferencia con el original. Para disfrutar toda la noche sin límites.',
+    image:'https://images.unsplash.com/photo-1532634922-8fe0b757fb13?w=900&q=90',video:null,
     flavor:[{label:'Dulce',val:3,color:'gold'},{label:'Fresco',val:5,color:'gold'},{label:'Alcohol',val:0,color:'blue'}],
-    ingredients:['150ml Agua con gas premium','30ml Sirope de flor de saúco','8 hojas de menta fresca','3-4 rodajas de pepino','2 rodajas de limón','Hielo en cubos'],
-    steps:['Llenar copa de vino grande con cubos de hielo.','Agregar el sirope de saúco.','Verter el agua con gas desde el borde lentamente.','Añadir menta, pepino y limón.','Revolver suavemente una sola vez.','Servir con sorbete de vidrio.'],
+    ingredients:['150ml Agua con gas premium','30ml Sirope de flor de saúco','8 hojas menta fresca','3-4 rodajas pepino','2 rodajas limón','Hielo en cubos'],
+    steps:['Llenar copa de vino grande con cubos de hielo.','Agregar el sirope de saúco.','Verter el agua con gas desde el borde.','Añadir menta, pepino y limón.','Revolver suavemente una sola vez.','Servir con sorbete de vidrio.'],
     pairing:['🥗 Ensalada fresca','🍣 Sushi','🫧 Hummus','🍓 Fresas'],
   },
 };
 
-/* ════════════════ STORIES ════════════════ */
+/* ════════════ PLACEHOLDER helper ════════════════ */
+function mkPh(...paths){
+  const d=document.createElement('div');
+  d.className='img-ph';
+  d.innerHTML=`<svg viewBox="0 0 24 24">${paths.map(p=>`<path d="${p}" stroke-linecap="round" stroke-linejoin="round"/>`).join('')}</svg>`;
+  return d;
+}
+
+/* ════════════ STORIES ═══════════════════════════ */
 const featured=[
-  {id:'mojito',       sg:'conic-gradient(from 0deg,rgba(30,160,90,.8),rgba(201,169,110,.9),rgba(30,160,90,.8))', fire:true},
-  {id:'daiquiri',     sg:'conic-gradient(from 0deg,rgba(220,80,80,.8),rgba(201,169,110,.9),rgba(220,80,80,.8))', fire:true},
-  {id:'cuba-libre',   sg:'conic-gradient(from 0deg,rgba(180,20,20,.8),rgba(201,169,110,.9),rgba(180,20,20,.8))', fire:false},
-  {id:'negroni',      sg:'conic-gradient(from 0deg,rgba(200,80,30,.8),rgba(201,169,110,.9),rgba(200,80,30,.8))', fire:false},
-  {id:'espresso-martini',sg:'conic-gradient(from 0deg,rgba(60,30,10,.9),rgba(201,169,110,.9),rgba(60,30,10,.9))', fire:true},
-  {id:'old-fashioned',sg:'conic-gradient(from 0deg,rgba(160,100,20,.8),rgba(201,169,110,.9),rgba(160,100,20,.8))', fire:false},
+  {id:'mojito',       sg:'conic-gradient(from 0deg,rgba(30,160,90,.8),rgba(201,169,110,.9),rgba(30,160,90,.8))',   fire:true},
+  {id:'daiquiri',     sg:'conic-gradient(from 0deg,rgba(220,80,80,.8),rgba(201,169,110,.9),rgba(220,80,80,.8))',   fire:true},
+  {id:'cuba-libre',   sg:'conic-gradient(from 0deg,rgba(180,20,20,.8),rgba(201,169,110,.9),rgba(180,20,20,.8))',   fire:false},
+  {id:'negroni',      sg:'conic-gradient(from 0deg,rgba(200,80,30,.8),rgba(201,169,110,.9),rgba(200,80,30,.8))',   fire:false},
+  {id:'espresso-martini',sg:'conic-gradient(from 0deg,rgba(40,20,5,.95),rgba(201,169,110,.9),rgba(40,20,5,.95))', fire:true,
+   /* URL alternativa específica para la story del espresso martini */
+   img:'https://images.unsplash.com/photo-1612483275372-7b8c7d3bda65?w=300&q=85'},
+  {id:'old-fashioned',sg:'conic-gradient(from 0deg,rgba(160,100,20,.8),rgba(201,169,110,.9),rgba(160,100,20,.8))',fire:false},
 ];
 
 const row=document.getElementById('storiesRow');
 featured.forEach(f=>{
   const d=db[f.id]; if(!d) return;
+  const src=f.img||(d.image?d.image.replace('w=900','w=300'):'');
   const el=document.createElement('div');
-  el.className='story';el.style.setProperty('--sg',f.sg);
+  el.className='story';
+  el.style.setProperty('--sg',f.sg);
   el.onclick=()=>openDrink(f.id);
   el.innerHTML=`
-    <img src="${d.image||''}" alt="${d.name}" loading="lazy"
-      onerror="this.style.background='#161616';this.style.display='block'"/>
+    <img src="${src}" alt="${d.name}" loading="lazy"
+      onerror="this.style.display='none';this.parentElement.style.background='var(--bg3)'"/>
     <div class="story-ov"></div>
     <div class="story-info">
       <p class="story-name">${d.name}</p>
@@ -1064,7 +886,7 @@ featured.forEach(f=>{
   row.appendChild(el);
 });
 
-/* ════════════════ BUILD DOTS ════════════════ */
+/* ════════════ BUILD DOTS ════════════════════════ */
 function buildDots(el,val,color){
   for(let i=1;i<=5;i++){
     const d=document.createElement('div');
@@ -1076,7 +898,22 @@ document.querySelectorAll('.flav-dots').forEach(el=>{
   buildDots(el,parseInt(el.dataset.v)||0,el.dataset.c||'gold');
 });
 
-/* ════════════════ MODAL ════════════════ */
+/* ════════════ SCROLL LOCK sin salto ════════════ */
+let _scrollY=0;
+function lockScroll(){
+  _scrollY=window.scrollY;
+  document.body.style.position='fixed';
+  document.body.style.top=`-${_scrollY}px`;
+  document.body.style.width='100%';
+}
+function unlockScroll(){
+  document.body.style.position='';
+  document.body.style.top='';
+  document.body.style.width='';
+  window.scrollTo(0,_scrollY);
+}
+
+/* ════════════ MODAL ═════════════════════════════ */
 function openDrink(id){
   const d=db[id]; if(!d) return;
   const mm=document.getElementById('mMedia');
@@ -1088,19 +925,19 @@ function openDrink(id){
     const img=new Image();
     img.src=d.image;img.alt=d.name;
     img.style.cssText='width:100%;height:100%;object-fit:cover';
-    img.onerror=()=>mm.style.display='none';
-    mm.innerHTML='';mm.appendChild(img);
+    img.onerror=()=>{mm.style.display='none'};
+    mm.appendChild(img);
     const g=document.createElement('div');g.className='m-media-grad';mm.appendChild(g);
     mm.style.display='';
   } else {
     mm.style.display='none';
   }
 
-  document.getElementById('mName').textContent  = d.name;
-  document.getElementById('mPrice').textContent = d.price;
-  document.getElementById('mLevel').textContent = d.level||'';
-  document.getElementById('mOrders').textContent= d.orders||'';
-  document.getElementById('mDesc').textContent  = d.desc||'';
+  document.getElementById('mName').textContent   = d.name;
+  document.getElementById('mPrice').textContent  = d.price;
+  document.getElementById('mLevel').textContent  = d.level||'';
+  document.getElementById('mOrders').textContent = d.orders||'';
+  document.getElementById('mDesc').textContent   = d.desc||'';
 
   const mf=document.getElementById('mFlavor'); mf.innerHTML='';
   (d.flavor||[]).forEach(f=>{
@@ -1118,23 +955,45 @@ function openDrink(id){
   document.getElementById('mSteps').innerHTML=(d.steps||[]).map((s,i)=>`<div class="step"><span class="step-n">${i+1}</span><span class="step-t">${s}</span></div>`).join('');
   document.getElementById('mPair').innerHTML=(d.pairing||[]).map(p=>`<span class="pair-chip">${p}</span>`).join('');
 
+  // Scroll body al top antes de abrir
+  document.getElementById('mBody').scrollTop=0;
+
   document.getElementById('modalBg').classList.add('open');
-  document.body.style.overflow='hidden';
+  lockScroll();
 }
 
-function closeMod(e){if(e.target===document.getElementById('modalBg'))closeModBtn();}
 function closeModBtn(){
   document.getElementById('modalBg').classList.remove('open');
-  document.body.style.overflow='';
+  unlockScroll();
+  // Detener video si hay
   const fr=document.querySelector('#mMedia iframe');
   if(fr){const s=fr.src;fr.src='';fr.src=s;}
 }
 
-let _sy=0;
-document.getElementById('modal').addEventListener('touchstart',e=>{_sy=e.touches[0].clientY},{passive:true});
-document.getElementById('modal').addEventListener('touchend',e=>{if(e.changedTouches[0].clientY-_sy>80)closeModBtn();});
+// Click en overlay (fuera del modal) también cierra
+document.getElementById('modalBg').addEventListener('click',function(e){
+  if(e.target===this) closeModBtn();
+});
 
-/* ════════════════ HEARTS ════════════════ */
+// Botón X
+document.getElementById('mCloseBtn').addEventListener('click', closeModBtn);
+
+/* ════════════ SWIPE para cerrar ═════════════════
+   Solo cierra si:
+   1. Se desliza HACIA ABAJO (delta positivo > 80px)
+   2. El scroll del contenido está en el tope (scrollTop ≤ 0)
+════════════════════════════════════════════════ */
+let _sy=0;
+const modalEl=document.getElementById('modal');
+const mBodyEl=document.getElementById('mBody');
+
+modalEl.addEventListener('touchstart',e=>{_sy=e.touches[0].clientY;},{passive:true});
+modalEl.addEventListener('touchend',e=>{
+  const delta=e.changedTouches[0].clientY-_sy;
+  if(delta>80 && mBodyEl.scrollTop<=0) closeModBtn();
+},{passive:true});
+
+/* ════════════ HEARTS ════════════════════════════ */
 const liked=new Set();
 function toggleHeart(e,id){
   e.stopPropagation();
@@ -1143,11 +1002,11 @@ function toggleHeart(e,id){
   else{liked.add(id);b.classList.add('liked');b.animate([{transform:'scale(1)'},{transform:'scale(1.45)'},{transform:'scale(1)'}],{duration:300,easing:'ease'});}
 }
 
-/* ════════════════ SHARE ════════════════ */
+/* ════════════ SHARE ═════════════════════════════ */
 function shareDrink(e,name,price){
   e.stopPropagation();
   const url=window.location.href;
-  if(navigator.share){navigator.share({title:`${name} · La Habana Bar`,text:`${name} ${price} — mirá la carta`,url}).catch(()=>{});}
+  if(navigator.share){navigator.share({title:`${name} · El Bar`,text:`${name} ${price}`,url}).catch(()=>{});}
   else{
     navigator.clipboard?.writeText(`${name} · ${price}\n${url}`).then(()=>{
       const b=e.currentTarget,p=b.innerHTML;
@@ -1157,11 +1016,10 @@ function shareDrink(e,name,price){
   }
 }
 
-/* ════════════════ CATEGORY FILTER ════════════════ */
+/* ════════════ CATEGORY FILTER ══════════════════ */
 const catBtns=document.querySelectorAll('.cat-btn');
 const secs=document.querySelectorAll('[data-section]');
 const allCards=document.querySelectorAll('[data-cat]');
-
 catBtns.forEach(b=>b.addEventListener('click',()=>{
   catBtns.forEach(x=>x.classList.remove('active'));b.classList.add('active');
   const cat=b.dataset.cat;
@@ -1171,7 +1029,7 @@ catBtns.forEach(b=>b.addEventListener('click',()=>{
   document.getElementById('noResults').style.display='none';
 }));
 
-/* ════════════════ SEARCH ════════════════ */
+/* ════════════ SEARCH ════════════════════════════ */
 document.getElementById('searchInput').addEventListener('input',function(){
   const q=this.value.trim().toLowerCase();
   let n=0;
@@ -1186,10 +1044,11 @@ document.getElementById('searchInput').addEventListener('input',function(){
   document.getElementById('noResults').style.display=(!q||n>0)?'none':'block';
 });
 
-/* ════════════════ SCROLL REVEAL ════════════════ */
-const io=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});},{threshold:.06});
+/* ════════════ SCROLL REVEAL ═════════════════════ */
+const io=new IntersectionObserver(en=>{
+  en.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});
+},{threshold:.06});
 document.querySelectorAll('.card,.csm,.sh').forEach(el=>io.observe(el));
-
 document.querySelectorAll('[data-section]').forEach(sec=>{
   sec.querySelectorAll('.card,.csm').forEach((c,i)=>{c.style.transitionDelay=`${i*55}ms`;});
 });
