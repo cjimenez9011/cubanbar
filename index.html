@@ -122,12 +122,19 @@ img,video{display:block}
 .story-ph svg{width:36px;height:36px;fill:none;stroke:var(--muted);stroke-width:1.5;opacity:.4;stroke-linecap:round;stroke-linejoin:round}
 
 /* ── SEARCH ─────────────────────────────── */
-.search-wrap{padding:8px 16px 4px;position:relative}
-.s-icon{position:absolute;left:28px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--muted)}
+.search-wrap{padding:8px 16px 4px;position:relative;display:flex;align-items:center}
+.s-icon{
+  position:absolute;left:28px;
+  display:flex;align-items:center;justify-content:center;
+  pointer-events:none;color:var(--muted);line-height:0;
+}
 .search-input{
   width:100%;background:var(--bg2);border:1px solid var(--bdr);
   border-radius:100px;padding:11px 16px 11px 44px;
-  color:var(--text);font-family:'Inter',sans-serif;font-size:13px;outline:none;transition:border-color .25s;
+  color:var(--text);font-family:'Inter',sans-serif;
+  /* 16px mínimo evita el zoom automático en iOS */
+  font-size:16px;outline:none;transition:border-color .25s;
+  -webkit-appearance:none;
 }
 .search-input::placeholder{color:var(--muted)}
 .search-input:focus{border-color:rgba(201,169,110,.35)}
